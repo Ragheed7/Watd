@@ -1,0 +1,80 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/di/dependency_injection.dart';
+import 'package:waie/core/routing/routes.dart';
+import 'package:waie/features/OnBoarding/landing_screen.dart';
+import 'package:waie/features/OnBoarding/welcome_screen.dart';
+import 'package:waie/features/home/home_screen.dart';
+import 'package:waie/features/login/logic/cubit/login_cubit.dart';
+import 'package:waie/features/login/presentation/login_screen.dart';
+import 'package:waie/features/otp/otp_screen.dart';
+import 'package:waie/features/signup/signup_screen.dart';
+import 'package:waie/navigation_menu.dart';
+
+class AppRouter {
+  Route? generateRoute(RouteSettings settings) {
+    // final args = settings.arguments;
+
+    switch (settings.name) {
+      case Routes.splashScreen:
+        return MaterialPageRoute(
+          builder: (context) => const LandingScreen(),
+        );
+
+      case Routes.welcomeScreen:
+        return MaterialPageRoute(
+          builder: (context) => const WelcomeScreen(),
+        );
+
+      case Routes.signupScreen:
+        return MaterialPageRoute(
+          builder: (context) => const SignUpScreen(),
+        );
+
+      case Routes.loginScreen:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<LoginCubit>(),
+                  child: const LoginScreen(),
+                ));
+
+      case Routes.otpScreen:
+        final args = settings.arguments as Map<String, dynamic>?;
+        final phoneNumber = args?['phoneNumber'] ?? '';
+
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<LoginCubit>(),
+            child: OTPScreen(phoneNumber: phoneNumber),
+        ));
+
+
+      case Routes.navigationMenu:
+        return MaterialPageRoute(
+          builder: (context) => const BottomNavBar(),
+        );
+
+      case Routes.homeScreen:
+        return MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        );
+      default:
+        return null;
+    }
+  }
+}
+
+// builder: (context) => BlocProvider(
+//   create: (context) => HomeCubit(getIt())..getSpecializations(),
+//   child: const HomeScreen(),
+
+
+// otp 
+// final args = settings.arguments as Map<String, dynamic>?;
+// final phoneNumber = args?['phoneNumber'] ?? '';
+
+// return MaterialPageRoute(
+//   builder: (context) => BlocProvider(
+//     create: (context) => getIt<LoginCubit>(),
+//     child: OTPScreen(phoneNumber: phoneNumber),
+// )
