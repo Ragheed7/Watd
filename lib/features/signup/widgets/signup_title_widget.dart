@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignInTitleWidget extends StatelessWidget {
-  const SignInTitleWidget({super.key});
+class SignUpTitleWidget extends StatelessWidget {
+  const SignUpTitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class SignInTitleWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 30),
       alignment: Alignment.topLeft,
       child: Text(
-        'Sign In',
+        'Sign Up',
         style: TextStyle(
           fontFamily: 'cabin',
           fontSize: 32,

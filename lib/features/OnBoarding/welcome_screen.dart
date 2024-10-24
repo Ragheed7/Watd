@@ -18,8 +18,8 @@ class WelcomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               alignment: Alignment.center,
               child: Image.asset(ImageLoader.logo),
-              width: 200.w,
-              height: 100.h,
+              width: 200,
+              height: 100,
             ),
             Container(
               padding: const EdgeInsets.all(20),
@@ -30,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
               'Welcome to Waie',
               style: TextStyle(
                 fontFamily: 'cabin',
-                fontSize: 32.sp,
+                fontSize: 32,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -40,13 +40,15 @@ class WelcomeScreen extends StatelessWidget {
                 'Your Eco-Friendly Marketplace!',
                 style: TextStyle(
                   fontFamily: 'cabin',
-                  fontSize: 18.sp,
+                  fontSize: 18,
                   fontWeight: FontWeight.w400,
                 ),
               ),
             ),
             verticalSpace(40),
             Container(
+              width: 358,
+              height: 48,
               padding: EdgeInsets.symmetric(horizontal: 80),
               child: MaterialButton(
                 onPressed: () {
@@ -62,7 +64,7 @@ class WelcomeScreen extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'cabin',
-                        fontSize: 20.sp,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -80,11 +82,11 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             Container(
-              height: 10.h,
+              height: 10,
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pushReplacementNamed(Routes.loginScreen);
+                Navigator.of(context).pushNamed(Routes.loginScreen);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +95,7 @@ class WelcomeScreen extends StatelessWidget {
                     'already have an account? ',
                     style: TextStyle(
                         fontFamily: 'cabin',
-                        fontSize: 16.sp,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(86, 86, 86, 1)),
                   ),
@@ -101,7 +103,7 @@ class WelcomeScreen extends StatelessWidget {
                     'Sign-in',
                     style: TextStyle(
                         fontFamily: 'cabin',
-                        fontSize: 16.sp,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: Color.fromRGBO(118, 192, 67, 1)),
                   ),
@@ -119,7 +121,7 @@ class WelcomeScreen extends StatelessWidget {
                     'Continue as a ',
                     style: TextStyle(
                         fontFamily: 'cabin',
-                        fontSize: 16.sp,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(86, 86, 86, 1)),
                   ),
@@ -127,7 +129,7 @@ class WelcomeScreen extends StatelessWidget {
                     'guest',
                     style: TextStyle(
                         fontFamily: 'cabin',
-                        fontSize: 16.sp,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: Color.fromRGBO(118, 192, 67, 1)),
                   ),

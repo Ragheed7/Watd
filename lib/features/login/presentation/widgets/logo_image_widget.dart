@@ -10,8 +10,8 @@ class LogoImageWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Image.asset(ImageLoader.logo),
-      width: 200.w,
-      height: 100.h,
+      width: 200,
+      height: 100,
     );
   }
 }

@@ -28,7 +28,7 @@ class SignInButtonWidget extends StatelessWidget {
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'cabin',
-            fontSize: 20.sp,
+            fontSize: 20,
             fontWeight: FontWeight.w400,
           ),
         ),

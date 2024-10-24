@@ -23,11 +23,11 @@ class PhoneNumberFormWidget extends StatelessWidget {
             'Phone number',
             style: TextStyle(
               fontFamily: 'cabin',
-              fontSize: 16.sp,
+              fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: 8),
           TextFormField(
             controller: loginCubit.phoneController,
             keyboardType: TextInputType.phone,
@@ -37,28 +37,28 @@ class PhoneNumberFormWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 child: Image.asset(
                   ImageLoader.saudiFlag,
-                  height: 22.h,
+                  height: 22,
                 ),
               ),
               filled: true,
               fillColor: const Color(0xFFF5F5F5),
               hintText: 'Phone number',
               hintStyle: TextStyle(
-                fontSize: 16.sp,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: Colors.grey,
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(width: 1.w),
+                borderSide: BorderSide(width: 1),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(width: 1.w),
+                borderSide: BorderSide(width: 1),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(width: 1.w),
+                borderSide: BorderSide(width: 1),
               ),
               contentPadding: const EdgeInsets.all(10),
             ),
