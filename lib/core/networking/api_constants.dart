@@ -1,5 +1,5 @@
 class ApiConsts{
-  static const String baseUrl = "http://final.somee.com/api/";
+  static const String baseUrl = "http://spareparts1.somee.com/api/";
   static const String login = "Authentication/Customer/Login";
   static const String signup = "Authentication/Register";
 }

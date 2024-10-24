@@ -4,8 +4,8 @@ import 'package:waie/core/helpers/spacing.dart';
 import 'package:waie/core/routing/routes.dart';
 import 'package:waie/core/theming/colors.dart';
 
-class BottomTextButtonsWidget extends StatelessWidget {
-  const BottomTextButtonsWidget({super.key});
+class BottomTextButtonsInSignUpScreen extends StatelessWidget {
+  const BottomTextButtonsInSignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class BottomTextButtonsWidget extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              Navigator.of(context).pushReplacementNamed(Routes.signupScreen);
+              Navigator.of(context).pushReplacementNamed(Routes.loginScreen);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
