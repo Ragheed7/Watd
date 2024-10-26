@@ -1,15 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/pages/ProduCategory.dart';
 
-class TopCategoriesGridView extends StatelessWidget {
-  final categoryImage;
-  final categoryTitle;
-  const TopCategoriesGridView({super.key,  required this.categoryImage, required this.categoryTitle});
+class CategoriesGridView extends StatefulWidget {
+  final List<CategoryData> categories;
+  const CategoriesGridView({
+    Key? key,
+    required this.categories,
+  }) : super(key: key);
 
+  @override
+  State<CategoriesGridView> createState() => _CategoriesGridViewState();
+}
+
+class _CategoriesGridViewState extends State<CategoriesGridView> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: categoryTitle.length,
+      itemCount: widget.categories.length,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
