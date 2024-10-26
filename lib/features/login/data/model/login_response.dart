@@ -24,10 +24,12 @@ class Result {
 @JsonSerializable()
 class UserData {
   int? userType;
+  @JsonKey(name: "mobileNumber")
   String? phone;
   String? userName;
-
-  UserData({this.userType, this.phone, this.userName});
+  bool? iaActive;
+  
+  UserData({this.userType, this.phone, this.userName, this.iaActive});
   factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
 }
 

@@ -38,14 +38,16 @@ Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{
 
 UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
       userType: (json['userType'] as num?)?.toInt(),
-      phone: json['phone'] as String?,
+      phone: json['mobileNumber'] as String?,
       userName: json['userName'] as String?,
+      iaActive: json['iaActive'] as bool?,
     );
 
 Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
       'userType': instance.userType,
-      'phone': instance.phone,
+      'mobileNumber': instance.phone,
       'userName': instance.userName,
+      'iaActive': instance.iaActive,
     };
 
 Token _$TokenFromJson(Map<String, dynamic> json) => Token(
