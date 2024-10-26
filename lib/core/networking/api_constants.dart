@@ -1,7 +1,7 @@
 class ApiConsts{
-  static const String baseUrl = "http://spareparts1.somee.com/api/";
+  static const String baseUrl = "http://www.finprojectapi.somee.com/api/";
   static const String login = "Authentication/Customer/Login";
-  static const String signup = "Authentication/Register";
+  // static const String signup = "Authentication/Register";
 }
  
 class ApiErrors {

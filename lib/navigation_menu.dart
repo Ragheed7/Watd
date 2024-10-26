@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/account_screen.dart';
 import 'package:waie/features/cart/cart_screen.dart';
-import 'package:waie/features/home/home_screen.dart';
+import 'package:waie/features/home/presentation/home_screen.dart';
 import 'package:waie/features/search/search_screen.dart';
 
 class BottomNavBar extends StatefulWidget {

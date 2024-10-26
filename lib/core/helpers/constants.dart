@@ -8,5 +8,5 @@ class ImageLoader{
   static const String logo = "assets/images/waie2.png"; 
   static const String saudiFlag = "assets/images/Rounded.png";
   static const String enviroment = "assets/images/env01.png";
-  // static const String backArrow = "assets/images/backArrow.svg";
+  static const String homeBanner = "assets/images/banner.png";
 }
