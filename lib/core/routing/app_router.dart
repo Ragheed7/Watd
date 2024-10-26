@@ -4,6 +4,7 @@ import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/routing/routes.dart';
 import 'package:waie/features/OnBoarding/landing_screen.dart';
 import 'package:waie/features/OnBoarding/welcome_screen.dart';
+import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/home/presentation/home_screen.dart';
 import 'package:waie/features/login/logic/cubit/login_cubit.dart';
 import 'package:waie/features/login/presentation/login_screen.dart';
@@ -27,7 +28,7 @@ class AppRouter {
         );
 
       case Routes.signupScreen:
-         return MaterialPageRoute(
+        return MaterialPageRoute(
             builder: (context) => BlocProvider(
                   create: (context) => getIt<LoginCubit>(),
                   child: const SignupScreen(),
@@ -45,11 +46,10 @@ class AppRouter {
         final phoneNumber = args?['phoneNumber'] ?? '';
 
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<LoginCubit>(),
-            child: OTPScreen(phoneNumber: phoneNumber),
-        ));
-
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<LoginCubit>(),
+                  child: OTPScreen(phoneNumber: phoneNumber),
+                ));
 
       case Routes.navigationMenu:
         return MaterialPageRoute(
@@ -58,7 +58,10 @@ class AppRouter {
 
       case Routes.homeScreen:
         return MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<HomeCubit>()..getCategories(),
+            child: HomeScreen(),
+          ),
         );
       default:
         return null;
