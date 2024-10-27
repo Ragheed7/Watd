@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/home/logic/cubit/home_state.dart';
@@ -54,7 +55,7 @@ Widget setupLoading() {
   return const SizedBox(
     height: 100,
     child: Center(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator(color: ColorsManager.mainGreen),
     ),
   );
 }

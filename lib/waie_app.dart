@@ -23,7 +23,7 @@ class Waie extends StatelessWidget {
           primaryColor: ColorsManager.mainGreen,
           scaffoldBackgroundColor: Colors.white,
         ),
-        initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
+        initialRoute: isLoggedInUser ? Routes.navigationMenu : Routes.loginScreen,
         // initialRoute: Routes.splashScreen
       ),
     );

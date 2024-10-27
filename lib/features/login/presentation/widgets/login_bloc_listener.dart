@@ -14,7 +14,6 @@ class LoginBlocListener extends StatelessWidget {
       listenWhen: (previous, current) =>
           current is Loading || current is Success || current is Error,
       listener: (context, state) {
-        // Handle different states
         state.whenOrNull(
           loading: () {
             // Show loading indicator
