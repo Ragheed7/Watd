@@ -4,10 +4,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductScreen extends StatelessWidget {
   List<String> imgs = [
-    "images/Offices.png",
-    "images/bedrooms.jpg",
-    "images/kitchens.jpg",
-    "images/living room.png",
+    "assets/images/Offices.png",
+    "assets/images/Bedrooms.jpg",
+    "assets/images/Kitchens.jpg",
+    "assets/images/LivingRooms.jpg",
   ];
 
   @override

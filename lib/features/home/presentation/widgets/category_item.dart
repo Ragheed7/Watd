@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
-import 'package:waie/pages/ProduCategory.dart';
+import 'package:waie/features/products_list/presentation/products_list_screen.dart';
 
 class CategoryItem extends StatelessWidget {
   final int itemIndex;
@@ -43,7 +43,7 @@ class CategoryItem extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProduCategory(),
+                        builder: (context) => ProductsListScreen(),
                       ),
                     );
                   },
