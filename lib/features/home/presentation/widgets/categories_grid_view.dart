@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/home/presentation/widgets/category_item.dart';
-import 'package:waie/pages/ProduCategory.dart';
+import 'package:waie/features/products_list/presentation/products_list_screen.dart';
 
 class CategoriesGridView extends StatefulWidget {
   final List<CategoryData?> categories;
