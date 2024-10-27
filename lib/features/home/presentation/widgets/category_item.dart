@@ -35,6 +35,7 @@ class CategoryItem extends StatelessWidget {
         children: [
           SizedBox(
             height: 120,
+            width: 145,
             child: Stack(
               children: [
                 InkWell(
