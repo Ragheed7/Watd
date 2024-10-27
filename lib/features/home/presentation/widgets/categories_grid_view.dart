@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:waie/features/home/data/model/category_response.dart';
+import 'package:waie/features/home/presentation/widgets/category_item.dart';
 import 'package:waie/pages/ProduCategory.dart';
 
 class CategoriesGridView extends StatefulWidget {
-  final List<CategoryData> categories;
+  final List<CategoryData?> categories;
   const CategoriesGridView({
     Key? key,
     required this.categories,
@@ -16,6 +16,8 @@ class CategoriesGridView extends StatefulWidget {
 }
 
 class _CategoriesGridViewState extends State<CategoriesGridView> {
+  var selectedCategoryIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -28,51 +30,19 @@ class _CategoriesGridViewState extends State<CategoriesGridView> {
         crossAxisSpacing: 20,
       ),
       itemBuilder: (context, index) {
-        return Container(
-          width: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 120,
-                child: Stack(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProduCategory(),
-                            ));
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          categoryImage[index],
-                          width: 180,
-                          fit: BoxFit.cover,
-                          height: 200,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // SizedBox(height: 0),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Text(
-                  categoryTitle[index],
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
+        final category = widget.categories[index];
+        if (category == null) {
+          return const SizedBox.shrink();
+        };
+        return GestureDetector(
+            onTap: () {
+              // selectedCategoryIndex = index;
+              // setState(() {});
+            },
+            child: CategoryItem(
+                itemIndex: index,
+                selectedIndex: selectedCategoryIndex,
+                categoryData: category));
       },
     );
   }

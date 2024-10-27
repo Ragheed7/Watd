@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/home/logic/cubit/home_state.dart';
 import 'package:waie/features/home/presentation/widgets/categories_grid_view.dart';
@@ -37,11 +38,17 @@ setUpError() {
   return const SizedBox.shrink();
 }
 
-Widget setupSuccess(list) {
+Widget setupSuccess(List<CategoryData?>? list) {
+  final categories = list
+      ?.where((category) => category != null)
+      .cast<CategoryData>()
+      .toList() ?? [];
+
   return CategoriesGridView(
-    categories: list ?? [],
+    categories: categories,
   );
 }
+
 
 Widget setupLoading() {
   return const SizedBox(
