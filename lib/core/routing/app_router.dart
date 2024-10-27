@@ -53,7 +53,10 @@ class AppRouter {
 
       case Routes.navigationMenu:
         return MaterialPageRoute(
-          builder: (context) => const BottomNavBar(),
+          builder: (context) => BlocProvider(
+            create: (context) => getIt<HomeCubit>()..getCategories(),
+            child: const BottomNavBar(),
+          ),
         );
 
       case Routes.homeScreen:

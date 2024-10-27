@@ -1,3 +1,4 @@
+import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/routing/app_router.dart';
 import 'package:waie/core/routing/routes.dart';
 import 'package:waie/core/theming/colors.dart';
@@ -19,12 +20,11 @@ class Waie extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRouter.generateRoute,
         theme: ThemeData(
-          // platform: TargetPlatform.iOS,
           primaryColor: ColorsManager.mainGreen,
           scaffoldBackgroundColor: Colors.white,
         ),
-        // initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
-        initialRoute: Routes.splashScreen
+        initialRoute: isLoggedInUser ? Routes.homeScreen : Routes.loginScreen,
+        // initialRoute: Routes.splashScreen
       ),
     );
   }
