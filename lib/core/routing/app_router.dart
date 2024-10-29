@@ -4,11 +4,11 @@ import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/routing/routes.dart';
 import 'package:waie/features/OnBoarding/landing_screen.dart';
 import 'package:waie/features/OnBoarding/welcome_screen.dart';
-import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/home/presentation/home_screen.dart';
 import 'package:waie/features/login/logic/cubit/login_cubit.dart';
 import 'package:waie/features/login/presentation/login_screen.dart';
 import 'package:waie/features/otp/otp_screen.dart';
+import 'package:waie/features/products_list/presentation/products_list_screen.dart';
 import 'package:waie/features/signup/signup_screen.dart';
 import 'package:waie/navigation_menu.dart';
 
@@ -60,6 +60,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => HomeScreen(),
         );
+
+        case Routes.productsScreen:
+        return MaterialPageRoute(
+          builder: (context) => ProductsListScreen(),
+        );
+
       default:
         return null;
     }
