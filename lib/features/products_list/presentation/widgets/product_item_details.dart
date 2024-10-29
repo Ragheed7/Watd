@@ -1,20 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/features/products_list/presentation/widgets/product_item_rating_and_price.dart';
+import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:waie/features/products_list/presentation/widgets/product_item_price.dart';
 
 class ProductItemDetails extends StatelessWidget {
-  List<String> productTitle;
-  List<String> prices;
-  List<String> reviews;
-  int index;
+  int itemIndex;
+  final Product product;
 
   ProductItemDetails({
     Key? key,
-    required this.productTitle,
-    required this.prices,
-    required this.reviews,
-    required this.index,
+    required this.itemIndex, required this.product,
   }) : super(key: key);
 
   @override
@@ -27,7 +23,7 @@ class ProductItemDetails extends StatelessWidget {
           children: [
             // Title
             Text(
-              productTitle[index],
+              product.nameEn ?? "Product Name",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -36,13 +32,13 @@ class ProductItemDetails extends StatelessWidget {
             SizedBox(height: 4),
             // Description
             Text(
-              "Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+              "${product.descriptionEn ?? "Product Description"}",
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
             verticalSpace(8),
-            // Rating and Price
-           ProductItemRatingAndPrice(prices: prices, reviews: reviews, index: index)
+            // Price
+           ProductItemPrice(product: product,)
           ],
         ),
       ),
