@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/home/presentation/widgets/category_item.dart';
-import 'package:waie/features/products_list/presentation/products_list_screen.dart';
 
 class CategoriesGridView extends StatefulWidget {
   final List<CategoryData?> categories;
@@ -35,14 +34,15 @@ class _CategoriesGridViewState extends State<CategoriesGridView> {
           return const SizedBox.shrink();
         };
         return GestureDetector(
-            onTap: () {
-              // selectedCategoryIndex = index;
-              // setState(() {});
-            },
-            child: CategoryItem(
-                itemIndex: index,
-                selectedIndex: selectedCategoryIndex,
-                categoryData: category));
+          onTap: () {
+            // selectedCategoryIndex = index;
+            // setState(() {});
+          },
+          child: CategoryItem(
+              itemIndex: index,
+              selectedIndex: selectedCategoryIndex,
+              categoryData: category),
+        );
       },
     );
   }
