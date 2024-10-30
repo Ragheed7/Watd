@@ -1,37 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/presentation/widgets/product_item.dart';
 import 'package:waie/pages/ProductScreen.dart';
 
-class ProductsListView extends StatelessWidget {
-  ProductsListView({super.key});
+class ProductsListView extends StatefulWidget {
+  final List<Product> products;
 
-  final List<String> imageList = [
-    "assets/images/Offices.png",
-    "assets/images/Bedrooms.jpg",
-    "assets/images/Kitchens.jpg",
-    "assets/images/LivingRooms.jpg",
-  ];
+  ProductsListView({
+    Key? key,
+    required this.products,
+  }) : super(key: key);
 
-  final List<String> productTitle = [
-    "Offices",
-    "Bedrooms",
-    "Kitchens",
-    "Living Rooms",
-  ];
+  @override
+  State<ProductsListView> createState() => _ProductsListViewState();
+}
 
-  final List<String> prices = [
-    "\$300",
-    "\$650",
-    "\$540",
-    "\$700",
-  ];
-
-  final List<String> reviews = [
-    "54",
-    "120",
-    "42",
-    "34",
-  ];
+class _ProductsListViewState extends State<ProductsListView> {
+  var selectedProductIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,21 +24,25 @@ class ProductsListView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListView.builder(
-          itemCount: imageList.length,
+          itemCount: widget.products.length,
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
+            final product = widget.products[index];
             return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductScreen(),
-                  ),
-                );
-              },
-              child: ProductItem(imageList: imageList, prices: prices, productTitle: productTitle, reviews: reviews, index: index,)
-            );
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductScreen(),
+                    ),
+                  );
+                },
+                child: ProductItem(
+                  itemIndex: index,
+                  selectedIndex: selectedProductIndex,
+                  product: product,
+                ));
           },
         ),
       ],

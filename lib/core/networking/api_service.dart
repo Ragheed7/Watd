@@ -5,6 +5,8 @@ import 'package:waie/core/networking/api_constants.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/login/data/model/login_request_body.dart';
 import 'package:waie/features/login/data/model/login_response.dart';
+import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:waie/features/products_list/data/repository/product_repo.dart';
 
 part 'api_service.g.dart';
 
@@ -20,4 +22,9 @@ abstract class ApiService {
 
   @GET(ApiConsts.categories)
   Future<CategoryResponse> getCategories();
+
+    @GET(ApiConsts.Product)
+  Future<ProductResponse> getProduct();
   }
+
+  
