@@ -24,7 +24,7 @@ class _ProductScreenState extends State<ProductScreen> {
     "assets/images/Kitchens.jpg",
     "assets/images/LivingRooms.jpg",
   ];
-  bool isAssets = true; // Set to true if images are assets
+  bool isAssets = true; 
 
   // @override
   // void initState() {
@@ -170,13 +170,13 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
                 ),
                 SizedBox(height: 30),
-                // Add to Cart Button
+                // add to cart button
                 Container(
                   height: 54,
                   width: 259,
                   child: MaterialButton(
                     onPressed: () {
-                      // Add to cart functionality
+                      
                     },
                     color: ColorsManager.mainGreen,
                     padding: EdgeInsets.symmetric(horizontal: 54, vertical: 12),
