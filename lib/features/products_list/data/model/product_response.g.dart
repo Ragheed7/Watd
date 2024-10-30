@@ -27,7 +27,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       productId: (json['productId'] as num?)?.toInt(),
       category: json['category'] == null
           ? null
-          : Category.fromJson(json['category'] as Map<String, dynamic>),
+          : CategoryData.fromJson(json['category'] as Map<String, dynamic>),
       nameAr: json['nameAr'] as String?,
       nameEn: json['nameEn'] as String?,
       descriptionAr: json['descriptionAr'] as String?,
@@ -68,18 +68,6 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'brand': instance.brand,
       'images': instance.images,
       'productStatus': instance.productStatus,
-    };
-
-Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
-      categoryId: (json['categoryId'] as num?)?.toInt(),
-      nameAr: json['nameAr'] as String?,
-      nameEn: json['nameEn'] as String?,
-    );
-
-Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
-      'categoryId': instance.categoryId,
-      'nameAr': instance.nameAr,
-      'nameEn': instance.nameEn,
     };
 
 Material _$MaterialFromJson(Map<String, dynamic> json) => Material(

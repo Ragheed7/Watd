@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/features/home/data/model/category_response.dart';
+import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/features/products_list/presentation/products_list_screen.dart';
 
 class CategoryItem extends StatelessWidget {

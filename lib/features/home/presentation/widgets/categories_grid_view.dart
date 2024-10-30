@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:waie/features/home/data/model/category_response.dart';
+import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/features/home/presentation/widgets/category_item.dart';
 
 class CategoriesGridView extends StatefulWidget {
