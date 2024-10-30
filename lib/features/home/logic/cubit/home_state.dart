@@ -12,5 +12,4 @@ class HomeState with _$HomeState {
   const factory HomeState.categoriesLoading() = CategoriesLoading;
   const factory HomeState.categoriesSuccess(List<CategoryData?>? categories) = CategoriesSuccess;
   const factory HomeState.categoriesError(ErrorHandler errorHandler) = CategoriesError;
-
 }

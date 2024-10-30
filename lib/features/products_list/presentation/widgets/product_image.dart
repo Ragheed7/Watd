@@ -2,13 +2,19 @@
 import 'package:flutter/material.dart';
 
 class ProductImage extends StatelessWidget {
-    List<String> imageList;
+
 int index;
   ProductImage({
     Key? key,
-    required this.imageList,
     required this.index,
   }) : super(key: key);
+
+      final List<String> imageList = [
+    "assets/images/Offices.png",
+    "assets/images/Bedrooms.jpg",
+    "assets/images/Kitchens.jpg",
+    "assets/images/LivingRooms.jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,5 +31,10 @@ int index;
                         ),
                       ),
                     );
-  }
+  } 
 }
+
+
+
+
+
