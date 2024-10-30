@@ -6,6 +6,8 @@ import 'package:waie/features/home/data/repository/home_repo.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/login/data/repository/login_repo.dart';
 import 'package:waie/features/login/logic/cubit/login_cubit.dart';
+import 'package:waie/features/products_list/data/repository/product_repo.dart';
+import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -21,4 +23,8 @@ Future<void> setupGetIt() async {
   //home
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
+
+  //product
+  getIt.registerLazySingleton<ProductRepo>(() => ProductRepo(getIt()));
+  getIt.registerFactory<ProductCubit>(() => ProductCubit(getIt()));
 }

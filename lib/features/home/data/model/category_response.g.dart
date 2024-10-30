@@ -8,10 +8,12 @@ part of 'category_response.dart';
 
 CategoryResponse _$CategoryResponseFromJson(Map<String, dynamic> json) =>
     CategoryResponse(
-      categories: (json['result'] as List<dynamic>)
-          .map((e) => CategoryData.fromJson(e as Map<String, dynamic>))
+      categories: (json['result'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : CategoryData.fromJson(e as Map<String, dynamic>))
           .toList(),
-      isSuccess: json['isSuccess'] as bool,
+      isSuccess: json['isSuccess'] as bool?,
       message: json['message'] as String?,
     );
 
@@ -20,17 +22,4 @@ Map<String, dynamic> _$CategoryResponseToJson(CategoryResponse instance) =>
       'result': instance.categories,
       'isSuccess': instance.isSuccess,
       'message': instance.message,
-    };
-
-CategoryData _$CategoryDataFromJson(Map<String, dynamic> json) => CategoryData(
-      id: (json['value'] as num).toInt(),
-      nameAr: json['nameAr'] as String,
-      nameEn: json['nameEn'] as String,
-    );
-
-Map<String, dynamic> _$CategoryDataToJson(CategoryData instance) =>
-    <String, dynamic>{
-      'value': instance.id,
-      'nameAr': instance.nameAr,
-      'nameEn': instance.nameEn,
     };

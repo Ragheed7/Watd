@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/features/home/data/model/category_response.dart';
+import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/features/products_list/presentation/products_list_screen.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -20,15 +19,16 @@ class CategoryItem extends StatelessWidget {
     "assets/images/Bedrooms.jpg",
     "assets/images/Kitchens.jpg",
     "assets/images/LivingRooms.jpg",
+    "assets/images/LivingRooms.jpg",
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-      margin: EdgeInsets.only(
-        right: itemIndex == 0 ? 0 : 10,
-      ),
+      // margin: EdgeInsets.only(
+      //   right: itemIndex == 0 ? 0 : 10,
+      // ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
