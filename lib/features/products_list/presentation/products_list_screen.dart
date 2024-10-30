@@ -5,13 +5,14 @@ import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/products_list/presentation/widgets/products_bloc_builder.dart';
 
 class ProductsListScreen extends StatelessWidget {
+      
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<ProductCubit>()..getProducts(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Products"),
+          title: Text("Category"),
           leading: BackButton(),
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.black,

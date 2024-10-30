@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/routing/routes.dart';
+import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/features/OnBoarding/landing_screen.dart';
 import 'package:waie/features/OnBoarding/welcome_screen.dart';
 import 'package:waie/features/home/presentation/home_screen.dart';
