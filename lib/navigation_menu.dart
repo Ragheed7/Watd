@@ -18,7 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     HomeScreen(),
     SearchScreen(),
     CartScreen(),
-    AccountScreen(),
+    AccountPage(),
   ];
 
   @override
