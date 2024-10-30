@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 
 part 'product_response.g.dart';
 
@@ -21,7 +22,7 @@ class ProductResponse {
 @JsonSerializable()
 class Product {
   int? productId;
-  Category? category;
+  CategoryData? category;
   String? nameAr;
   String? nameEn;
   String? descriptionAr;
@@ -58,22 +59,6 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
-}
-
-@JsonSerializable()
-class Category {
-  int? categoryId;
-  String? nameAr;
-  String? nameEn;
-
-  Category({
-    this.categoryId,
-    this.nameAr,
-    this.nameEn,
-  });
-
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
 }
 
 @JsonSerializable()

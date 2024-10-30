@@ -23,16 +23,3 @@ Map<String, dynamic> _$CategoryResponseToJson(CategoryResponse instance) =>
       'isSuccess': instance.isSuccess,
       'message': instance.message,
     };
-
-CategoryData _$CategoryDataFromJson(Map<String, dynamic> json) => CategoryData(
-      id: (json['value'] as num?)?.toInt(),
-      nameAr: json['nameAr'] as String?,
-      nameEn: json['nameEn'] as String?,
-    );
-
-Map<String, dynamic> _$CategoryDataToJson(CategoryData instance) =>
-    <String, dynamic>{
-      'value': instance.id,
-      'nameAr': instance.nameAr,
-      'nameEn': instance.nameEn,
-    };
