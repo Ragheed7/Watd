@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/products_list/presentation/widgets/products_bloc_builder.dart';
-import 'package:waie/features/products_list/presentation/widgets/products_list_view.dart';
 
 class ProductsListScreen extends StatelessWidget {
+      
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<ProductCubit>()..getProducts(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Products"),
+          title: Text("Category"),
           leading: BackButton(),
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.black,

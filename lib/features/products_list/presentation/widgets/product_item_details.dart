@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:waie/core/helpers/spacing.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
-import 'package:waie/features/products_list/presentation/widgets/product_item_price.dart';
 
 class ProductItemDetails extends StatelessWidget {
   int itemIndex;
@@ -10,7 +10,8 @@ class ProductItemDetails extends StatelessWidget {
 
   ProductItemDetails({
     Key? key,
-    required this.itemIndex, required this.product,
+    required this.itemIndex,
+    required this.product,
   }) : super(key: key);
 
   @override
@@ -36,9 +37,16 @@ class ProductItemDetails extends StatelessWidget {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
-            verticalSpace(8),
+            Spacer(),
             // Price
-           ProductItemPrice(product: product,)
+            Text(
+              "\$${product.price ?? "0"}",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: ColorsManager.mainGreen,
+              ),
+            ),
           ],
         ),
       ),

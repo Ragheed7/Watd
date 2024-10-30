@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/helpers/spacing.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/OnBoarding/welcome_screen.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -14,14 +16,15 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: false, 
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   automaticallyImplyLeading: false, 
+      // ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          // padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.fromLTRB(16, 64, 16, 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -34,10 +37,10 @@ class _AccountScreenState extends State<AccountScreen> {
                       child: Icon(
                         Icons.person,
                         size: 50,
-                        color: const Color.fromARGB(255, 90, 90, 90),
+                        color: ColorsManager.grey,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    verticalSpace(8),
                     Text(
                       'Account name',
                       style: TextStyle(
