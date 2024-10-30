@@ -19,6 +19,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 120,
       width: double.infinity,
       margin: EdgeInsets.only(bottom: 15),
       child: Row(
