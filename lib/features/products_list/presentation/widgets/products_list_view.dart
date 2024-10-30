@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/presentation/widgets/product_item.dart';
-import 'package:waie/pages/ProductScreen.dart';
+import 'package:waie/features/product_screen/presentation/ProductScreen.dart';
 
 class ProductsListView extends StatefulWidget {
   final List<Product> products;
@@ -34,7 +34,7 @@ class _ProductsListViewState extends State<ProductsListView> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProductScreen(),
+                      builder: (context) => ProductScreen(product: product),
                     ),
                   );
                 },
