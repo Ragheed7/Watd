@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/products_list/presentation/widgets/products_bloc_builder.dart';
-import 'package:waie/features/products_list/presentation/widgets/products_list_view.dart';
 
 class ProductsListScreen extends StatelessWidget {
   @override

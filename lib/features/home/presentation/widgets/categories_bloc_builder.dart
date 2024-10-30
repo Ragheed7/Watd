@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/home/logic/cubit/home_state.dart';
 import 'package:waie/features/home/presentation/widgets/categories_grid_view.dart';
