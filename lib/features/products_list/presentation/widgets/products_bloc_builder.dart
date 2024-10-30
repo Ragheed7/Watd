@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/networking/api_error_handler.dart';
 import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/home/presentation/widgets/categories_bloc_builder.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/products_list/logic/cubit/product_state.dart';
