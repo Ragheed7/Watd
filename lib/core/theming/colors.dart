@@ -11,4 +11,5 @@ class ColorsManager {
   static const Color navBarGrey = Color(0xFFB8B8B8);
   static const Color appBarGrey = Color(0xFFDDDDDD);
   static const Color greyBox = Color(0xFFFFF0DD);
+  static const Color grey = Color(0xFF5A5A5A);
 }
