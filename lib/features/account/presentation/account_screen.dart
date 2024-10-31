@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:waie/core/helpers/spacing.dart';
 import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/OnBoarding/welcome_screen.dart';
+import 'package:waie/features/account/presentation/myaccount.dart';
+import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
 import 'package:waie/features/account/presentation/widgets/account_option_list_tile.dart';
 import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
@@ -41,11 +43,31 @@ class _AccountScreenState extends State<AccountScreen> {
             AccountOptionListTile(
               icon: Icons.person,
               title: 'My Account',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyaccountScreen(),
+                    ),
+                  );
+              },
             ),
             AccountOptionListTile(
               icon: Icons.location_on,
               title: 'Saved address',
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SavedAddressScreen(),
+                    ),
+                  );
+              },
+            ),
+
+            AccountOptionListTile(
+              icon: Icons.payment,
+              title: 'Payment',
               onTap: () {},
             ),
             const Divider(),
