@@ -12,7 +12,9 @@ class ProductRepo {
     try {
       final response = await _apiService.getProduct();
       return ApiResult.success(response);
-    } catch (error) {
+    } catch (error, stackTrace) {
+      print('Error in getProduct: $error');
+      print('StackTrace: $stackTrace');
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }

@@ -30,7 +30,7 @@ class ProductsListScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: ProductsBlocBuilder()),
+                child: ProductsBlocBuilder(categoryData: categoryData,)),
           ),
         ),
       ),

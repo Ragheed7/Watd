@@ -1,7 +1,8 @@
 class ApiConsts{
   static const String baseUrl = "http://www.finprojectapi.somee.com/api/";
+  static const String serverBaseUrl = "http://www.finprojectapi.somee.com/";
   static const String login = "Authentication/Customer/Login";
-  static const String categories = "Product/GetCategoryLookUp";
+  static const String categories = "Product/GetCategories";
   static const String Product = "Product/SearchProducts";
 }
  

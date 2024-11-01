@@ -15,6 +15,7 @@ class ProductCubit extends Cubit<ProductState> {
     response.when(
       success: (productResponse) {
         productsList = productResponse.result ?? [];
+        print('Fetched Products: ${productsList?.length}');
         emit(ProductState.productSuccess(productResponse.result));
       },
       failure: (errorHandler) {
@@ -23,4 +24,3 @@ class ProductCubit extends Cubit<ProductState> {
     );
   }
 }
-

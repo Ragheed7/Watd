@@ -25,6 +25,8 @@ class ProductItemDetails extends StatelessWidget {
             // Title
             Text(
               product.nameEn ?? "Product Name",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

@@ -37,8 +37,6 @@ class _CategoriesGridViewState extends State<CategoriesGridView> {
           onTap: () {
           },
           child: CategoryItem(
-              itemIndex: index,
-              selectedIndex: selectedCategoryIndex,
               categoryData: category),
         );
       },
