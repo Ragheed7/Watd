@@ -39,15 +39,16 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
           ? null
           : Style.fromJson(json['style'] as Map<String, dynamic>),
       color: (json['color'] as num?)?.toInt(),
-      height: (json['height'] as num?)?.toInt(),
-      width: (json['width'] as num?)?.toInt(),
-      weight: (json['weight'] as num?)?.toInt(),
-      price: (json['price'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toDouble(),
+      width: (json['width'] as num?)?.toDouble(),
+      weight: (json['weight'] as num?)?.toDouble(),
+      price: (json['price'] as num?)?.toDouble(),
       brand: json['brand'] == null
           ? null
           : Brand.fromJson(json['brand'] as Map<String, dynamic>),
-      images:
-          (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => ImageData.fromJson(e as Map<String, dynamic>))
+          .toList(),
       productStatus: (json['productStatus'] as num?)?.toInt(),
     );
 
@@ -102,4 +103,12 @@ Brand _$BrandFromJson(Map<String, dynamic> json) => Brand(
 Map<String, dynamic> _$BrandToJson(Brand instance) => <String, dynamic>{
       'brandId': instance.brandId,
       'brandName': instance.brandName,
+    };
+
+ImageData _$ImageDataFromJson(Map<String, dynamic> json) => ImageData(
+      imageUrl: json['imageUrl'] as String?,
+    );
+
+Map<String, dynamic> _$ImageDataToJson(ImageData instance) => <String, dynamic>{
+      'imageUrl': instance.imageUrl,
     };

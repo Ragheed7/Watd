@@ -70,7 +70,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'Product/GetCategoryLookUp',
+          'Product/GetCategories',
           queryParameters: queryParameters,
           data: _data,
         )

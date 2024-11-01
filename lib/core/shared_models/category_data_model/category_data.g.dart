@@ -10,6 +10,7 @@ CategoryData _$CategoryDataFromJson(Map<String, dynamic> json) => CategoryData(
       id: (json['id'] as num?)?.toInt(),
       nameAr: json['nameAr'] as String?,
       nameEn: json['nameEn'] as String?,
+      imageUrl: json['imageUrl'] as String?,
     );
 
 Map<String, dynamic> _$CategoryDataToJson(CategoryData instance) =>
@@ -17,4 +18,5 @@ Map<String, dynamic> _$CategoryDataToJson(CategoryData instance) =>
       'id': instance.id,
       'nameAr': instance.nameAr,
       'nameEn': instance.nameEn,
+      'imageUrl': instance.imageUrl,
     };
