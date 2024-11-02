@@ -11,11 +11,13 @@ class ProductRepo {
   Future<ApiResult<ProductResponse>> getProduct({
     required int pageNumber,
     required int pageSize,
+    int? categoryId,
   }) async {
     try {
       final response = await _apiService.getProduct(
         pageNumber: pageNumber,
         pageSize: pageSize,
+        categoryId: categoryId,
       );
       return ApiResult.success(response);
     } catch (error) {

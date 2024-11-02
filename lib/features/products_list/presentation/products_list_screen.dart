@@ -16,7 +16,7 @@ class ProductsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ProductCubit>()..getProducts(),
+      create: (context) => getIt<ProductCubit>()..getProducts(isInitialLoad: true, categoryId: categoryData.categoryId),
       child: Scaffold(
         appBar: AppBar(
           title: Text(categoryData.nameEn ?? "Category"),

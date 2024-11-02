@@ -65,6 +65,12 @@ class ProductsBlocBuilder extends StatelessWidget {
     final products = list?.whereType<Product>().toList() ?? [];
     print('Products in setupSuccess: ${products.length}');
 
+     if (products.isEmpty) {
+    return Center(
+      child: Text("No products available for this category."),
+    );
+  }
+
     return ProductsListView(
       products: products,
       categoryData: categoryData,

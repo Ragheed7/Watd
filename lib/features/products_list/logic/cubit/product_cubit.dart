@@ -13,13 +13,15 @@ class ProductCubit extends Cubit<ProductState> {
   final int pageSize = 6;
   bool isLoadingMore = false;
   bool hasMoreData = true;
+  int? categoryId;
 
-  void getProducts({bool isInitialLoad = false}) async {
+  void getProducts({bool isInitialLoad = false, int? categoryId}) async {
     if (isInitialLoad) {
       // Reset pagination variables for initial load
       currentPage = 1;
       productsList.clear();
       hasMoreData = true;
+      this.categoryId = categoryId;
     }
 
     if (isLoadingMore || !hasMoreData) {
@@ -32,6 +34,7 @@ class ProductCubit extends Cubit<ProductState> {
     final response = await _productRepo.getProduct(
       pageNumber: currentPage,
       pageSize: pageSize,
+      categoryId: this.categoryId,
     );
 
     response.when(
