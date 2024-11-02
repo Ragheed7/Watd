@@ -16,9 +16,7 @@ abstract class ApiService {
 
   // registering
   @POST(ApiConsts.login)
-  Future<LoginResponse> login(
-    @Body() LoginRequestBody loginRequestBody
-  );
+  Future<LoginResponse> login(@Body() LoginRequestBody loginRequestBody);
 
   // home
   @GET(ApiConsts.categories)
@@ -29,8 +27,6 @@ abstract class ApiService {
   Future<ProductResponse> getProduct({
     @Query('PageNumber') required int pageNumber,
     @Query('PageSize') required int pageSize,
+    @Query('CategoryId') int? categoryId,
   });
 }
-
-
-  
