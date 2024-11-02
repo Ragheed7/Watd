@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
@@ -7,56 +8,72 @@ import 'package:waie/features/products_list/logic/cubit/product_state.dart';
 import 'package:waie/features/products_list/presentation/widgets/products_list_view.dart';
 
 class ProductsBlocBuilder extends StatelessWidget {
-  const ProductsBlocBuilder({Key? key}) : super(key: key);
+  final CategoryData categoryData;
+
+  const ProductsBlocBuilder({Key? key, required this.categoryData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
-      buildWhen: (previous, current) =>
-          current is ProductLoading ||
-          current is ProductSuccess ||
-          current is ProductError,
       builder: (context, state) {
-        return state.maybeWhen(
-          productLoading: () {
-            return setupLoading();
+        return state.when(
+          initial: () {
+            // Trigger initial load
+            context.read<ProductCubit>().getProducts(isInitialLoad: true);
+            return setupLoading([]);
+          },
+          productLoading: (products) {
+            print('State is ProductLoading with ${products?.length} products');
+            return setupLoading(products);
           },
           productSuccess: (products) {
-            var list = products;
-            return setupSuccess(list);
+            print('State is ProductSuccess with ${products?.length} products');
+            return setupSuccess(products);
           },
           productError: (errorHandler) {
+            print('State is ProductError');
             return setupError();
-          },
-          orElse: () {
-            return const SizedBox.shrink();
           },
         );
       },
     );
   }
 
-  Widget setupLoading() {
-    return const SizedBox(
-      height: 100,
-      child: Center(
-        child: CircularProgressIndicator(color: ColorsManager.mainGreen),
-      ),
+  Widget setupLoading(List<Product?>? list) {
+    final products = list?.whereType<Product>().toList() ?? [];
+    print('Products in setupLoading: ${products.length}');
+
+    return Stack(
+      children: [
+        ProductsListView(
+          products: products,
+          categoryData: categoryData,
+        ),
+        Positioned(
+          bottom: 16,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: CircularProgressIndicator(color: ColorsManager.mainGreen),
+          ),
+        ),
+      ],
     );
   }
 
   Widget setupSuccess(List<Product?>? list) {
-    final products = list
-        ?.where((product) => product != null)
-        .cast<Product>()
-        .toList() ?? [];
+    final products = list?.whereType<Product>().toList() ?? [];
+    print('Products in setupSuccess: ${products.length}');
 
     return ProductsListView(
       products: products,
+      categoryData: categoryData,
     );
   }
 
   Widget setupError() {
-    return const SizedBox.shrink();
+    return Center(
+      child: Text("An error occurred"),
+    );
   }
 }

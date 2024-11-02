@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:waie/core/helpers/spacing.dart';
 import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/OnBoarding/welcome_screen.dart';
+import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
+import 'package:waie/features/account/presentation/widgets/account_option_list_tile.dart';
+import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -12,188 +15,78 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   automaticallyImplyLeading: false, 
-      // ),
       body: SingleChildScrollView(
-        child: Padding(
-          // padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          padding: EdgeInsets.fromLTRB(16, 64, 16, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Colors.grey[300],
-                      child: Icon(
-                        Icons.person,
-                        size: 50,
-                        color: ColorsManager.grey,
-                      ),
-                    ),
-                    verticalSpace(8),
-                    Text(
-                      'Account name',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      '0530102767',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
+        padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const AccountHeaderWidget(
+              accountName: 'Account name',
+              phoneNumber: '0530102767',
+            ),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 8),
+            const Text(
+              'Account',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(height: 16),
-              Divider(), 
-              SizedBox(height: 8), 
-              Text(
-                'Account',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            const SizedBox(height: 8),
+            AccountOptionListTile(
+              icon: Icons.person,
+              title: 'My Account',
+              onTap: () {},
+            ),
+            AccountOptionListTile(
+              icon: Icons.location_on,
+              title: 'Saved address',
+              onTap: () {},
+            ),
+            const Divider(),
+            const SizedBox(height: 8),
+            const Text(
+              'Orders',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(height: 8),
-              ListTile(
-                leading: Container(
-                  width: 40.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Icon(
-                    Icons.person,
-                    size: 24.0,
-                  ),
-                ),
-                title: Text('My Account'),
-                trailing: Icon(Icons.arrow_forward_ios, size: 16),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Container(
-                  width: 40.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Icon(
-                    Icons.location_on,
-                    size: 24.0,
-                  ),
-                ),
-                title: Text('Saved address'),
-                trailing: Icon(Icons.arrow_forward_ios, size: 16),
-                onTap: () {},
-              ),
-              Divider(),
-              SizedBox(height: 8),
-              Text(
-                'Orders',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 8),
-              ListTile(
-                leading: Container(
-                  width: 40.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Icon(
-                    Icons.inventory,
-                    size: 24.0,
-                  ),
-                ),
-                title: Text('My orders'),
-                trailing: Icon(Icons.arrow_forward_ios, size: 16),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Container(
-                  width: 40.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Icon(
-                    Icons.local_shipping,
-                    size: 24.0,
-                  ),
-                ),
-                title: Text('Track order'),
-                trailing: Icon(Icons.arrow_forward_ios, size: 16),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Container(
-                  width: 40.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Icon(
-                    Icons.reply,
-                    size: 24.0,
-                  ),
-                ),
-                title: Text('Return'),
-                trailing: Icon(Icons.arrow_forward_ios, size: 16),
-                onTap: () {},
-              ),
-              SizedBox(height: 190),
-              Center(
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WelcomeScreen(),
-                      ),
-                    );
-                  },
-                  color: Color.fromRGBO(118, 192, 67, 1),
-                  padding: EdgeInsets.symmetric(horizontal: 90, vertical: 16),
-                  child: Text(
-                    'Logout',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'cabin',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-            ],
-          ),
+            ),
+            const SizedBox(height: 8),
+            AccountOptionListTile(
+              icon: Icons.inventory,
+              title: 'My orders',
+              onTap: () {},
+            ),
+            AccountOptionListTile(
+              icon: Icons.local_shipping,
+              title: 'Track order',
+              onTap: () {},
+            ),
+            AccountOptionListTile(
+              icon: Icons.reply,
+              title: 'Return',
+              onTap: () {},
+            ),
+            const SizedBox(height: 190),
+            LogoutButtonWidget(
+              buttonText: 'Logout',
+              buttonColor: const Color.fromRGBO(118, 192, 67, 1),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WelcomeScreen()),
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );

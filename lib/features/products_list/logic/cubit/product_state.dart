@@ -8,8 +8,9 @@ part 'product_state.freezed.dart';
 class ProductState with _$ProductState {
   const factory ProductState.initial() = _Initial;
 
-  // product 
-  const factory ProductState.productLoading() = ProductLoading;
-  const factory ProductState.productSuccess(List<Product?>? product) = ProductSuccess;
+  // Product states
+  const factory ProductState.productLoading(List<Product?>? products) = ProductLoading;
+  const factory ProductState.productSuccess(List<Product?>? products) = ProductSuccess;
   const factory ProductState.productError(ErrorHandler errorHandler) = ProductError;
 }
+

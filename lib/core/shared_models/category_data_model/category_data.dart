@@ -7,11 +7,13 @@ class CategoryData {
   final int? id;
   final String? nameAr;
   final String? nameEn;
+  final String? imageUrl;
 
   CategoryData({
     required this.id,
     required this.nameAr,
     required this.nameEn,
+    required this.imageUrl,
   });
 
   factory CategoryData.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class CategoryData {
       id: json['value'] as int? ?? json['categoryId'] as int?,
       nameAr: json['nameAr'] as String?,
       nameEn: json['nameEn'] as String?,
+      imageUrl: json['imageUrl'] as String?,
     );
   }
 
