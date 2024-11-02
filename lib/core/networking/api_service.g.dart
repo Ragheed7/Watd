@@ -91,9 +91,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<ProductResponse> getProduct() async {
+  Future<ProductResponse> getProduct({
+    required int pageNumber,
+    required int pageSize,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'PageNumber': pageNumber,
+      r'PageSize': pageSize,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ProductResponse>(Options(

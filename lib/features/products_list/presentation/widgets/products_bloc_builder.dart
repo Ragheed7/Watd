@@ -9,57 +9,60 @@ import 'package:waie/features/products_list/presentation/widgets/products_list_v
 
 class ProductsBlocBuilder extends StatelessWidget {
   final CategoryData categoryData;
-  const ProductsBlocBuilder({Key? key, required this.categoryData})
-      : super(key: key);
+
+  const ProductsBlocBuilder({Key? key, required this.categoryData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
-      buildWhen: (previous, current) =>
-          current is ProductLoading ||
-          current is ProductSuccess ||
-          current is ProductError,
       builder: (context, state) {
-        return state.maybeWhen(
-          productLoading: () {
-            print('State is ProductLoading');
-
-            return setupLoading();
+        return state.when(
+          initial: () {
+            // Trigger initial load
+            context.read<ProductCubit>().getProducts(isInitialLoad: true);
+            return setupLoading([]);
+          },
+          productLoading: (products) {
+            print('State is ProductLoading with ${products?.length} products');
+            return setupLoading(products);
           },
           productSuccess: (products) {
             print('State is ProductSuccess with ${products?.length} products');
-
-            var list = products;
-            return setupSuccess(list);
+            return setupSuccess(products);
           },
           productError: (errorHandler) {
             print('State is ProductError');
-
             return setupError();
-          },
-          orElse: () {
-            print('State is orElse');
-
-            return const SizedBox.shrink();
           },
         );
       },
     );
   }
 
-  Widget setupLoading() {
-    return const SizedBox(
-      height: 100,
-      child: Center(
-        child: CircularProgressIndicator(color: ColorsManager.mainGreen),
-      ),
+  Widget setupLoading(List<Product?>? list) {
+    final products = list?.whereType<Product>().toList() ?? [];
+    print('Products in setupLoading: ${products.length}');
+
+    return Stack(
+      children: [
+        ProductsListView(
+          products: products,
+          categoryData: categoryData,
+        ),
+        Positioned(
+          bottom: 16,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: CircularProgressIndicator(color: ColorsManager.mainGreen),
+          ),
+        ),
+      ],
     );
   }
 
   Widget setupSuccess(List<Product?>? list) {
-    final products =
-        list?.where((product) => product != null).cast<Product>().toList() ??
-            [];
+    final products = list?.whereType<Product>().toList() ?? [];
     print('Products in setupSuccess: ${products.length}');
 
     return ProductsListView(
@@ -69,8 +72,8 @@ class ProductsBlocBuilder extends StatelessWidget {
   }
 
   Widget setupError() {
-    return const SizedBox.shrink(
-      child: Text("error"),
+    return Center(
+      child: Text("An error occurred"),
     );
   }
 }
