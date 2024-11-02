@@ -27,11 +27,9 @@ class ProductsListScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: ProductsBlocBuilder(categoryData: categoryData,)),
-          ),
+          child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: ProductsBlocBuilder(categoryData: categoryData,)),
         ),
       ),
     );
