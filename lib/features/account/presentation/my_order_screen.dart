@@ -3,10 +3,10 @@ import 'package:waie/features/account/presentation/order_details_screen.dart';
 
 class MyOrderScreen extends StatelessWidget {
   final List<String> imageList = [
-    "images/img1.jpg",
-    "images/img2.jpg",
-    "images/img3.jpg",
-    "images/img4.jpg",
+    "assets/images/img1.jpg",
+    "assets/images/img2.jpg",
+    "assets/images/img3.jpg",
+    "assets/images/img4.jpg",
   ];
 
   @override

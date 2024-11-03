@@ -35,12 +35,8 @@ class _CategoriesGridViewState extends State<CategoriesGridView> {
         };
         return GestureDetector(
           onTap: () {
-            // selectedCategoryIndex = index;
-            // setState(() {});
           },
           child: CategoryItem(
-              itemIndex: index,
-              selectedIndex: selectedCategoryIndex,
               categoryData: category),
         );
       },

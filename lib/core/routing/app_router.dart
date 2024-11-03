@@ -62,10 +62,10 @@ class AppRouter {
           builder: (context) => HomeScreen(),
         );
 
-        case Routes.productsScreen:
-        return MaterialPageRoute(
-          builder: (context) => ProductsListScreen(),
-        );
+        // case Routes.productsScreen:
+        // return MaterialPageRoute(
+        //   builder: (context) => ProductsListScreen(),
+        // );
 
       default:
         return null;

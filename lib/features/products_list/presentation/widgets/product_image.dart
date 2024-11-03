@@ -1,40 +1,58 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:waie/core/networking/api_constants.dart';
+import 'package:waie/core/shared_models/category_data_model/category_data.dart';
+import 'package:waie/core/theming/colors.dart';
+import 'package:waie/features/products_list/data/model/product_response.dart';
 
 class ProductImage extends StatelessWidget {
+  final int index;
+  final CategoryData categoryData;
+  final Product? product;
 
-int index;
   ProductImage({
     Key? key,
     required this.index,
+    required this.categoryData,
+    this.product,
   }) : super(key: key);
-
-      final List<String> imageList = [
-    "assets/images/Offices.png",
-    "assets/images/Bedrooms.jpg",
-    "assets/images/Kitchens.jpg",
-    "assets/images/LivingRooms.jpg",
-  ];
 
   @override
   Widget build(BuildContext context) {
+    String imageUrl;
+
+    if (product?.images?.isNotEmpty == true && product!.images![0].imageUrl != null) {
+      imageUrl = ApiConsts.serverBaseUrl + product!.images![0].imageUrl!;
+    } else {
+      imageUrl = "assets/images/LivingRooms.jpg";
+    }
+
     return SizedBox(
-                      height: 120,
-                      width: 120,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                          imageList[index],
-                          width: 120,
-                          fit: BoxFit.cover,
-                          height: 120,
-                        ),
-                      ),
-                    );
-  } 
+      height: 120,
+      width: 120,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: imageUrl.startsWith('http')
+            ? CachedNetworkImage(
+                imageUrl: imageUrl,
+                width: 120,
+                fit: BoxFit.cover,
+                height: 120,
+                placeholder: (context, url) => CircularProgressIndicator(color: ColorsManager.mainGreen,),
+                errorWidget: (context, url, error) => Image.asset(
+                  "assets/images/LivingRooms.jpg",
+                  width: 120,
+                  fit: BoxFit.cover,
+                  height: 120,
+                ),
+              )
+            : Image.asset(
+                imageUrl,
+                width: 120,
+                fit: BoxFit.cover,
+                height: 120,
+              ),
+      ),
+    );
+  }
 }
-
-
-
-
-

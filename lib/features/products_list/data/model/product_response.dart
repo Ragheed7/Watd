@@ -30,12 +30,12 @@ class Product {
   Material? material;
   Style? style;
   int? color;
-  int? height;
-  int? width;
-  int? weight;
-  int? price;
+  double? height;
+  double? width;
+  double? weight;
+  double? price;
   Brand? brand;
-  List<String>? images;
+  List<ImageData>? images;
   int? productStatus;
 
   Product({
@@ -103,4 +103,16 @@ class Brand {
   });
 
   factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
+}
+
+@JsonSerializable()
+class ImageData {
+  String? imageUrl;
+
+  ImageData({this.imageUrl});
+
+  factory ImageData.fromJson(Map<String, dynamic> json) =>
+      _$ImageDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ImageDataToJson(this);
 }

@@ -8,9 +8,17 @@ class ProductRepo {
 
   ProductRepo(this._apiService);
 
-  Future<ApiResult<ProductResponse>> getProduct() async {
+  Future<ApiResult<ProductResponse>> getProduct({
+    required int pageNumber,
+    required int pageSize,
+    int? categoryId,
+  }) async {
     try {
-      final response = await _apiService.getProduct();
+      final response = await _apiService.getProduct(
+        pageNumber: pageNumber,
+        pageSize: pageSize,
+        categoryId: categoryId,
+      );
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));
