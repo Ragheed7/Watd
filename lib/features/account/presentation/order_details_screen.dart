@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   final List<String> imageList = [
-    "images/Offices.png",
-    "images/bedrooms.jpg",
-    "images/kitchens.jpg",
-    "images/living room.png",
+    "assets/images/Offices.png",
+    "assets/images/Bedrooms.jpg",
+    "assets/images/Kitchens.jpg",
+    "assets/images/living room.png",
   ];
 
   final List<String> productTitle = [
