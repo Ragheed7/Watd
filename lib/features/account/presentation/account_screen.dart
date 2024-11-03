@@ -6,6 +6,7 @@ import 'package:waie/features/account/presentation/my_order_screen.dart';
 import 'package:waie/features/account/presentation/myaccount.dart';
 import 'package:waie/features/account/presentation/payment_screen.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
+import 'package:waie/features/account/presentation/track_order_screen.dart';
 import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
 import 'package:waie/features/account/presentation/widgets/account_option_list_tile.dart';
 import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
@@ -105,7 +106,14 @@ class _AccountScreenState extends State<AccountScreen> {
             AccountOptionListTile(
               icon: Icons.local_shipping,
               title: 'Track order',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TrackOrderScreen(),
+                    ),
+                  );
+              },
             ),
             AccountOptionListTile(
               icon: Icons.reply,
