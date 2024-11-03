@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:waie/core/helpers/spacing.dart';
 import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/OnBoarding/welcome_screen.dart';
+import 'package:waie/features/account/presentation/my_order_screen.dart';
 import 'package:waie/features/account/presentation/myaccount.dart';
+import 'package:waie/features/account/presentation/payment_screen.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
+import 'package:waie/features/account/presentation/track_order_screen.dart';
 import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
 import 'package:waie/features/account/presentation/widgets/account_option_list_tile.dart';
 import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
@@ -16,6 +19,7 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +72,14 @@ class _AccountScreenState extends State<AccountScreen> {
             AccountOptionListTile(
               icon: Icons.payment,
               title: 'Payment',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentScreen(),
+                    ),
+                  );
+              },
             ),
             const Divider(),
             const SizedBox(height: 8),
@@ -83,12 +94,26 @@ class _AccountScreenState extends State<AccountScreen> {
             AccountOptionListTile(
               icon: Icons.inventory,
               title: 'My orders',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyOrderScreen(),
+                    ),
+                  );
+              },
             ),
             AccountOptionListTile(
               icon: Icons.local_shipping,
               title: 'Track order',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TrackOrderScreen(),
+                    ),
+                  );
+              },
             ),
             AccountOptionListTile(
               icon: Icons.reply,
