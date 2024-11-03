@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:waie/features/account/presentation/add_new_address_screen.dart';
-import 'package:waie/features/account/presentation/edit_address_screen.dart';
+import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
+import 'package:waie/features/account/presentation/edit_payment_screen.dart';
 
-class SavedAddressScreen extends StatelessWidget {
-  const SavedAddressScreen({super.key});
+
+class PaymentScreen extends StatelessWidget {
+  const PaymentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Saved Address"),
+        title: Text("Payment"),
         centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -26,7 +27,7 @@ class SavedAddressScreen extends StatelessWidget {
                 Divider(),
                 SizedBox(height: 10),
                 Text(
-                  "Saved Address",
+                  "Payment",
                   style: TextStyle(
                     fontSize: 19,
                     fontWeight: FontWeight.w600,
@@ -36,7 +37,7 @@ class SavedAddressScreen extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 18),
                   width: MediaQuery.of(context).size.width,
-                  height: 150,
+                  height: 130,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -55,7 +56,7 @@ class SavedAddressScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Saudi Arabia",
+                            "4123 1232 4231 2341",
                             style: TextStyle(fontSize: 16),
                           ),
                           TextButton(
@@ -63,7 +64,7 @@ class SavedAddressScreen extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => EditAddressScreen(),
+                                    builder: (context) => EditPaymentScreen(),
                                   ));
                             },
                             child: Text(
@@ -77,19 +78,12 @@ class SavedAddressScreen extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        "Qassim",
+                        "karem maged",
                         style: TextStyle(fontSize: 16),
                       ),
+                      SizedBox(height: 4),
                       Text(
-                        "Buraidah",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        "3, Saleh Street",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        "97545",
+                        "Exp 12/25",
                         style: TextStyle(fontSize: 16),
                       ),
                     ],
@@ -102,17 +96,17 @@ class SavedAddressScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AddNewAddressScreen(),
+                          builder: (context) => AddNewPaymentScreen(),
                         ),
                       );
                     },
                     color: Color.fromRGBO(118, 192, 67, 1),
                     padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width *0.1,
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
                       vertical: 16,
                     ),
                     child: Text(
-                      '+ Add new address',
+                      '+ Add new payment',
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'cabin',
@@ -123,7 +117,7 @@ class SavedAddressScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    minWidth: MediaQuery.of(context).size.width *0.8,
+                    minWidth: MediaQuery.of(context).size.width * 0.8,
                   ),
                 ),
                 SizedBox(height: 20),
