@@ -9,7 +9,7 @@ class EditPaymentScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Edit address"),
+        title: Text("Edit payment"),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,

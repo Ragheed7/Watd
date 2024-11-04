@@ -22,9 +22,15 @@ class OrderHeader extends StatelessWidget {
               BoxShadow(color: Colors.black12, blurRadius: 4, spreadRadius: 2),
             ],
           ),
-          child: Text(
-            "\nOrder number: 456123567 \nOrder date: 21/08/2024",
-            style: TextStyle(fontSize: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("\nOrder number: 456123567", style: TextStyle(fontSize: 16)),
+              Text("Order date: 21/08/2024", style: TextStyle(fontSize: 16)),
+              Text("Estimated delivery date: 28/08/2024",
+                  style: TextStyle(fontSize: 16)),
+              Text("Order status: on the way", style: TextStyle(fontSize: 16)),
+            ],
           ),
         ),
       ],

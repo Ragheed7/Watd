@@ -9,7 +9,7 @@ class AddNewPaymentScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Add new address"),
+        title: Text("Add new payment"),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,

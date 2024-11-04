@@ -98,6 +98,29 @@ class OrderDetailsScreen extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: 20),
+                Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Total Payment",
+                            style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Divider(),
+                      SizedBox(height: 5),
+                    ],
+                  ),
+                ),
                 OrderSummary(),
               ],
             ),

@@ -42,7 +42,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             AccountOptionListTile(
               icon: Icons.person,
               title: 'My Account',
@@ -79,6 +79,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 );
               },
             ),
+            const SizedBox(height: 8),
             const Divider(),
             const SizedBox(height: 8),
             const Text(
@@ -88,7 +89,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             AccountOptionListTile(
               icon: Icons.inventory,
               title: 'My orders',

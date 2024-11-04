@@ -22,10 +22,7 @@ class MyaccountScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Divider(
-                  height: 30,
-                  color: const Color.fromARGB(255, 24, 24, 24),
-                ),
+                Divider(),
                 SizedBox(height: 10),
                 Text(
                   "Personal Details",
