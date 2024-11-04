@@ -19,7 +19,6 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,11 +48,11 @@ class _AccountScreenState extends State<AccountScreen> {
               title: 'My Account',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyaccountScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyaccountScreen(),
+                  ),
+                );
               },
             ),
             AccountOptionListTile(
@@ -61,24 +60,23 @@ class _AccountScreenState extends State<AccountScreen> {
               title: 'Saved address',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SavedAddressScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SavedAddressScreen(),
+                  ),
+                );
               },
             ),
-
             AccountOptionListTile(
               icon: Icons.payment,
               title: 'Payment',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PaymentScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentScreen(),
+                  ),
+                );
               },
             ),
             const Divider(),
@@ -96,11 +94,11 @@ class _AccountScreenState extends State<AccountScreen> {
               title: 'My orders',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyOrderScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyOrderScreen(),
+                  ),
+                );
               },
             ),
             AccountOptionListTile(
@@ -108,11 +106,11 @@ class _AccountScreenState extends State<AccountScreen> {
               title: 'Track order',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TrackOrderScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TrackOrderScreen(),
+                  ),
+                );
               },
             ),
             AccountOptionListTile(
@@ -120,7 +118,7 @@ class _AccountScreenState extends State<AccountScreen> {
               title: 'Return',
               onTap: () {},
             ),
-            const SizedBox(height: 190),
+            SizedBox(height: 130),
             LogoutButtonWidget(
               buttonText: 'Logout',
               buttonColor: const Color.fromRGBO(118, 192, 67, 1),

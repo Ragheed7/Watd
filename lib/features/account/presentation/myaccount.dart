@@ -59,7 +59,7 @@ class MyaccountScreen extends StatelessWidget {
 
                           
                           Text(
-                            "first name last name",
+                            "User name",
                             style: TextStyle(fontSize: 16),
                           ),
                           TextButton(
@@ -74,7 +74,7 @@ class MyaccountScreen extends StatelessWidget {
                               "Edit",
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Color(0xFFDB3022),
+                                color: Color.fromRGBO(118, 192, 67, 1),
                               ),
                             ),
                           ),

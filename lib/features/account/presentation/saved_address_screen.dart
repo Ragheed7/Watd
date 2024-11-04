@@ -70,7 +70,7 @@ class SavedAddressScreen extends StatelessWidget {
                               "Edit",
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Color(0xFFDB3022),
+                                color: Color.fromRGBO(118, 192, 67, 1),
                               ),
                             ),
                           ),
@@ -108,7 +108,7 @@ class SavedAddressScreen extends StatelessWidget {
                     },
                     color: Color.fromRGBO(118, 192, 67, 1),
                     padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width *0.1,
+                      horizontal: MediaQuery.of(context).size.width * 0.1,
                       vertical: 16,
                     ),
                     child: Text(
@@ -123,7 +123,7 @@ class SavedAddressScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    minWidth: MediaQuery.of(context).size.width *0.8,
+                    minWidth: MediaQuery.of(context).size.width * 0.8,
                   ),
                 ),
                 SizedBox(height: 20),

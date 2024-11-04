@@ -71,7 +71,7 @@ class PaymentScreen extends StatelessWidget {
                               "Edit",
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Color(0xFFDB3022),
+                                color: Color.fromRGBO(118, 192, 67, 1),
                               ),
                             ),
                           ),

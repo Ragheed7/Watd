@@ -40,7 +40,7 @@ class MyOrderScreen extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 18),
                   width: MediaQuery.of(context).size.width,
-                  height: 250,
+                  height: 300,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -74,7 +74,7 @@ class MyOrderScreen extends StatelessWidget {
                               "Details",
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Color(0xFFDB3022),
+                                color: Color.fromRGBO(118, 192, 67, 1),
                               ),
                             ),
                           ),
@@ -83,6 +83,16 @@ class MyOrderScreen extends StatelessWidget {
                       SizedBox(height: 4),
                       Text(
                         "Expiry 21/08/2024",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        "Estimated delivery date: 28/08/2024",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        "Order status: on the way",
                         style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(height: 18),
