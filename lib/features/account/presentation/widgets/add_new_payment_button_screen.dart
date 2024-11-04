@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
 
-class AddNewPaymentButton extends StatelessWidget {
-  const AddNewPaymentButton({Key? key}) : super(key: key);
+class AddNewPaymentButtonScreen extends StatelessWidget {
+  const AddNewPaymentButtonScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

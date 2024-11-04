@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class OrderHeader extends StatelessWidget {
+class OrderHeaderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class OrderSummary extends StatelessWidget {
+class OrderSummaryScreen extends StatelessWidget {
   final List<Map<String, String>> items = [
     {"label": "item 1", "price": "SAR 500"},
     {"label": "item 2", "price": "SAR 100"},

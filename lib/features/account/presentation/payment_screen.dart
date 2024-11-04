@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
 import 'package:waie/features/account/presentation/edit_payment_screen.dart';
-import 'package:waie/features/account/presentation/widgets/add_new_payment_button.dart';
+import 'package:waie/features/account/presentation/widgets/add_new_payment_button_screen.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/payment_card_screen.dart';
-
-
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -32,13 +30,13 @@ class PaymentScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 15),
-                PaymentCard(
+                PaymentCardScreen(
                   cardNumber: "4123 1232 4231 2341",
                   cardHolderName: "karem maged",
                   expiryDate: "12/25",
                 ),
                 SizedBox(height: 100),
-                AddNewPaymentButton(),
+                AddNewPaymentButtonScreen(),
                 SizedBox(height: 20),
               ],
             ),
@@ -48,4 +46,3 @@ class PaymentScreen extends StatelessWidget {
     );
   }
 }
-

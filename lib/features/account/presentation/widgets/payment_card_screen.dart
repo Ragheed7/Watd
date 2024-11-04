@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/edit_payment_screen.dart';
 
-class PaymentCard extends StatelessWidget {
+class PaymentCardScreen extends StatelessWidget {
   final String cardNumber;
   final String cardHolderName;
   final String expiryDate;
 
-  const PaymentCard({
+  const PaymentCardScreen({
     Key? key,
     required this.cardNumber,
     required this.cardHolderName,

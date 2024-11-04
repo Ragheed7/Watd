@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-class OrderItem extends StatelessWidget {
+class OrderItemScreen extends StatelessWidget {
   final String image;
   final String title;
   final List<String> details;
   final String price;
 
-  OrderItem({
+  OrderItemScreen({
     required this.image,
     required this.title,
     required this.details,

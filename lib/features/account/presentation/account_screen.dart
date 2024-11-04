@@ -8,7 +8,7 @@ import 'package:waie/features/account/presentation/payment_screen.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/track_order_screen.dart';
 import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
-import 'package:waie/features/account/presentation/widgets/account_option_list_tile.dart';
+import 'package:waie/features/account/presentation/widgets/account_option_list_tile_screen.dart';
 import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -43,7 +43,7 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.person,
               title: 'My Account',
               onTap: () {
@@ -55,7 +55,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 );
               },
             ),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.location_on,
               title: 'Saved address',
               onTap: () {
@@ -67,7 +67,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 );
               },
             ),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.payment,
               title: 'Payment',
               onTap: () {
@@ -90,7 +90,7 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.inventory,
               title: 'My orders',
               onTap: () {
@@ -102,7 +102,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 );
               },
             ),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.local_shipping,
               title: 'Track order',
               onTap: () {
@@ -114,7 +114,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 );
               },
             ),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.reply,
               title: 'Return',
               onTap: () {},

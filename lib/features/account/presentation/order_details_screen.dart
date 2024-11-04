@@ -55,9 +55,9 @@ class OrderDetailsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Divider(),
-                OrderHeader(),
+                OrderHeaderScreen(),
                 SizedBox(height: 15),
-                DeliveryAddress(),
+                DeliveryAddressScreen(),
                 SizedBox(height: 20),
                 Container(
                   child: Column(
@@ -89,7 +89,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return OrderItem(
+                    return OrderItemScreen(
                       image: imageList[index],
                       title: productTitle[index],
                       details: contentDetails[index],
@@ -121,7 +121,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                OrderSummary(),
+                OrderSummaryScreen(),
               ],
             ),
           ),
