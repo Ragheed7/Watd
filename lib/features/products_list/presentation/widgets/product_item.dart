@@ -8,7 +8,7 @@ class ProductItem extends StatelessWidget {
   final int itemIndex;
   final int selectedIndex;
   final Product product;
-  final CategoryData categoryData;
+  final CategoryData? categoryData;
 
   ProductItem({
     Key? key,
