@@ -10,9 +10,10 @@ class ProductCubit extends Cubit<ProductState> {
 
   List<Product?> productsList = [];
   int currentPage = 1;
-  final int pageSize = 6;
+  final int pageSize = 8;
   bool isLoadingMore = false;
   bool hasMoreData = true;
+
   int? categoryId;
 
   void getProducts({bool isInitialLoad = false, int? categoryId}) async {
@@ -21,7 +22,7 @@ class ProductCubit extends Cubit<ProductState> {
       currentPage = 1;
       productsList.clear();
       hasMoreData = true;
-      this.categoryId = categoryId;
+      this.categoryId = categoryId; // Set the categoryId (could be null)
     }
 
     if (isLoadingMore || !hasMoreData) {
@@ -34,7 +35,7 @@ class ProductCubit extends Cubit<ProductState> {
     final response = await _productRepo.getProduct(
       pageNumber: currentPage,
       pageSize: pageSize,
-      categoryId: this.categoryId,
+      categoryId: this.categoryId, // Pass categoryId (could be null)
     );
 
     response.when(
@@ -58,3 +59,4 @@ class ProductCubit extends Cubit<ProductState> {
     );
   }
 }
+

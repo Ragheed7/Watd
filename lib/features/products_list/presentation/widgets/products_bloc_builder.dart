@@ -8,9 +8,9 @@ import 'package:waie/features/products_list/logic/cubit/product_state.dart';
 import 'package:waie/features/products_list/presentation/widgets/products_list_view.dart';
 
 class ProductsBlocBuilder extends StatelessWidget {
-  final CategoryData categoryData;
+  final CategoryData? categoryData; 
 
-  const ProductsBlocBuilder({Key? key, required this.categoryData}) : super(key: key);
+  const ProductsBlocBuilder({Key? key, this.categoryData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +19,19 @@ class ProductsBlocBuilder extends StatelessWidget {
         return state.when(
           initial: () {
             // Trigger initial load
-            context.read<ProductCubit>().getProducts(isInitialLoad: true);
+            context.read<ProductCubit>().getProducts(
+                  isInitialLoad: true,
+                  categoryId: categoryData?.categoryId,
+                );
             return setupLoading([]);
           },
           productLoading: (products) {
-            print('State is ProductLoading with ${products?.length} products');
             return setupLoading(products);
           },
           productSuccess: (products) {
-            print('State is ProductSuccess with ${products?.length} products');
             return setupSuccess(products);
           },
           productError: (errorHandler) {
-            print('State is ProductError');
             return setupError();
           },
         );
@@ -41,7 +41,6 @@ class ProductsBlocBuilder extends StatelessWidget {
 
   Widget setupLoading(List<Product?>? list) {
     final products = list?.whereType<Product>().toList() ?? [];
-    print('Products in setupLoading: ${products.length}');
 
     return Stack(
       children: [
@@ -63,13 +62,16 @@ class ProductsBlocBuilder extends StatelessWidget {
 
   Widget setupSuccess(List<Product?>? list) {
     final products = list?.whereType<Product>().toList() ?? [];
-    print('Products in setupSuccess: ${products.length}');
 
-     if (products.isEmpty) {
-    return Center(
-      child: Text("No products available for this category."),
-    );
-  }
+    if (products.isEmpty) {
+      return Center(
+        child: Text(
+          categoryData == null
+              ? "No products available."
+              : "No products available for ${categoryData!.nameEn}.",
+        ),
+      );
+    }
 
     return ProductsListView(
       products: products,
@@ -83,3 +85,4 @@ class ProductsBlocBuilder extends StatelessWidget {
     );
   }
 }
+
