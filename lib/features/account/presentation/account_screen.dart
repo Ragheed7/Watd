@@ -8,7 +8,7 @@ import 'package:waie/features/account/presentation/payment_screen.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/track_order_screen.dart';
 import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
-import 'package:waie/features/account/presentation/widgets/account_option_list_tile.dart';
+import 'package:waie/features/account/presentation/widgets/account_option_list_tile_screen.dart';
 import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -19,7 +19,6 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,44 +42,44 @@ class _AccountScreenState extends State<AccountScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
-            AccountOptionListTile(
+            const SizedBox(height: 10),
+            AccountOptionListTileScreen(
               icon: Icons.person,
               title: 'My Account',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyaccountScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyaccountScreen(),
+                  ),
+                );
               },
             ),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.location_on,
               title: 'Saved address',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SavedAddressScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SavedAddressScreen(),
+                  ),
+                );
               },
             ),
-
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.payment,
               title: 'Payment',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PaymentScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentScreen(),
+                  ),
+                );
               },
             ),
+            const SizedBox(height: 8),
             const Divider(),
             const SizedBox(height: 8),
             const Text(
@@ -90,37 +89,37 @@ class _AccountScreenState extends State<AccountScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
-            AccountOptionListTile(
+            const SizedBox(height: 10),
+            AccountOptionListTileScreen(
               icon: Icons.inventory,
               title: 'My orders',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyOrderScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyOrderScreen(),
+                  ),
+                );
               },
             ),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.local_shipping,
               title: 'Track order',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TrackOrderScreen(),
-                    ),
-                  );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TrackOrderScreen(),
+                  ),
+                );
               },
             ),
-            AccountOptionListTile(
+            AccountOptionListTileScreen(
               icon: Icons.reply,
               title: 'Return',
               onTap: () {},
             ),
-            const SizedBox(height: 190),
+            SizedBox(height: 130),
             LogoutButtonWidget(
               buttonText: 'Logout',
               buttonColor: const Color.fromRGBO(118, 192, 67, 1),

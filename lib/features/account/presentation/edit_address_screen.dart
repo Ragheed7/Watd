@@ -21,10 +21,7 @@ class EditAddressScreen extends StatelessWidget {
             padding: EdgeInsets.all(20),
             child: Column(
               children: [
-                Divider(
-                  height: 30,
-                  color: const Color.fromARGB(255, 24, 24, 24),
-                ),
+                Divider(),
                 SizedBox(height: 40),
                 SizedBox(height: 20),
                 TextFormField(

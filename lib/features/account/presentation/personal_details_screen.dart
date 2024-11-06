@@ -21,37 +21,27 @@ class PersonalDetailsScreen extends StatelessWidget {
             padding: EdgeInsets.all(20),
             child: Column(
               children: [
-                Divider(
-                  height: 30,
-                  color: const Color.fromARGB(255, 24, 24, 24),
-                ),
+                Divider(),
                 SizedBox(height: 40),
                 SizedBox(height: 20),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "First Name",
+                    labelText: "User name",
                   ),
                 ),
                 SizedBox(height: 20),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Last Name",
+                    labelText: "Email address",
                   ),
                 ),
                 SizedBox(height: 20),
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Email Address",
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Phone Number",
+                    labelText: "Phone number",
                   ),
                 ),
                 SizedBox(height: 100),

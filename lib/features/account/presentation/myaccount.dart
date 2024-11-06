@@ -22,10 +22,7 @@ class MyaccountScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Divider(
-                  height: 30,
-                  color: const Color.fromARGB(255, 24, 24, 24),
-                ),
+                Divider(),
                 SizedBox(height: 10),
                 Text(
                   "Personal Details",
@@ -59,7 +56,7 @@ class MyaccountScreen extends StatelessWidget {
 
                           
                           Text(
-                            "first name last name",
+                            "User name",
                             style: TextStyle(fontSize: 16),
                           ),
                           TextButton(
@@ -74,7 +71,7 @@ class MyaccountScreen extends StatelessWidget {
                               "Edit",
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Color(0xFFDB3022),
+                                color: Color.fromRGBO(118, 192, 67, 1),
                               ),
                             ),
                           ),
