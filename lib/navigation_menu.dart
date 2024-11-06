@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/account_screen.dart';
-import 'package:waie/features/cart/cart_screen.dart';
+import 'package:waie/features/cart/presentation/cart_screen.dart';
 import 'package:waie/features/home/presentation/home_screen.dart';
 import 'package:waie/features/search/search_screen.dart';
 
