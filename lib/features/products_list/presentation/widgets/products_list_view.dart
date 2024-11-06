@@ -9,7 +9,7 @@ import '../../logic/cubit/product_cubit.dart';
 
 class ProductsListView extends StatefulWidget {
   final List<Product> products;
-  final CategoryData categoryData;
+  final CategoryData? categoryData;
 
   ProductsListView({
     Key? key,
