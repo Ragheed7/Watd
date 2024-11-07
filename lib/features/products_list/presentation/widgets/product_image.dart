@@ -6,13 +6,11 @@ import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 
 class ProductImage extends StatelessWidget {
-  final int index;
   final CategoryData? categoryData;
   final Product? product;
 
   ProductImage({
     Key? key,
-    required this.index,
     required this.categoryData,
     this.product,
   }) : super(key: key);

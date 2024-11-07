@@ -8,10 +8,10 @@ import 'package:waie/features/cart/presentation/widgets/payment_section_screen.d
 
 class CheckOutScreen extends StatelessWidget {
   final List<String> imageList = [
-    "images/img1.jpg",
-    "images/img2.jpg",
-    "images/img3.jpg",
-    "images/img4.jpg",
+    "assets/images/img1.jpg",
+    "assets/images/img2.jpg",
+    "assets/images/img3.jpg",
+    "assets/images/img4.jpg",
   ];
 
   @override

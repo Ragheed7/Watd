@@ -3,25 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/products_list/presentation/widgets/product_item.dart';
 import 'package:waie/features/product_screen/presentation/ProductScreen.dart';
-import '../../logic/cubit/product_cubit.dart';
 
-class ProductsListView extends StatefulWidget {
+class ProductsGridView extends StatefulWidget {
   final List<Product> products;
   final CategoryData? categoryData;
 
-  ProductsListView({
+  ProductsGridView({
     Key? key,
     required this.products,
     required this.categoryData,
   }) : super(key: key);
 
   @override
-  State<ProductsListView> createState() => _ProductsListViewState();
+  State<ProductsGridView> createState() => _ProductsListViewState();
 }
 
-class _ProductsListViewState extends State<ProductsListView> {
+class _ProductsListViewState extends State<ProductsGridView> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -41,7 +41,8 @@ class _ProductsListViewState extends State<ProductsListView> {
 
   void _onScroll() {
     // Check if we are at the bottom of the list
-    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200) {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
       // Request more products
       context.read<ProductCubit>().getProducts();
     }
@@ -50,11 +51,15 @@ class _ProductsListViewState extends State<ProductsListView> {
   @override
   Widget build(BuildContext context) {
     final productCubit = context.read<ProductCubit>();
-    return ListView.builder(
+    return GridView.builder(
       controller: _scrollController,
-      // physics: NeverScrollableScrollPhysics(),
-      // shrinkWrap: true,
-      itemCount: widget.products.length + 1, // Add 1 for the loading indicator
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3, 
+        crossAxisSpacing: 10.0, 
+        mainAxisSpacing: 10.0, 
+        childAspectRatio: 0.6, 
+      ),
+      itemCount: widget.products.length + 1, // +1 for the loading indicator
       itemBuilder: (context, index) {
         if (index < widget.products.length) {
           final product = widget.products[index];
@@ -70,7 +75,7 @@ class _ProductsListViewState extends State<ProductsListView> {
             child: ProductItem(
               product: product,
               categoryData: widget.categoryData,
-              isGrid: false,
+              isGrid: true,
             ),
           );
         } else {
@@ -84,18 +89,14 @@ class _ProductsListViewState extends State<ProductsListView> {
   Widget _buildLoadingIndicator(ProductCubit productCubit) {
     if (productCubit.hasMoreData && productCubit.isLoadingMore) {
       return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: CircularProgressIndicator(color: ColorsManager.mainGreen,),
+        child: CircularProgressIndicator(
+          color: ColorsManager.mainGreen,
         ),
       );
     } else if (!productCubit.hasMoreData) {
       // No more data to load
       return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text('No more products'),
-        ),
+        child: Text('No more products'),
       );
     } else {
       return SizedBox.shrink();

@@ -13,10 +13,10 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   final List<String> imageList = [
-    "images/Offices.png",
-    "images/Bedrooms.jpg",
-    "images/Kitchens.jpg",
-    "images/livingRooms.jpg",
+    "assets/images/Offices.png",
+    "assets/images/Bedrooms.jpg",
+    "assets/images/Kitchens.jpg",
+    "assets/images/LivingRooms.jpg",
   ];
 
   final List<String> productTitle = [

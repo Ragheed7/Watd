@@ -43,7 +43,7 @@ class _TitleCategoryAndPriceState extends State<TitleCategoryAndPrice> {
             ),
             // Product Price
             Text(
-              "\$${widget.product.price ?? "0"}",
+              "\SAR ${widget.product.price ?? "0"}",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,

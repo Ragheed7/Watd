@@ -6,11 +6,17 @@ import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/products_list/logic/cubit/product_state.dart';
 import 'package:waie/features/products_list/presentation/widgets/products_list_view.dart';
+import 'package:waie/features/search/presentation/widgets/products_grid_view.dart'; 
 
 class ProductsBlocBuilder extends StatelessWidget {
-  final CategoryData? categoryData; 
+  final CategoryData? categoryData;
+  final bool grid; // The 'grid' parameter
 
-  const ProductsBlocBuilder({Key? key, this.categoryData}) : super(key: key);
+  const ProductsBlocBuilder({
+    Key? key,
+    this.categoryData,
+    required this.grid, // Mark as required
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +50,15 @@ class ProductsBlocBuilder extends StatelessWidget {
 
     return Stack(
       children: [
-        ProductsListView(
-          products: products,
-          categoryData: categoryData,
-        ),
+        grid
+            ? ProductsGridView(
+                products: products,
+                categoryData: categoryData,
+              )
+            : ProductsListView(
+                products: products,
+                categoryData: categoryData,
+              ),
         Positioned(
           bottom: 16,
           left: 0,
@@ -73,10 +84,15 @@ class ProductsBlocBuilder extends StatelessWidget {
       );
     }
 
-    return ProductsListView(
-      products: products,
-      categoryData: categoryData,
-    );
+    return grid
+        ? ProductsGridView(
+            products: products,
+            categoryData: categoryData,
+          )
+        : ProductsListView(
+            products: products,
+            categoryData: categoryData,
+          );
   }
 
   Widget setupError() {
@@ -85,4 +101,3 @@ class ProductsBlocBuilder extends StatelessWidget {
     );
   }
 }
-
