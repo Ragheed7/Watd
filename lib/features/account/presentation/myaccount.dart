@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/personal_details_screen.dart';
+import 'package:waie/features/login/data/model/login_response.dart';
 
 class MyaccountScreen extends StatelessWidget {
-  const MyaccountScreen({super.key});
+  final UserData? userInfo;
+
+  const MyaccountScreen({super.key, this.userInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +56,8 @@ class MyaccountScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-
-                          
                           Text(
-                            "User name",
+                            "Username",
                             style: TextStyle(fontSize: 16),
                           ),
                           TextButton(
@@ -64,13 +65,14 @@ class MyaccountScreen extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => PersonalDetailsScreen(),
+                                    builder: (context) =>
+                                        PersonalDetailsScreen(userInfo: userInfo,),
                                   ));
                             },
                             child: Text(
                               "Edit",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 14,
                                 color: Color.fromRGBO(118, 192, 67, 1),
                               ),
                             ),
@@ -84,7 +86,7 @@ class MyaccountScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 6),
                       Text(
-                        "+966 530102767",
+                        userInfo?.phone?? "0500000000",
                         style: TextStyle(fontSize: 16),
                       ),
                     ],

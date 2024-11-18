@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/account_screen.dart';
+import 'package:waie/features/login/data/model/login_response.dart';
 
 class EditAddressScreen extends StatelessWidget {
-  const EditAddressScreen({super.key});
+    final UserData? userInfo;
+
+  const EditAddressScreen({super.key, this.userInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +68,7 @@ class EditAddressScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AccountScreen(),
+                          builder: (context) => AccountScreen(userInfo: userInfo,),
                         ),
                       );
                     },

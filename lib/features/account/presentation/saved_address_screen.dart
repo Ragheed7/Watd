@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:waie/features/account/presentation/add_new_address_screen.dart';
-import 'package:waie/features/account/presentation/edit_address_screen.dart';
 import 'package:waie/features/account/presentation/widgets/add_new_address_button_screen.dart';
 import 'package:waie/features/account/presentation/widgets/addreess_card_screen.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
-
-
+import 'package:waie/features/login/data/model/login_response.dart';
 
 class SavedAddressScreen extends StatelessWidget {
-const SavedAddressScreen({Key? key}) : super(key: key);
+    final UserData? userInfo;
+
+const SavedAddressScreen({Key? key, this.userInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +37,10 @@ const SavedAddressScreen({Key? key}) : super(key: key);
                   city: "Buraidah",
                   street: "3, Saleh Street",
                   postalCode: "97545",
+                  userInfo: userInfo,
                 ),
                 SizedBox(height: 100),
-                AddNewAddressButtonScreen(),
+                AddNewAddressButtonScreen(userInfo: userInfo,),
                 SizedBox(height: 20),
               ],
             ),

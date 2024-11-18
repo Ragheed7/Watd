@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/account_screen.dart';
+import 'package:waie/features/login/data/model/login_response.dart';
 
 class PersonalDetailsScreen extends StatelessWidget {
-  const PersonalDetailsScreen({super.key});
+    final UserData? userInfo;
+
+  const PersonalDetailsScreen({super.key, this.userInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AccountScreen(),
+                          builder: (context) => AccountScreen(userInfo: userInfo,),
                         ),
                       );
                     },

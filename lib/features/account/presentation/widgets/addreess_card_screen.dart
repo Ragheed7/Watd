@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/edit_address_screen.dart';
+import 'package:waie/features/login/data/model/login_response.dart';
 
 class AddreessCardScreen extends StatelessWidget {
   final String country;
@@ -7,6 +8,8 @@ class AddreessCardScreen extends StatelessWidget {
   final String city;
   final String street;
   final String postalCode;
+  final UserData? userInfo;
+
 
   const AddreessCardScreen({
     Key? key,
@@ -14,7 +17,8 @@ class AddreessCardScreen extends StatelessWidget {
     required this.state,
     required this.city,
     required this.street,
-    required this.postalCode,
+    required this.postalCode, 
+    this.userInfo,
   }) : super(key: key);
 
   @override
@@ -49,7 +53,7 @@ class AddreessCardScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditAddressScreen(),
+                      builder: (context) => EditAddressScreen(userInfo: userInfo,),
                     ),
                   );
                 },
