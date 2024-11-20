@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/shared_models/user_data/user_data.dart';
 import 'package:waie/features/account/presentation/edit_address_screen.dart';
-import 'package:waie/features/login/data/model/login_response.dart';
 
 class AddreessCardScreen extends StatelessWidget {
   final String country;

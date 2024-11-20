@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/shared_models/user_data/user_data.dart';
 import 'package:waie/features/account/presentation/widgets/add_new_address_button_screen.dart';
 import 'package:waie/features/account/presentation/widgets/addreess_card_screen.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
-import 'package:waie/features/login/data/model/login_response.dart';
 
 class SavedAddressScreen extends StatelessWidget {
     final UserData? userInfo;

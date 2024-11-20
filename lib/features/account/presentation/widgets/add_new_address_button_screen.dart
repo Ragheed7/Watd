@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/shared_models/user_data/user_data.dart';
 import 'package:waie/features/account/presentation/add_new_address_screen.dart';
-import 'package:waie/features/login/data/model/login_response.dart';
 
 class AddNewAddressButtonScreen extends StatelessWidget {
     final UserData? userInfo;

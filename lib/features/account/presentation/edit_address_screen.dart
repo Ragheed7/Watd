@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/shared_models/user_data/user_data.dart';
 import 'package:waie/features/account/presentation/account_screen.dart';
 import 'package:waie/features/login/data/model/login_response.dart';
 
@@ -68,7 +69,7 @@ class EditAddressScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AccountScreen(userInfo: userInfo,),
+                          builder: (context) => AccountScreen(),
                         ),
                       );
                     },
