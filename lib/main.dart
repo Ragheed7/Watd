@@ -7,13 +7,12 @@ import 'package:waie/core/helpers/extensions.dart';
 import 'package:waie/core/helpers/shared_prefs_helper.dart';
 import 'package:waie/core/routing/app_router.dart';
 import 'package:waie/core/shared_models/user_data/user_data.dart';
-import 'package:waie/features/login/data/model/login_response.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 import 'package:waie/waie_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupGetIt();
+  await setupGetIt();
   //fixing text hiding bug of screenUtils in release mode
   await ScreenUtil.ensureScreenSize();
   await checkIfLoggedInUser();

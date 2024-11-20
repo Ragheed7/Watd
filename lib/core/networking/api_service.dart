@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:waie/core/networking/api_constants.dart';
+import 'package:waie/features/auth/model/refresh_token_request_body.dart';
+import 'package:waie/features/auth/model/refresh_token_response.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/login/data/model/login_request_body.dart';
 import 'package:waie/features/login/data/model/login_response.dart';
@@ -17,6 +19,10 @@ abstract class ApiService {
   // registering
   @POST(ApiConsts.login)
   Future<LoginResponse> login(@Body() LoginRequestBody loginRequestBody);
+
+  @POST(ApiConsts.refreshToken)
+  Future<RefreshTokenResponse> refreshToken(
+      @Body() RefreshTokenRequestBody body);
 
   // home
   @GET(ApiConsts.categories)

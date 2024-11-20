@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/routing/routes.dart';
 import 'package:waie/core/shared_models/user_data/user_data.dart';
-import 'package:waie/features/OnBoarding/welcome_screen.dart';
 import 'package:waie/features/account/presentation/my_order_screen.dart';
 import 'package:waie/features/account/presentation/payment_screen.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
@@ -10,7 +9,6 @@ import 'package:waie/features/account/presentation/track_order_screen.dart';
 import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
 import 'package:waie/features/account/presentation/widgets/account_option_list_tile_screen.dart';
 import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
-import 'package:waie/features/login/data/model/login_response.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -115,13 +113,6 @@ class AccountScreen extends StatelessWidget {
                 LogoutButtonWidget(
                   buttonText: 'Logout',
                   buttonColor: const Color.fromRGBO(118, 192, 67, 1),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const WelcomeScreen()),
-                    );
-                  },
                 ),
                 const SizedBox(height: 20),
               ],

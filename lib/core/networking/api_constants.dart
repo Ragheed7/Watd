@@ -4,6 +4,7 @@ class ApiConsts{
   static const String login = "Authentication/Customer/Login";
   static const String categories = "Product/GetCategories";
   static const String Product = "Product/SearchProducts";
+  static const String refreshToken = "Authentication/RefreshToken";
 }
  
 class ApiErrors {
