@@ -1,50 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
+import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
 import 'package:waie/features/account/presentation/widgets/add_new_address_button_screen.dart';
 import 'package:waie/features/account/presentation/widgets/addreess_card_screen.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SavedAddressScreen extends StatelessWidget {
-    final UserData? userInfo;
-
-const SavedAddressScreen({Key? key, this.userInfo}) : super(key: key);
+  const SavedAddressScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final addressCubit = context.read<AddressCubit>()..getAddresses();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarScreen(title: "Saved Address"),
       body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Divider(),
-                SizedBox(height: 10),
-                Text(
-                  "Saved Address",
-                  style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(height: 15),
-                AddreessCardScreen(
-                  country: "Saudi Arabia",
-                  state: "Qassim",
-                  city: "Buraidah",
-                  street: "3, Saleh Street",
-                  postalCode: "97545",
-                  userInfo: userInfo,
-                ),
-                SizedBox(height: 100),
-                AddNewAddressButtonScreen(userInfo: userInfo,),
-                SizedBox(height: 20),
-              ],
+        child: Column( 
+          children: [
+            SizedBox(
+              height: 600,
+              child: BlocBuilder<AddressCubit, AddressState>(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () => Center(child: CircularProgressIndicator()),
+                    success: (getAddresses) {
+                      final addresses = getAddresses.result ?? [];
+              
+                      if (addresses.isEmpty) {
+                        return Center(child: Text('No saved addresses found.'));
+                      }              
+                      return ListView.builder(
+                        padding: EdgeInsets.all(20),
+                        itemCount: addresses.length,
+                        itemBuilder: (context, index) {
+                          final address = addresses[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: AddressCardScreen(address: address),
+                          );
+                        },
+                      );
+                    },
+                    addressCreated: (_) {
+                      context.read<AddressCubit>().getAddresses();
+                      return Center(child: CircularProgressIndicator());
+                    },
+                    error: (error) => Center(child: Text('Error: $error')),
+                  );
+                },
+              ),
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: AddNewAddressButtonScreen(),
+            ),
+          ],
         ),
       ),
     );

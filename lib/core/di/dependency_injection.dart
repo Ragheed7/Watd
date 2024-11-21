@@ -2,9 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:waie/core/networking/api_service.dart';
 import 'package:waie/core/networking/dio_factory.dart';
+import 'package:waie/core/shared_models/user_addresses/data/repository/address_repo.dart';
+import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/data/repository/update_user_repo.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
-import 'package:waie/features/auth/interceptor/auth_interceptor.dart';
 import 'package:waie/features/auth/repo/auth_repo.dart';
 import 'package:waie/features/home/data/repository/home_repo.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
@@ -15,7 +16,7 @@ import 'package:waie/features/products_list/data/repository/product_repo.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 
 final getIt = GetIt.instance;
-
+  
 Future<void> setupGetIt() async {
   // Initialize Dio using DioFactory
   Dio dio = await DioFactory.getDio();
@@ -44,5 +45,9 @@ Future<void> setupGetIt() async {
   // Register UpdateUserRepo and UpdateUserCubit
   getIt.registerLazySingleton<UpdateUserRepo>(() => UpdateUserRepo(getIt<ApiService>()));
   getIt.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(getIt<UpdateUserRepo>()));
+
+  // Register AddreessRepo and AddressCubit
+  getIt.registerLazySingleton<AddressRepo>(() => AddressRepo(getIt<ApiService>()));
+  getIt.registerFactory<AddressCubit>(() => AddressCubit(getIt<AddressRepo>()));
 }
 

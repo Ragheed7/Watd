@@ -1,96 +1,148 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
-import 'package:waie/features/account/presentation/account_screen.dart';
-import 'package:waie/features/login/data/model/login_response.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
+import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
+import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
+import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
-class EditAddressScreen extends StatelessWidget {
-    final UserData? userInfo;
+class EditAddressScreen extends StatefulWidget {
+  final Address address;
 
-  const EditAddressScreen({super.key, this.userInfo});
+  const EditAddressScreen({Key? key, required this.address}) : super(key: key);
+
+  @override
+  _EditAddressScreenState createState() => _EditAddressScreenState();
+}
+
+class _EditAddressScreenState extends State<EditAddressScreen> {
+  final _formKey = GlobalKey<FormState>();
+  late TextEditingController countryController;
+  late TextEditingController stateController;
+  late TextEditingController cityController;
+  late TextEditingController streetAddressController;
+  late TextEditingController zipCodeController;
+
+  @override
+  void initState() {
+    super.initState();
+    countryController = TextEditingController(text: widget.address.country);
+    stateController = TextEditingController(text: widget.address.state);
+    cityController = TextEditingController(text: widget.address.city);
+    streetAddressController =
+        TextEditingController(text: widget.address.streetAddress);
+    zipCodeController = TextEditingController(text: widget.address.zipCode);
+  }
+
+  @override
+  void dispose() {
+    countryController.dispose();
+    stateController.dispose();
+    cityController.dispose();
+    streetAddressController.dispose();
+    zipCodeController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final addressCubit = context.read<AddressCubit>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Edit address"),
+        title: Text("Edit Address"),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Divider(),
-                SizedBox(height: 40),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Country",
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "State/Province/Region",
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "City",
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Street Address",
-                  ),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Zip code (Postal Code)",
-                  ),
-                ),
-                SizedBox(height: 100),
-                Center(
-                  child: MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AccountScreen(),
+      body: BlocListener<AddressCubit, AddressState>(
+        listener: (context, state) {
+          if (state is Success) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Address updated successfully')),
+            );
+            Navigator.pop(context);
+          } else if (state is Error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error)),
+            );
+          }
+        },
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Divider(),
+                    SizedBox(height: 40),
+                    UserInfoTextFormField(
+                      controller: countryController,
+                      labelText: "Country",
+                      enabled: false,
+                    ),
+                    SizedBox(height: 20),
+                    UserInfoTextFormField(
+                      controller: stateController,
+                      labelText: "State/Province/Region",
+                    ),
+                    SizedBox(height: 20),
+                    UserInfoTextFormField(
+                      controller: cityController,
+                      labelText: "City",
+                    ),
+                    SizedBox(height: 20),
+                    UserInfoTextFormField(
+                      controller: streetAddressController,
+                      labelText: "Street Address",
+                    ),
+                    SizedBox(height: 20),
+                    UserInfoTextFormField(
+                      controller: zipCodeController,
+                      labelText: "Zip code (Postal Code)",
+                    ),
+                    SizedBox(height: 100),
+                    Center(
+                      child: MaterialButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            final updatedAddress = CreateAddress(
+                              addressId: widget.address.addressId,
+                              streetAddress: streetAddressController.text,
+                              city: cityController.text,
+                              state: stateController.text,
+                              zipCode: zipCodeController.text,
+                              country: countryController.text,
+                            );
+                            addressCubit.createAddress(updatedAddress);
+                            Navigator.pop(context);
+                          }
+                        },
+                        color: Color.fromRGBO(118, 192, 67, 1),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 90, vertical: 16),
+                        child: Text(
+                          'Save changes',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'cabin',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                      );
-                    },
-                    color: Color.fromRGBO(118, 192, 67, 1),
-                    padding: EdgeInsets.symmetric(horizontal: 90, vertical: 16),
-                    child: Text(
-                      'Save changes',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'cabin',
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
                       ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                  ),
+                    SizedBox(height: 20),
+                  ],
                 ),
-                SizedBox(height: 20),
-              ],
+              ),
             ),
           ),
         ),

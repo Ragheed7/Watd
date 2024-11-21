@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
 import 'package:waie/features/account/presentation/add_new_address_screen.dart';
 
 class AddNewAddressButtonScreen extends StatelessWidget {
-    final UserData? userInfo;
-
-  const AddNewAddressButtonScreen({Key? key, this.userInfo}) : super(key: key);
+  const AddNewAddressButtonScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Container(
+      alignment: Alignment.center,
       child: MaterialButton(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddNewAddressScreen(userInfo: userInfo,),
+              builder: (context) => AddNewAddressScreen(),
             ),
           );
         },

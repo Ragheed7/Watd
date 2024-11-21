@@ -45,7 +45,7 @@ class ResponseMessage {
   static const String FORBIDDEN = "Forbidden";
   static const String INTERNAL_SERVER_ERROR = "Internal Server Error";
   static const String NOT_FOUND = "Not Found";
-  
+
   static const String CONNECT_TIMEOUT = "Connection Timeout";
   static const String CANCEL = "Request Cancelled";
   static const String RECEIVE_TIMEOUT = "Receive Timeout";
@@ -80,8 +80,7 @@ extension DataSourceExtension on DataSource {
         return ApiErrorModel(
             message: ResponseMessage.CONNECT_TIMEOUT, isSuccess: false);
       case DataSource.CANCEL:
-        return ApiErrorModel(
-            message: ResponseMessage.CANCEL, isSuccess: false);
+        return ApiErrorModel(message: ResponseMessage.CANCEL, isSuccess: false);
       case DataSource.RECEIVE_TIMEOUT:
         return ApiErrorModel(
             message: ResponseMessage.RECEIVE_TIMEOUT, isSuccess: false);
@@ -123,7 +122,9 @@ class ErrorHandler implements Exception {
       case DioExceptionType.badResponse:
         if (error.response != null &&
             error.response?.statusCode != null &&
-            error.response?.statusMessage != null) {
+            error.response?.statusMessage != null &&
+            error.response?.data != null &&
+            error.response!.data is Map<String, dynamic>) {
           return ApiErrorModel.fromJson(error.response!.data);
         } else {
           return DataSource.DEFAULT.getFailure();

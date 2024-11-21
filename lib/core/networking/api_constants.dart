@@ -1,13 +1,15 @@
-class ApiConsts{
-  static const String baseUrl = "http://www.finprojectapi.somee.com/api/";
-  static const String serverBaseUrl = "http://www.finprojectapi.somee.com/";
+class ApiConsts {
+  static const String baseUrl = "http://finprojectapi.somee.com/api/";
+  static const String serverBaseUrl = "http://finprojectapi.somee.com/";
   static const String login = "Authentication/Customer/Login";
   static const String categories = "Product/GetCategories";
   static const String Product = "Product/SearchProducts";
   static const String refreshToken = "Authentication/RefreshToken";
   static const String updateUser = 'User/UpdateUser';
+  static const String createAddress = 'Address/CreateAddress';
+  static const String getAddresses = 'Address/GetAddresses';
 }
- 
+
 class ApiErrors {
   static const String badRequestError = "badRequestError";
   static const String noContent = "noContent";

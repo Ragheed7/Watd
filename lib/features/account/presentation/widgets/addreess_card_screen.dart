@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/features/account/presentation/edit_address_screen.dart';
 
-class AddreessCardScreen extends StatelessWidget {
-  final String country;
-  final String state;
-  final String city;
-  final String street;
-  final String postalCode;
-  final UserData? userInfo;
+class AddressCardScreen extends StatelessWidget {
+  final Address address;
 
-
-  const AddreessCardScreen({
+  const AddressCardScreen({
     Key? key,
-    required this.country,
-    required this.state,
-    required this.city,
-    required this.street,
-    required this.postalCode, 
-    this.userInfo,
+    required this.address,
   }) : super(key: key);
 
   @override
@@ -26,7 +17,6 @@ class AddreessCardScreen extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 18),
       width: MediaQuery.of(context).size.width,
-      height: 150,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -41,11 +31,12 @@ class AddreessCardScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Address Details
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                country,
+                address.country,
                 style: TextStyle(fontSize: 16),
               ),
               TextButton(
@@ -53,24 +44,24 @@ class AddreessCardScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditAddressScreen(userInfo: userInfo,),
+                      builder: (context) => EditAddressScreen(address: address),
                     ),
                   );
                 },
                 child: Text(
                   "Edit",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 12,
                     color: Color.fromRGBO(118, 192, 67, 1),
                   ),
                 ),
               ),
             ],
           ),
-          Text(state, style: TextStyle(fontSize: 16)),
-          Text(city, style: TextStyle(fontSize: 16)),
-          Text(street, style: TextStyle(fontSize: 16)),
-          Text(postalCode, style: TextStyle(fontSize: 16)),
+          Text(address.state, style: TextStyle(fontSize: 16)),
+          Text(address.city, style: TextStyle(fontSize: 16)),
+          Text(address.streetAddress, style: TextStyle(fontSize: 16)),
+          Text(address.zipCode, style: TextStyle(fontSize: 16)),
         ],
       ),
     );
