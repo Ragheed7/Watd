@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/helpers/shared_prefs_helper.dart';
 import 'package:waie/core/networking/api_service.dart';
+import 'package:waie/core/networking/dio_factory.dart';
 import 'package:waie/features/auth/model/refresh_token_request_body.dart';
 
 class AuthRepository {
@@ -56,7 +58,13 @@ class AuthRepository {
     await SharedPrefHelper.setSecuredString(
         SharedPrefKeys.refreshToken, refreshToken);
   }
-
+  
+  /// Retries the failed request with updated headers.
+  Future<Response> retryRequest(RequestOptions options) async {
+    final dio = await DioFactory.getDio();
+    return dio.fetch(options);
+  }
+    
   /// Logs out the user by clearing tokens and user data.
   Future<void> logout() async {
     await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.userToken);

@@ -14,6 +14,9 @@ class TokenInterceptor extends Interceptor {
     if (token != null && token.isNotEmpty) {
       // Add the Authorization header
       options.headers['Authorization'] = 'Bearer $token';
+      print('Authorization Header Added: Bearer $token');
+    } else {
+      print('No token found, not adding Authorization header');
     }
 
     return handler.next(options);

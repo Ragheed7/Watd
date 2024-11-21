@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/shared_models/user_data/user_data.dart';
-import 'package:waie/features/account/presentation/personal_details_screen.dart';
+import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
+import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/update_user_form.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 
 class MyaccountScreen extends StatelessWidget {
@@ -66,11 +68,23 @@ class MyaccountScreen extends StatelessWidget {
                               TextButton(
                                 onPressed: () {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PersonalDetailsScreen(),
-                                      ));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MultiBlocProvider(
+                                        providers: [
+                                          BlocProvider<UpdateUserCubit>(
+                                            create: (context) =>
+                                                getIt<UpdateUserCubit>(),
+                                          ),
+                                           BlocProvider<UserCubit>(
+                                            create: (context) =>
+                                                getIt<UserCubit>(),
+                                           ),
+                                        ],
+                                        child: UpdateUserForm(),
+                                      ),
+                                    ),
+                                  );
                                 },
                                 child: Text(
                                   "Edit",

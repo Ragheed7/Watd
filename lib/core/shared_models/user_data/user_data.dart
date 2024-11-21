@@ -11,8 +11,37 @@ class UserData {
   String? phone;
   String? userName;
   bool? isActive;
-  
-  UserData({this.userType, this.phone, this.userName, this.isActive});
-  factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
-    Map<String, dynamic> toJson() => _$UserDataToJson(this);
+
+  UserData({
+    this.email,
+    this.userId,
+    this.userType,
+    this.phone,
+    this.userName,
+    this.isActive,
+  });
+
+  // copyWith method
+  UserData copyWith({
+    int? userType,
+    String? userId,
+    String? email,
+    String? phone,
+    String? userName,
+    bool? isActive,
+  }) {
+    return UserData(
+      userType: userType ?? this.userType,
+      userId: userId ?? this.userId,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      userName: userName ?? this.userName,
+      isActive: isActive ?? this.isActive,
+    );
+  }
+
+  factory UserData.fromJson(Map<String, dynamic> json) =>
+      _$UserDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserDataToJson(this);
 }
