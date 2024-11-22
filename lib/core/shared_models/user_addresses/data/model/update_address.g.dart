@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_address.dart';
+part of 'update_address.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreateAddress _$CreateAddressFromJson(Map<String, dynamic> json) =>
-    CreateAddress(
+UpdateAddress _$UpdateAddressFromJson(Map<String, dynamic> json) =>
+    UpdateAddress(
+      addressId: (json['addressId'] as num).toInt(),
       streetAddress: json['streetAddress'] as String,
       city: json['city'] as String,
       state: json['state'] as String,
@@ -15,8 +16,9 @@ CreateAddress _$CreateAddressFromJson(Map<String, dynamic> json) =>
       country: json['country'] as String,
     );
 
-Map<String, dynamic> _$CreateAddressToJson(CreateAddress instance) =>
+Map<String, dynamic> _$UpdateAddressToJson(UpdateAddress instance) =>
     <String, dynamic>{
+      'addressId': instance.addressId,
       'streetAddress': instance.streetAddress,
       'city': instance.city,
       'state': instance.state,

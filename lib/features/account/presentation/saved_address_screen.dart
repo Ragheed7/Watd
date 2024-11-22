@@ -38,7 +38,7 @@ class SavedAddressScreen extends StatelessWidget {
                           final address = addresses[index];
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 15),
-                            child: AddressCardScreen(address: address),
+                            child: AddressCardScreen(address: address, counter: index,),
                           );
                         },
                       );

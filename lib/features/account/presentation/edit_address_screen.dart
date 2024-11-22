@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:waie/core/shared_models/user_addresses/data/model/update_address.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
@@ -59,16 +60,19 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
       ),
       body: BlocListener<AddressCubit, AddressState>(
         listener: (context, state) {
-          if (state is Success) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Address updated successfully')),
-            );
-            Navigator.pop(context);
-          } else if (state is Error) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.error)),
-            );
-          }
+          state.whenOrNull(
+            addressUpdated: (_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Address updated successfully')),
+              );
+              Navigator.pop(context);
+            },
+            error: (error) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(error)),
+              );
+            },
+          );
         },
         child: SingleChildScrollView(
           child: SafeArea(
@@ -110,7 +114,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                       child: MaterialButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            final updatedAddress = CreateAddress(
+                            final updatedAddress = UpdateAddress(
                               addressId: widget.address.addressId,
                               streetAddress: streetAddressController.text,
                               city: cityController.text,
@@ -118,13 +122,13 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                               zipCode: zipCodeController.text,
                               country: countryController.text,
                             );
-                            addressCubit.createAddress(updatedAddress);
+                            addressCubit.updateAddress(updatedAddress);
                             Navigator.pop(context);
                           }
                         },
                         color: Color.fromRGBO(118, 192, 67, 1),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 90, vertical: 16),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 90, vertical: 16),
                         child: Text(
                           'Save changes',
                           style: TextStyle(

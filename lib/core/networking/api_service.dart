@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:waie/core/networking/api_constants.dart';
+import 'package:waie/core/shared_models/default_api_response.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/create_address_response.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:waie/core/shared_models/user_addresses/data/model/update_address.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_request.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
 import 'package:waie/features/auth/model/refresh_token_request_body.dart';
@@ -45,10 +47,14 @@ abstract class ApiService {
       @Body() UpdateUserRequest updateUserRequest);
 
   // Get addresses
-  @POST(ApiConsts.getAddresses)
+  @GET(ApiConsts.getAddresses)
   Future<GetAddresses> getAddresses();
 
-  // Create address or Update address
+  // Create address 
   @POST(ApiConsts.createAddress)
   Future<CreateAddressResponse> createAddress(@Body() CreateAddress createAddress);
+
+  // Update address
+  @PUT(ApiConsts.updateAddress)
+  Future<DefaultApiResponse> updateAddress(@Body() UpdateAddress updateAddress);
 }

@@ -1,16 +1,18 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'create_address.g.dart';
+part 'update_address.g.dart';
 
 @JsonSerializable()
-class CreateAddress {
+class UpdateAddress {
+  final int addressId;
   final String streetAddress;
   final String city;
   final String state;
   final String zipCode;
   final String country;
 
-  CreateAddress({
+  UpdateAddress({
+    required this.addressId,
     required this.streetAddress,
     required this.city,
     required this.state,
@@ -18,8 +20,8 @@ class CreateAddress {
     required this.country,
   });
 
-  factory CreateAddress.fromJson(Map<String, dynamic> json) =>
-      _$CreateAddressFromJson(json);
+  factory UpdateAddress.fromJson(Map<String, dynamic> json) =>
+      _$UpdateAddressFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CreateAddressToJson(this);
+  Map<String, dynamic> toJson() => _$UpdateAddressToJson(this);
 }

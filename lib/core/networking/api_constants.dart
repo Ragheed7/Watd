@@ -8,6 +8,7 @@ class ApiConsts {
   static const String updateUser = 'User/UpdateUser';
   static const String createAddress = 'Address/CreateAddress';
   static const String getAddresses = 'Address/GetAddresses';
+  static const String updateAddress = 'Address/UpdateAddress';
 }
 
 class ApiErrors {
