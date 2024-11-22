@@ -52,7 +52,7 @@ class AddressCardScreen extends StatelessWidget {
                 child: Text(
                   "Edit",
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Color.fromRGBO(118, 192, 67, 1),
                   ),
                 ),

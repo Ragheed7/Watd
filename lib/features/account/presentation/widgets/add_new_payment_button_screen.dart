@@ -1,4 +1,3 @@
-// add_new_payment_button.dart
 import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
 

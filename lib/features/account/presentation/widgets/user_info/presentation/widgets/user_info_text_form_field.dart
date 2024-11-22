@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:waie/core/theming/colors.dart';
+
 class UserInfoTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
   final String labelText;
   final bool enabled;
+  final List<TextInputFormatter>? inputFormatters; 
 
   const UserInfoTextFormField({
     super.key,
@@ -14,6 +17,7 @@ class UserInfoTextFormField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     required this.labelText,
     this.enabled = true,
+    this.inputFormatters, 
   });
 
   @override
@@ -48,6 +52,8 @@ class UserInfoTextFormField extends StatelessWidget {
       ),
       validator: validator,
       enabled: enabled,
+      inputFormatters: inputFormatters, 
     );
   }
 }
+
