@@ -4,7 +4,7 @@ import 'package:waie/features/home/presentation/widgets/repair_screen.dart';
 import 'package:waie/features/home/presentation/widgets/sell_screen.dart';
 
 class ServicesHorizontalListView extends StatelessWidget {
- final List<String> services; 
+  final List<String> services;
   final List<String> servicesImgs;
 
   const ServicesHorizontalListView({
@@ -37,17 +37,20 @@ class ServicesHorizontalListView extends StatelessWidget {
                           if (index == 0) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => SellScreen()),
+                              MaterialPageRoute(
+                                  builder: (context) => SellScreen()),
                             );
                           } else if (index == 1) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => RepairScreen()),
+                              MaterialPageRoute(
+                                  builder: (context) => RepairScreen()),
                             );
                           } else if (index == 2) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => DonateScreen()),
+                              MaterialPageRoute(
+                                  builder: (context) => DonateScreen()),
                             );
                           }
                         },
@@ -64,7 +67,7 @@ class ServicesHorizontalListView extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 8), 
+                const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.center,
                   child: Text(
