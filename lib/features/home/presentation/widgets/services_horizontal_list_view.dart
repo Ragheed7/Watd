@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:waie/features/home/presentation/widgets/donate_screen.dart';
+import 'package:waie/features/home/presentation/widgets/repair_screen.dart';
+import 'package:waie/features/home/presentation/widgets/sell_screen.dart';
 
 class ServicesHorizontalListView extends StatelessWidget {
-  final List Services;
-  final List ServicesImgs;
+ final List<String> services; 
+  final List<String> servicesImgs;
 
-  const ServicesHorizontalListView({super.key, required this.Services, required this.ServicesImgs});
-
+  const ServicesHorizontalListView({
+    Key? key,
+    required this.services,
+    required this.servicesImgs,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 155,
       child: ListView.builder(
-        itemCount: Services.length,
-        shrinkWrap: true,
-        // physics: const NeverScrollableScrollPhysics(),
+        itemCount: services.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Container(
@@ -30,17 +34,28 @@ class ServicesHorizontalListView extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => ProduCategory(),
-                          //   ),
-                          // );
+                          // Navigate to respective pages based on index
+                          if (index == 0) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SellScreen()),
+                            );
+                          } else if (index == 1) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => RepairScreen()),
+                            );
+                          } else if (index == 2) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => DonateScreen()),
+                            );
+                          }
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.asset(
-                            ServicesImgs[index],
+                            servicesImgs[index],
                             width: 180,
                             fit: BoxFit.cover,
                             height: 200,
@@ -54,7 +69,7 @@ class ServicesHorizontalListView extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    Services[index],
+                    services[index],
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
