@@ -34,7 +34,6 @@ class ServicesHorizontalListView extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          // Navigate to respective pages based on index
                           if (index == 0) {
                             Navigator.push(
                               context,
@@ -65,7 +64,7 @@ class ServicesHorizontalListView extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 8), // Add spacing between image and text
+                const SizedBox(height: 8), 
                 Align(
                   alignment: Alignment.center,
                   child: Text(

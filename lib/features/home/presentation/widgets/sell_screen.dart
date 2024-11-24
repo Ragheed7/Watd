@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:waie/features/home/presentation/widgets/order_success_screen.dart';
-//import 'package:waie/pages/order_success_screen.dart';
 
 class SellScreen extends StatelessWidget {
   final List<String> imageList = [
@@ -31,7 +30,6 @@ class SellScreen extends StatelessWidget {
                 Divider(),
                 SizedBox(height: 10),
 
-                // Country Field
                 TextFormField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -40,7 +38,7 @@ class SellScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
 
-                // Image List Section
+                
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 18),
                   width: MediaQuery.of(context).size.width,
@@ -87,7 +85,6 @@ class SellScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
 
-                // Usage Period Dropdown
                 DropdownButtonFormField<String>(
                   decoration: InputDecoration(
                     labelText: 'Usage period',
@@ -102,12 +99,10 @@ class SellScreen extends StatelessWidget {
                     DropdownMenuItem(value: '3 year', child: Text('3 year')),
                   ],
                   onChanged: (value) {
-                    // Handle change
                   },
                 ),
                 SizedBox(height: 16),
 
-                // Category Dropdown
                 DropdownButtonFormField<String>(
                   decoration: InputDecoration(
                     labelText: 'Category',
@@ -126,12 +121,10 @@ class SellScreen extends StatelessWidget {
                         value: 'Kids Furniture', child: Text('Kids Furniture')),
                   ],
                   onChanged: (value) {
-                    // Handle change
                   },
                 ),
                 SizedBox(height: 16),
 
-                // Description Field
                 TextFormField(
                   maxLines: 5,
                   decoration: InputDecoration(
