@@ -42,14 +42,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     if (isLoading) {
       return Scaffold(
-        appBar: AppBar(title: Text("Payment")),
+        appBar: AppBar(title: Text("Payment"),  backgroundColor: Colors.white),
         backgroundColor: Colors.white,
         body: Center(child: CircularProgressIndicator()),
       );
     } else {
       return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: Text("Payment")),
+        appBar: AppBar(title: Text("Payment"), backgroundColor: Colors.white,),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
@@ -117,10 +117,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Divider(),
+                        // Divider(),
                         SizedBox(height: 10),
                         Text(
-                          "Payment",
+                          "My Payment Cards",
                           style: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.w600,
