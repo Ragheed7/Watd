@@ -10,6 +10,7 @@ class UserInfoTextFormField extends StatelessWidget {
   final bool enabled;
   final List<TextInputFormatter>? inputFormatters; 
   final int? maxLines;
+  final InputDecoration? decoration;
 
   const UserInfoTextFormField({
     super.key,
@@ -20,6 +21,7 @@ class UserInfoTextFormField extends StatelessWidget {
     this.enabled = true,
     this.maxLines,
     this.inputFormatters, 
+    this.decoration,
   });
 
   @override

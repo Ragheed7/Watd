@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/home/presentation/widgets/order_success_screen.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
@@ -20,11 +19,16 @@ class _SellScreenState extends State<SellScreen> {
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController purchasePriceController = TextEditingController();
+  final TextEditingController requestedPriceController =
+      TextEditingController();
 
   @override
   void dispose() {
     titleController.dispose();
     descriptionController.dispose();
+    purchasePriceController.dispose();
+    requestedPriceController.dispose();
     super.dispose();
   }
 
@@ -50,17 +54,6 @@ class _SellScreenState extends State<SellScreen> {
                 children: [
                   Divider(),
                   SizedBox(height: 10),
-                  UserInfoTextFormField(
-                    controller: titleController,
-                    labelText: "Title",
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter title';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 30),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 18),
                     width: MediaQuery.of(context).size.width,
@@ -105,90 +98,45 @@ class _SellScreenState extends State<SellScreen> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 16),
+                  UserInfoTextFormField(
+                    controller: purchasePriceController,
+                    labelText: "Purchase Price",
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter purchase price';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      suffixText: "SAR",
+                      suffixStyle: TextStyle(
+                        color: Color.fromRGBO(118, 192, 67, 1),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  UserInfoTextFormField(
+                    controller: requestedPriceController,
+                    labelText: "Requested Price",
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter requested price';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      suffixText: "SAR",
+                      suffixStyle: TextStyle(
+                        color: Color.fromRGBO(118, 192, 67, 1),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 30),
-                  DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      labelText: 'Usage period',
-                      filled: true,
-                      fillColor: const Color(0xFFF5F5F5),
-                      hintStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide:
-                            const BorderSide(width: 1, color: Colors.grey),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide:
-                            const BorderSide(width: 1, color: Colors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(
-                            width: 1, color: ColorsManager.mainGreen),
-                      ),
-                      contentPadding: const EdgeInsets.all(10),
-                    ),
-                    items: [
-                      DropdownMenuItem(
-                          value: '1 month', child: Text('1 month')),
-                      DropdownMenuItem(
-                          value: '6 months', child: Text('6 months')),
-                      DropdownMenuItem(value: '1 year', child: Text('1 year')),
-                      DropdownMenuItem(value: '2 year', child: Text('2 year')),
-                      DropdownMenuItem(value: '3 year', child: Text('3 year')),
-                    ],
-                    onChanged: (value) {},
-                  ),
-                  SizedBox(height: 16),
-                  DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      labelText: 'Category',
-                      filled: true,
-                      fillColor: const Color(0xFFF5F5F5),
-                      hintStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide:
-                            const BorderSide(width: 1, color: Colors.grey),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide:
-                            const BorderSide(width: 1, color: Colors.grey),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: const BorderSide(
-                            width: 1, color: ColorsManager.mainGreen),
-                      ),
-                      contentPadding: const EdgeInsets.all(10),
-                    ),
-                    items: [
-                      DropdownMenuItem(
-                          value: 'Living Room', child: Text('Living Room')),
-                      DropdownMenuItem(value: 'Office', child: Text('Office')),
-                      DropdownMenuItem(
-                          value: 'Bedroom', child: Text('Bedroom')),
-                      DropdownMenuItem(
-                          value: 'Dining Room', child: Text('Dining Room')),
-                      DropdownMenuItem(
-                          value: 'Lighting', child: Text('Lighting')),
-                      DropdownMenuItem(
-                          value: 'Kids Furniture',
-                          child: Text('Kids Furniture')),
-                    ],
-                    onChanged: (value) {},
-                  ),
-                  SizedBox(height: 16),
                   UserInfoTextFormField(
                     controller: descriptionController,
                     labelText: "Description",
