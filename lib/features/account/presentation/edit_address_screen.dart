@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/update_address.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';

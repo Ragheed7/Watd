@@ -9,6 +9,7 @@ class UserInfoTextFormField extends StatelessWidget {
   final String labelText;
   final bool enabled;
   final List<TextInputFormatter>? inputFormatters; 
+  final int? maxLines;
 
   const UserInfoTextFormField({
     super.key,
@@ -17,6 +18,7 @@ class UserInfoTextFormField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     required this.labelText,
     this.enabled = true,
+    this.maxLines,
     this.inputFormatters, 
   });
 
@@ -25,6 +27,7 @@ class UserInfoTextFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
+       maxLines: maxLines, 
       cursorColor: ColorsManager.mainGreen,
       decoration: InputDecoration(
         labelText: labelText,

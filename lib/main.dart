@@ -22,7 +22,7 @@ void main() async {
   if (isLoggedInUser) {
     await loadUserData();
   }
-   runApp(
+  runApp(
     BlocProvider(
       create: (_) => getIt<AddressCubit>(),
       child: Waie(
