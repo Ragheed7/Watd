@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CartSummaryScreen extends StatelessWidget {
-  const CartSummaryScreen({super.key});
+  final int itemCount;
+  final double totalPrice;
+
+  const CartSummaryScreen({
+    Key? key,
+    required this.itemCount,
+    required this.totalPrice,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,7 @@ class CartSummaryScreen extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "3 items: Total (excluding delivery) SAR 100",
+          "$itemCount items: Total (excluding delivery) SAR ${totalPrice.toStringAsFixed(2)}",
           style: TextStyle(fontSize: 14),
         ),
       ),

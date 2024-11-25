@@ -10,6 +10,9 @@ import 'package:waie/features/account/presentation/widgets/user_info/data/model/
 import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
 import 'package:waie/features/auth/model/refresh_token_request_body.dart';
 import 'package:waie/features/auth/model/refresh_token_response.dart';
+import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
+import 'package:waie/features/cart/data/model/get_cart_items.dart';
+import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/login/data/model/login_request_body.dart';
 import 'package:waie/features/login/data/model/login_response.dart';
@@ -57,4 +60,16 @@ abstract class ApiService {
   // Update address
   @PUT(ApiConsts.updateAddress)
   Future<DefaultApiResponse> updateAddress(@Body() UpdateAddress updateAddress);
+
+  // Add item to cart
+  @POST(ApiConsts.addItemToCart)
+  Future<DefaultApiResponse> addItemToCart(@Body() AddToCartItemRequest request);
+
+  // Remove item from cart
+  @POST(ApiConsts.removeItemFromCart)
+  Future<DefaultApiResponse> removeItemFromCart(@Body() RemoveFromCartItemRequest request);
+
+  // Get Cart Items
+  @GET(ApiConsts.getCartItems)
+  Future<GetCartItems> getCartItems();
 }

@@ -1,31 +1,38 @@
+// delivery_address_section_screen.dart
+
 import 'package:flutter/material.dart';
+import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
 
 class DeliveryAddressSectionScreen extends StatelessWidget {
+  final Address address;
+
+  const DeliveryAddressSectionScreen({Key? key, required this.address}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 18),
-      width: MediaQuery.of(context).size.width,
-      height: 160,
+      // Your existing UI for displaying the address
+      padding: EdgeInsets.all(16),
+      width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey[100],
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            spreadRadius: 2,
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("\nSaudi Arabia", style: TextStyle(fontSize: 16)),
-          Text("Qassim", style: TextStyle(fontSize: 16)),
-          Text("Buraidah", style: TextStyle(fontSize: 16)),
-          Text("3, Saleh Street", style: TextStyle(fontSize: 16)),
-          Text("97545", style: TextStyle(fontSize: 16)),
+          Text(
+            address.streetAddress,
+            style: TextStyle(fontSize: 16),
+          ),
+          Text(
+            "${address.city}, ${address.state} ${address.zipCode}",
+            style: TextStyle(fontSize: 16),
+          ),
+          Text(
+            address.country,
+            style: TextStyle(fontSize: 16),
+          ),
         ],
       ),
     );

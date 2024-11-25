@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/spacing.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
 import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
 import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
 import 'package:waie/features/account/presentation/widgets/payment_card_screen.dart';
+import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key});
+  final bool isSelection; // Indicates if the screen is for selecting a card
+
+  const PaymentScreen({Key? key, this.isSelection = false}) : super(key: key);
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -42,14 +45,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     if (isLoading) {
       return Scaffold(
-        appBar: AppBar(title: Text("Payment"),  backgroundColor: Colors.white),
+        appBar: AppBar(title: Text("Payment"), backgroundColor: Colors.white),
         backgroundColor: Colors.white,
         body: Center(child: CircularProgressIndicator()),
       );
     } else {
       return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(title: Text("Payment"), backgroundColor: Colors.white,),
+        appBar: AppBar(
+          title: Text("Payment"),
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
@@ -82,10 +92,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                     ),
                                   );
                                   if (result == true) {
-                                    setState(() {
-                                      paymentCards =
-                                          PaymentCardManager().paymentCards;
-                                    });
+                                    await _loadPaymentCards();
                                   }
                                 },
                                 color: Color.fromRGBO(118, 192, 67, 1),
@@ -117,7 +124,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Divider(),
                         SizedBox(height: 10),
                         Text(
                           "My Payment Cards",
@@ -133,24 +139,47 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: paymentCards.length,
                           itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                PaymentCardScreen(
-                                  cardNumber: paymentCards[index].cardNumber,
-                                  cardHolderName:
-                                      paymentCards[index].cardHolderName,
-                                  expiryMonth: paymentCards[index].expiryMonth,
-                                  expiryYear: paymentCards[index].expiryYear,
-                                  cardIndex: index,
-                                  onDelete: () {
-                                    setState(() {
-                                      paymentCards =
-                                          PaymentCardManager().paymentCards;
-                                    });
-                                  },
-                                ),
-                                SizedBox(height: 15),
-                              ],
+                            final card = paymentCards[index];
+                            return GestureDetector(
+                              onTap: () {
+                                if (widget.isSelection) {
+                                  // Update the SelectedPaymentCardCubit with the chosen card
+                                  context
+                                      .read<SelectedPaymentCardCubit>()
+                                      .selectPaymentCard(card);
+                                  // Pop back to CheckOutScreen
+                                  Navigator.pop(context, card);
+                                }
+                              },
+                              child: Column(
+                                children: [
+                                  PaymentCardScreen(
+                                    paymentCard: card, // Pass the entire card
+                                    cardIndex: index,
+                                    onDelete: () {
+                                      setState(() {
+                                        // Refresh the payment cards list
+                                        _loadPaymentCards();
+                                      });
+                                    },
+                                    isSelected: widget.isSelection &&
+                                        card ==
+                                            (context
+                                                        .read<
+                                                            SelectedPaymentCardCubit>()
+                                                        .state
+                                                    is PaymentCardSelected
+                                                ? (context
+                                                        .read<
+                                                            SelectedPaymentCardCubit>()
+                                                        .state
+                                                    as PaymentCardSelected)
+                                                    .selectedCard
+                                                : null),
+                                  ),
+                                  SizedBox(height: 15),
+                                ],
+                              ),
                             );
                           },
                         ),
@@ -166,10 +195,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 ),
                               );
                               if (result == true) {
-                                setState(() {
-                                  paymentCards =
-                                      PaymentCardManager().paymentCards;
-                                });
+                                await _loadPaymentCards();
                               }
                             },
                             color: Color.fromRGBO(118, 192, 67, 1),

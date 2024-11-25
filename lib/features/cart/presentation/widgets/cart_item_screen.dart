@@ -1,75 +1,110 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/networking/api_constants.dart';
+import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
+import 'package:waie/features/cart/logic/cart_cubit.dart';
+import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:waie/core/theming/colors.dart';
 
 class CartItemScreen extends StatelessWidget {
-  final String image;
-  final String title;
-  final String price;
-  final List<String> details;
+  final Product product;
 
-  const CartItemScreen({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.price,
-    required this.details,
-  });
+  const CartItemScreen({Key? key, required this.product}) : super(key: key);
+
+  /// Helper method to construct the full image URL
+  String getFullImageUrl(String? imageUrl) {
+    if (imageUrl == null || imageUrl.isEmpty) {
+      return 'assets/images/default_product.png';
+    }
+    if (imageUrl.startsWith('http') || imageUrl.startsWith('https')) {
+      return imageUrl; // Absolute URL, no need to prepend
+    }
+    // Relative URL, prepend with serverBaseUrl
+    return ApiConsts.serverBaseUrl + imageUrl;
+  }
 
   @override
   Widget build(BuildContext context) {
+    // Extract necessary product details
+    // Construct the full image URL
+    final fullImageUrl = product.images != null && product.images!.isNotEmpty
+        ? getFullImageUrl(product.images!.first.imageUrl)
+        : 'assets/images/Bedrooms.jpg';
+
+    final name = product.nameEn ?? 'Unnamed Product';
+    final price = product.price ?? 0.0;
+
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(bottom: 15),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 150,
-            width: 150,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                image,
-                width: 150,
-                height: 150,
-                fit: BoxFit.cover,
-              ),
-            ),
+      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 4,
+            spreadRadius: 2,
           ),
-          SizedBox(width: 8),
+        ],
+      ),
+      child: Row(
+        children: [
+          // Product Image
+          fullImageUrl.startsWith('assets/')
+              ? Image.asset(
+                  fullImageUrl,
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.cover,
+                )
+              : Image.network(
+                  fullImageUrl,
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      'assets/images/Bedrooms.jpg',
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
+          SizedBox(width: 16),
+          // Product Details
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
                 Text(
-                  title,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 2),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: details.map((detail) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      child: Text(
-                        detail,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                      ),
-                    );
-                  }).toList(),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  price,
+                  name,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(118, 192, 67, 1),
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "SAR ${price.toStringAsFixed(2)}",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: ColorsManager.mainGreen,
                   ),
                 ),
               ],
             ),
+          ),
+          // Remove Button
+          IconButton(
+            icon: Icon(Icons.delete, color: Colors.red),
+            onPressed: () {
+              // Dispatch removeItemFromCart event
+              final request =
+                  RemoveFromCartItemRequest(productId: product.productId!);
+              context.read<CartCubit>().removeItemFromCart(request);
+            },
           ),
         ],
       ),

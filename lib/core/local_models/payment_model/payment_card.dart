@@ -20,4 +20,11 @@ class PaymentCard {
       _$PaymentCardFromJson(json);
 
   Map<String, dynamic> toJson() => _$PaymentCardToJson(this);
+
+  /// Returns the masked card number, showing only the last 4 digits.
+  String get maskedCardNumber {
+    if (cardNumber.length < 4) return cardNumber;
+    final last4 = cardNumber.substring(cardNumber.length - 4);
+    return '**** **** **** $last4';
+  }
 }

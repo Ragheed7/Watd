@@ -1,10 +1,11 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
+import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/update_address.dart';
 import 'package:waie/core/shared_models/user_addresses/data/repository/address_repo.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
 
-class AddressCubit extends Cubit<AddressState> {
+class AddressCubit extends Cubit<AddressState<GetAddresses>> { // Ensure the generic type is GetAddresses
   final AddressRepo _addressRepo;
 
   AddressCubit(this._addressRepo) : super(const AddressState.initial());
@@ -33,12 +34,11 @@ class AddressCubit extends Cubit<AddressState> {
     response.when(
       success: (createAddressResponse) {
         if (createAddressResponse.isSuccess) {
-          emit(AddressState.addressCreated(createAddressResponse));
+          emit(AddressState.addressCreated(createAddressResponse as GetAddresses));
           getAddresses();
         } else {
           emit(AddressState.error(
-              error:
-                  createAddressResponse.message ?? "Failed to create address"));
+              error: createAddressResponse.message ?? "Failed to create address"));
         }
       },
       failure: (error) {
@@ -56,7 +56,7 @@ class AddressCubit extends Cubit<AddressState> {
     response.when(
       success: (defaultApiResponse) {
         if (defaultApiResponse.isSuccess) {
-          emit(AddressState.addressUpdated(defaultApiResponse));
+          emit(AddressState.addressUpdated(defaultApiResponse as GetAddresses));
           getAddresses();
         } else {
           emit(AddressState.error(
