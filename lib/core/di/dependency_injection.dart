@@ -7,6 +7,8 @@ import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart'
 import 'package:waie/features/account/presentation/widgets/user_info/data/repository/update_user_repo.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
 import 'package:waie/features/auth/repo/auth_repo.dart';
+import 'package:waie/features/cart/data/repository/cart_repo.dart';
+import 'package:waie/features/cart/logic/cart_cubit.dart';
 import 'package:waie/features/home/data/repository/home_repo.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/login/data/repository/login_repo.dart';
@@ -49,5 +51,9 @@ Future<void> setupGetIt() async {
   // Register AddreessRepo and AddressCubit
   getIt.registerLazySingleton<AddressRepo>(() => AddressRepo(getIt<ApiService>()));
   getIt.registerFactory<AddressCubit>(() => AddressCubit(getIt<AddressRepo>()));
+
+  // Register CartRepo and CartCubit
+  getIt.registerLazySingleton<CartRepo>(() => CartRepo(getIt<ApiService>()));
+  getIt.registerFactory<CartCubit>(() => CartCubit(getIt<CartRepo>()));
 }
 

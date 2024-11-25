@@ -17,6 +17,8 @@ class ProductResponse {
 
   factory ProductResponse.fromJson(Map<String, dynamic> json) =>
       _$ProductResponseFromJson(json);
+    Map<String, dynamic> toJson() => _$ProductResponseToJson(this);
+
 }
 
 @JsonSerializable()
@@ -59,6 +61,7 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
+  Map<String, dynamic> toJson() => _$ProductToJson(this);
 }
 
 @JsonSerializable()
@@ -75,6 +78,7 @@ class Material {
 
   factory Material.fromJson(Map<String, dynamic> json) =>
       _$MaterialFromJson(json);
+    Map<String, dynamic> toJson() => _$MaterialToJson(this);
 }
 
 @JsonSerializable()
@@ -90,6 +94,7 @@ class Style {
   });
 
   factory Style.fromJson(Map<String, dynamic> json) => _$StyleFromJson(json);
+  Map<String, dynamic> toJson() => _$StyleToJson(this);
 }
 
 @JsonSerializable()
@@ -103,6 +108,7 @@ class Brand {
   });
 
   factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
+  Map<String, dynamic> toJson() => _$BrandToJson(this);
 }
 
 @JsonSerializable()

@@ -1,37 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/local_models/payment_model/payment_card.dart';
 
-class PaymentSectionScreen extends StatelessWidget {
+class PaymentSectionScreen extends StatefulWidget {
+  final PaymentCard paymentCard;
+  final Function(String cvv) onCvvChanged; 
+
+  const PaymentSectionScreen({
+    Key? key,
+    required this.paymentCard,
+    required this.onCvvChanged,
+  }) : super(key: key);
+
+  @override
+  _PaymentSectionScreenState createState() => _PaymentSectionScreenState();
+}
+
+class _PaymentSectionScreenState extends State<PaymentSectionScreen> {
+  final TextEditingController _cvvController = TextEditingController();
+  final FocusNode _cvvFocusNode = FocusNode();
+  String? _cvvError;
+
+  @override
+  void initState() {
+    super.initState();
+    _cvvController.addListener(_onCvvChanged);
+  }
+
+  @override
+  void dispose() {
+    _cvvController.removeListener(_onCvvChanged);
+    _cvvController.dispose();
+    _cvvFocusNode.dispose();
+    super.dispose();
+  }
+
+  void _onCvvChanged() {
+    final cvv = _cvvController.text;
+    if (cvv.length > 4) {
+      setState(() {
+        _cvvError = "CVV can't exceed 3 digits";
+      });
+    } else if (cvv.length < 3) {
+      setState(() {
+        _cvvError = "CVV must be at exactly 3 digits";
+      });
+    } else {
+      setState(() {
+        _cvvError = null;
+      });
+    }
+    widget.onCvvChanged(cvv);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 18),
-      width: MediaQuery.of(context).size.width,
-      height: 190,
+      padding: EdgeInsets.all(16),
+      width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey[100],
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            spreadRadius: 2,
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("\n4123 1232 4231 2341", style: TextStyle(fontSize: 16)),
-          Text("Karem Maged", style: TextStyle(fontSize: 16)),
-          Text("Buraidah", style: TextStyle(fontSize: 16)),
-          Text("Exp 12/25", style: TextStyle(fontSize: 16)),
+          Text(
+            "Card Number: ${widget.paymentCard.maskedCardNumber}",
+            style: TextStyle(fontSize: 16),
+          ),
+          Text(
+            "Card Holder: ${widget.paymentCard.cardHolderName}",
+            style: TextStyle(fontSize: 16),
+          ),
           SizedBox(height: 4),
-          TextFormField(
+          Text(
+            "Expiry: ${widget.paymentCard.expiryMonth.toString().padLeft(2, '0')}/${widget.paymentCard.expiryYear}",
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(height: 16),
+          // CVV Input Field
+          TextField(
+            controller: _cvvController,
+            focusNode: _cvvFocusNode,
+            keyboardType: TextInputType.number,
+            obscureText: true, 
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
               labelText: "CVV",
-              prefixIcon: Icon(Icons.payment),
+              hintText: "Enter CVV",
+              errorText: _cvvError,
+              border: OutlineInputBorder(),
             ),
+            maxLength: 3, // CVV is 3 digits
           ),
         ],
       ),

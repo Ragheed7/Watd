@@ -145,7 +145,7 @@ class _OTPScreenState extends State<OTPScreen> {
                           style: TextStyle(
                             color: _isResendAllowed
                                 ? ColorsManager.mainGreen
-                                : ColorsManager.secondaryGrey, // Greyed out when disabled
+                                : ColorsManager.secondaryGrey, 
                             fontWeight: FontWeight.bold,
                             fontFamily: 'cabin',
                           ),
@@ -156,7 +156,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   SizedBox(height: 56),
                   MaterialButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(Routes.navigationMenu);
+                      Navigator.of(context).pushReplacementNamed(Routes.navigationMenu);
                     },
                     color: ColorsManager.mainGreen,
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 9),

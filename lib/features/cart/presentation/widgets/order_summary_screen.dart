@@ -1,40 +1,55 @@
 import 'package:flutter/material.dart';
 
 class OrderSummaryScreen extends StatelessWidget {
+  final double itemsTotal;
+  final double deliveryFee;
+  final double totalPayment;
+
+  const OrderSummaryScreen({
+    Key? key,
+    required this.itemsTotal,
+    required this.deliveryFee,
+    required this.totalPayment,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        orderRow("item 1", "SAR 500"),
-        orderRow("item 2", "SAR 100"),
-        orderRow("item 3", "SAR 20"),
-        orderRow("item 4", "SAR 10"),
-        orderRow("Delivery", "SAR 35"),
-        Divider(),
-        orderRow("Total Payment", "SAR 655", isTotal: true),
-      ],
-    );
-  }
+    final List<Map<String, String>> items = [
+      {"label": "Items Total", "price": "SAR ${itemsTotal.toStringAsFixed(2)}"},
+      {"label": "Delivery", "price": "SAR ${deliveryFee.toStringAsFixed(2)}"},
+    ];
 
-  Row orderRow(String item, String price, {bool isTotal = false}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          item,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
-          ),
-        ),
-        Text(
-          price,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: isTotal ? FontWeight.w700 : FontWeight.w500,
-            color: isTotal ? Color.fromRGBO(118, 192, 67, 1) : Colors.black,
-          ),
+        ...items.map((item) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(item["label"]!, style: TextStyle(fontSize: 15)),
+                  Text(item["price"]!, style: TextStyle(fontSize: 15)),
+                ],
+              ),
+            )),
+        Divider(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Total Payment",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                )),
+            Text(
+              "SAR ${totalPayment.toStringAsFixed(2)}",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: Color.fromRGBO(118, 192, 67, 1),
+              ),
+            ),
+          ],
         ),
       ],
     );

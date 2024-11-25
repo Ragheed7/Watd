@@ -9,6 +9,9 @@ class ApiConsts {
   static const String createAddress = 'Address/CreateAddress';
   static const String getAddresses = 'Address/GetAddresses';
   static const String updateAddress = 'Address/UpdateAddress';
+  static const String addItemToCart = 'Cart/AddCartItem';
+  static const String removeItemFromCart = 'Cart/RemoveCartItem';
+  static const String getCartItems = 'Cart/GetCartItems';
 }
 
 class ApiErrors {

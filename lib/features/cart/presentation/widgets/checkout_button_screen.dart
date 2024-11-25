@@ -20,7 +20,7 @@ class CheckoutButtonScreen extends StatelessWidget {
           vertical: 16,
         ),
         child: Text(
-          'Check',
+          'Checkout',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'cabin',

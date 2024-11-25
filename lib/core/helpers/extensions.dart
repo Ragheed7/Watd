@@ -25,3 +25,11 @@ extension StringExtension on String? {
 extension ListExtension<T> on List<T>? {
   bool isNullOrEmpty() => this == null || this!.isEmpty;
 }
+
+// Extension to validate CVV
+extension CvvValidation on String {
+  bool isValidCvv() {
+    final regex = RegExp(r'^\d{3,4}$');
+    return regex.hasMatch(this);
+  }
+}

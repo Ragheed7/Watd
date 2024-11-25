@@ -34,7 +34,7 @@ class _ProductScreenState extends State<ProductScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // product images
-                ImagesSlider(product: widget.product,),
+                ImagesSlider(product: widget.product),
                 verticalSpace(20),
                 // Product Details
                 TitleCategoryAndPrice(product: widget.product),
@@ -43,7 +43,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 ProductDescription(product: widget.product),
                 verticalSpace(30),
                 // add to cart button
-                AddToCartButton(),
+                AddToCartButton(product: widget.product),
               ],
             ),
           ),
