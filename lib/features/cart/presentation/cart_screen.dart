@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
 import 'package:waie/features/cart/logic/cart_state.dart';
@@ -28,7 +27,28 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBarScreen(title: 'Cart'),
-      body: BlocBuilder<CartCubit, CartState>(
+      body: BlocConsumer<CartCubit, CartState>(
+        listener: (context, state) {
+          // Listen for error states to show SnackBars or other notifications
+          state.maybeWhen(
+            error: (error) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(error)),
+              );
+            },
+            itemAdded: (_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Item added to cart successfully")),
+              );
+            },
+            itemRemoved: (_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Item removed from cart successfully")),
+              );
+            },
+            orElse: () {},
+          );
+        },
         builder: (context, state) {
           return state.when(
             initial: () => Center(child: Text("Initializing Cart...")),
@@ -38,7 +58,7 @@ class _CartScreenState extends State<CartScreen> {
               if (cartItems.isEmpty) {
                 return Center(child: Text("Your cart is empty"));
               }
-    
+
               // Calculate total
               double total = 0;
               for (var item in cartItems) {
@@ -46,7 +66,7 @@ class _CartScreenState extends State<CartScreen> {
                   total += item!.price!;
                 }
               }
-    
+
               return SingleChildScrollView(
                 child: SafeArea(
                   child: Padding(

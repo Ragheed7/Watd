@@ -2,14 +2,24 @@ import 'package:bloc/bloc.dart';
 import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
 import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
 import 'package:waie/features/cart/data/repository/cart_repo.dart';
+import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   final CartRepo _cartRepo;
+  List<Product> _cartItems = []; // Private list to store current cart items
 
   CartCubit(this._cartRepo) : super(const CartState.initial());
 
+  // Add an item to the cart
   Future<void> addItemToCart(AddToCartItemRequest request) async {
+    // Check if the item already exists in the cart
+    if (_cartItems.any((item) => item.productId == request.productId)) {
+      emit(const CartState.error(error: "Item is already in the cart."));
+      fetchCartItems();
+      return;
+    }
+
     emit(const CartState.loading());
 
     final response = await _cartRepo.addItemToCart(request);
@@ -18,7 +28,7 @@ class CartCubit extends Cubit<CartState> {
       success: (addToCartItemResponse) {
         if (addToCartItemResponse.isSuccess) {
           emit(CartState.itemAdded(addToCartItemResponse));
-          fetchCartItems();
+          fetchCartItems(); // Refresh cart items after adding
         } else {
           emit(CartState.error(
               error: addToCartItemResponse.message ?? "Failed to add item to cart"));
@@ -31,6 +41,7 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
+  // Remove an item from the cart
   Future<void> removeItemFromCart(RemoveFromCartItemRequest request) async {
     emit(const CartState.loading());
 
@@ -40,7 +51,7 @@ class CartCubit extends Cubit<CartState> {
       success: (removeFromCartItemResponse) {
         if (removeFromCartItemResponse.isSuccess) {
           emit(CartState.itemRemoved(removeFromCartItemResponse));
-          fetchCartItems();
+          fetchCartItems(); // Refresh cart items after removing
         } else {
           emit(CartState.error(
               error: removeFromCartItemResponse.message ?? "Failed to remove item from cart"));
@@ -53,6 +64,7 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
+  // Fetch cart items
   Future<void> fetchCartItems() async {
     emit(const CartState.loading());
 
@@ -61,6 +73,7 @@ class CartCubit extends Cubit<CartState> {
     response.when(
       success: (getCartItems) {
         if (getCartItems.isSuccess == true) {
+          _cartItems = getCartItems.result ?? []; // Update the internal list
           emit(CartState.cartItemsFetched(getCartItems));
         } else {
           emit(CartState.error(
@@ -73,4 +86,8 @@ class CartCubit extends Cubit<CartState> {
       },
     );
   }
+
+  // Get current cart items
+  List<Product> get currentCartItems => _cartItems;
 }
+

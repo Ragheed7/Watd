@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
+import 'package:waie/core/theming/colors.dart';
 
 class PaymentSectionScreen extends StatefulWidget {
   final PaymentCard paymentCard;
@@ -85,6 +86,7 @@ class _PaymentSectionScreenState extends State<PaymentSectionScreen> {
             keyboardType: TextInputType.number,
             obscureText: true, 
             decoration: InputDecoration(
+              prefixIcon: Padding(padding: EdgeInsets.only(left: 8), child: Icon(Icons.payment, size: 30,)),
               labelText: "CVV",
               hintText: "Enter CVV",
               errorText: _cvvError,
