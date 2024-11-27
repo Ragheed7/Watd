@@ -4,6 +4,7 @@ import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
 import 'package:waie/features/cart/logic/cart_state.dart';
+import 'package:waie/features/products_list/data/model/product_models/product.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 
 class AddToCartButton extends StatelessWidget {

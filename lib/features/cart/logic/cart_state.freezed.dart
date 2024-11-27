@@ -52,35 +52,35 @@ mixin _$CartState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ItemAdded value) itemAdded,
-    required TResult Function(ItemRemoved value) itemRemoved,
-    required TResult Function(CartItemsFetched value) cartItemsFetched,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(_CartInitial value) initial,
+    required TResult Function(_CartLoading value) loading,
+    required TResult Function(_CartItemAdded value) itemAdded,
+    required TResult Function(_CartItemRemoved value) itemRemoved,
+    required TResult Function(_CartItemsFetched value) cartItemsFetched,
+    required TResult Function(_CartSuccess value) success,
+    required TResult Function(_CartError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ItemAdded value)? itemAdded,
-    TResult? Function(ItemRemoved value)? itemRemoved,
-    TResult? Function(CartItemsFetched value)? cartItemsFetched,
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(_CartInitial value)? initial,
+    TResult? Function(_CartLoading value)? loading,
+    TResult? Function(_CartItemAdded value)? itemAdded,
+    TResult? Function(_CartItemRemoved value)? itemRemoved,
+    TResult? Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult? Function(_CartSuccess value)? success,
+    TResult? Function(_CartError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ItemAdded value)? itemAdded,
-    TResult Function(ItemRemoved value)? itemRemoved,
-    TResult Function(CartItemsFetched value)? cartItemsFetched,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(_CartInitial value)? initial,
+    TResult Function(_CartLoading value)? loading,
+    TResult Function(_CartItemAdded value)? itemAdded,
+    TResult Function(_CartItemRemoved value)? itemRemoved,
+    TResult Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult Function(_CartSuccess value)? success,
+    TResult Function(_CartError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,18 +107,18 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$CartInitialImplCopyWith<$Res> {
+  factory _$$CartInitialImplCopyWith(
+          _$CartInitialImpl value, $Res Function(_$CartInitialImpl) then) =
+      __$$CartInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$CartStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$CartInitialImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$CartInitialImpl>
+    implements _$$CartInitialImplCopyWith<$Res> {
+  __$$CartInitialImplCopyWithImpl(
+      _$CartInitialImpl _value, $Res Function(_$CartInitialImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CartState
@@ -127,8 +127,8 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$CartInitialImpl implements _CartInitial {
+  const _$CartInitialImpl();
 
   @override
   String toString() {
@@ -138,7 +138,7 @@ class _$InitialImpl implements _Initial {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType && other is _$CartInitialImpl);
   }
 
   @override
@@ -193,13 +193,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ItemAdded value) itemAdded,
-    required TResult Function(ItemRemoved value) itemRemoved,
-    required TResult Function(CartItemsFetched value) cartItemsFetched,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(_CartInitial value) initial,
+    required TResult Function(_CartLoading value) loading,
+    required TResult Function(_CartItemAdded value) itemAdded,
+    required TResult Function(_CartItemRemoved value) itemRemoved,
+    required TResult Function(_CartItemsFetched value) cartItemsFetched,
+    required TResult Function(_CartSuccess value) success,
+    required TResult Function(_CartError value) error,
   }) {
     return initial(this);
   }
@@ -207,13 +207,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ItemAdded value)? itemAdded,
-    TResult? Function(ItemRemoved value)? itemRemoved,
-    TResult? Function(CartItemsFetched value)? cartItemsFetched,
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(_CartInitial value)? initial,
+    TResult? Function(_CartLoading value)? loading,
+    TResult? Function(_CartItemAdded value)? itemAdded,
+    TResult? Function(_CartItemRemoved value)? itemRemoved,
+    TResult? Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult? Function(_CartSuccess value)? success,
+    TResult? Function(_CartError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -221,13 +221,13 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ItemAdded value)? itemAdded,
-    TResult Function(ItemRemoved value)? itemRemoved,
-    TResult Function(CartItemsFetched value)? cartItemsFetched,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(_CartInitial value)? initial,
+    TResult Function(_CartLoading value)? loading,
+    TResult Function(_CartItemAdded value)? itemAdded,
+    TResult Function(_CartItemRemoved value)? itemRemoved,
+    TResult Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult Function(_CartSuccess value)? success,
+    TResult Function(_CartError value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -237,23 +237,23 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements CartState {
-  const factory _Initial() = _$InitialImpl;
+abstract class _CartInitial implements CartState {
+  const factory _CartInitial() = _$CartInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$CartLoadingImplCopyWith<$Res> {
+  factory _$$CartLoadingImplCopyWith(
+          _$CartLoadingImpl value, $Res Function(_$CartLoadingImpl) then) =
+      __$$CartLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$CartStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$CartLoadingImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$CartLoadingImpl>
+    implements _$$CartLoadingImplCopyWith<$Res> {
+  __$$CartLoadingImplCopyWithImpl(
+      _$CartLoadingImpl _value, $Res Function(_$CartLoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CartState
@@ -262,8 +262,8 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements Loading {
-  const _$LoadingImpl();
+class _$CartLoadingImpl implements _CartLoading {
+  const _$CartLoadingImpl();
 
   @override
   String toString() {
@@ -273,7 +273,7 @@ class _$LoadingImpl implements Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType && other is _$CartLoadingImpl);
   }
 
   @override
@@ -328,13 +328,13 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ItemAdded value) itemAdded,
-    required TResult Function(ItemRemoved value) itemRemoved,
-    required TResult Function(CartItemsFetched value) cartItemsFetched,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(_CartInitial value) initial,
+    required TResult Function(_CartLoading value) loading,
+    required TResult Function(_CartItemAdded value) itemAdded,
+    required TResult Function(_CartItemRemoved value) itemRemoved,
+    required TResult Function(_CartItemsFetched value) cartItemsFetched,
+    required TResult Function(_CartSuccess value) success,
+    required TResult Function(_CartError value) error,
   }) {
     return loading(this);
   }
@@ -342,13 +342,13 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ItemAdded value)? itemAdded,
-    TResult? Function(ItemRemoved value)? itemRemoved,
-    TResult? Function(CartItemsFetched value)? cartItemsFetched,
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(_CartInitial value)? initial,
+    TResult? Function(_CartLoading value)? loading,
+    TResult? Function(_CartItemAdded value)? itemAdded,
+    TResult? Function(_CartItemRemoved value)? itemRemoved,
+    TResult? Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult? Function(_CartSuccess value)? success,
+    TResult? Function(_CartError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -356,13 +356,13 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ItemAdded value)? itemAdded,
-    TResult Function(ItemRemoved value)? itemRemoved,
-    TResult Function(CartItemsFetched value)? cartItemsFetched,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(_CartInitial value)? initial,
+    TResult Function(_CartLoading value)? loading,
+    TResult Function(_CartItemAdded value)? itemAdded,
+    TResult Function(_CartItemRemoved value)? itemRemoved,
+    TResult Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult Function(_CartSuccess value)? success,
+    TResult Function(_CartError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -372,25 +372,25 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements CartState {
-  const factory Loading() = _$LoadingImpl;
+abstract class _CartLoading implements CartState {
+  const factory _CartLoading() = _$CartLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$ItemAddedImplCopyWith<$Res> {
-  factory _$$ItemAddedImplCopyWith(
-          _$ItemAddedImpl value, $Res Function(_$ItemAddedImpl) then) =
-      __$$ItemAddedImplCopyWithImpl<$Res>;
+abstract class _$$CartItemAddedImplCopyWith<$Res> {
+  factory _$$CartItemAddedImplCopyWith(
+          _$CartItemAddedImpl value, $Res Function(_$CartItemAddedImpl) then) =
+      __$$CartItemAddedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DefaultApiResponse data});
 }
 
 /// @nodoc
-class __$$ItemAddedImplCopyWithImpl<$Res>
-    extends _$CartStateCopyWithImpl<$Res, _$ItemAddedImpl>
-    implements _$$ItemAddedImplCopyWith<$Res> {
-  __$$ItemAddedImplCopyWithImpl(
-      _$ItemAddedImpl _value, $Res Function(_$ItemAddedImpl) _then)
+class __$$CartItemAddedImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$CartItemAddedImpl>
+    implements _$$CartItemAddedImplCopyWith<$Res> {
+  __$$CartItemAddedImplCopyWithImpl(
+      _$CartItemAddedImpl _value, $Res Function(_$CartItemAddedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CartState
@@ -400,7 +400,7 @@ class __$$ItemAddedImplCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$ItemAddedImpl(
+    return _then(_$CartItemAddedImpl(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -411,8 +411,8 @@ class __$$ItemAddedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ItemAddedImpl implements ItemAdded {
-  const _$ItemAddedImpl(this.data);
+class _$CartItemAddedImpl implements _CartItemAdded {
+  const _$CartItemAddedImpl(this.data);
 
   @override
   final DefaultApiResponse data;
@@ -426,7 +426,7 @@ class _$ItemAddedImpl implements ItemAdded {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ItemAddedImpl &&
+            other is _$CartItemAddedImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
@@ -438,8 +438,8 @@ class _$ItemAddedImpl implements ItemAdded {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ItemAddedImplCopyWith<_$ItemAddedImpl> get copyWith =>
-      __$$ItemAddedImplCopyWithImpl<_$ItemAddedImpl>(this, _$identity);
+  _$$CartItemAddedImplCopyWith<_$CartItemAddedImpl> get copyWith =>
+      __$$CartItemAddedImplCopyWithImpl<_$CartItemAddedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -490,13 +490,13 @@ class _$ItemAddedImpl implements ItemAdded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ItemAdded value) itemAdded,
-    required TResult Function(ItemRemoved value) itemRemoved,
-    required TResult Function(CartItemsFetched value) cartItemsFetched,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(_CartInitial value) initial,
+    required TResult Function(_CartLoading value) loading,
+    required TResult Function(_CartItemAdded value) itemAdded,
+    required TResult Function(_CartItemRemoved value) itemRemoved,
+    required TResult Function(_CartItemsFetched value) cartItemsFetched,
+    required TResult Function(_CartSuccess value) success,
+    required TResult Function(_CartError value) error,
   }) {
     return itemAdded(this);
   }
@@ -504,13 +504,13 @@ class _$ItemAddedImpl implements ItemAdded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ItemAdded value)? itemAdded,
-    TResult? Function(ItemRemoved value)? itemRemoved,
-    TResult? Function(CartItemsFetched value)? cartItemsFetched,
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(_CartInitial value)? initial,
+    TResult? Function(_CartLoading value)? loading,
+    TResult? Function(_CartItemAdded value)? itemAdded,
+    TResult? Function(_CartItemRemoved value)? itemRemoved,
+    TResult? Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult? Function(_CartSuccess value)? success,
+    TResult? Function(_CartError value)? error,
   }) {
     return itemAdded?.call(this);
   }
@@ -518,13 +518,13 @@ class _$ItemAddedImpl implements ItemAdded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ItemAdded value)? itemAdded,
-    TResult Function(ItemRemoved value)? itemRemoved,
-    TResult Function(CartItemsFetched value)? cartItemsFetched,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(_CartInitial value)? initial,
+    TResult Function(_CartLoading value)? loading,
+    TResult Function(_CartItemAdded value)? itemAdded,
+    TResult Function(_CartItemRemoved value)? itemRemoved,
+    TResult Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult Function(_CartSuccess value)? success,
+    TResult Function(_CartError value)? error,
     required TResult orElse(),
   }) {
     if (itemAdded != null) {
@@ -534,33 +534,34 @@ class _$ItemAddedImpl implements ItemAdded {
   }
 }
 
-abstract class ItemAdded implements CartState {
-  const factory ItemAdded(final DefaultApiResponse data) = _$ItemAddedImpl;
+abstract class _CartItemAdded implements CartState {
+  const factory _CartItemAdded(final DefaultApiResponse data) =
+      _$CartItemAddedImpl;
 
   DefaultApiResponse get data;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ItemAddedImplCopyWith<_$ItemAddedImpl> get copyWith =>
+  _$$CartItemAddedImplCopyWith<_$CartItemAddedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ItemRemovedImplCopyWith<$Res> {
-  factory _$$ItemRemovedImplCopyWith(
-          _$ItemRemovedImpl value, $Res Function(_$ItemRemovedImpl) then) =
-      __$$ItemRemovedImplCopyWithImpl<$Res>;
+abstract class _$$CartItemRemovedImplCopyWith<$Res> {
+  factory _$$CartItemRemovedImplCopyWith(_$CartItemRemovedImpl value,
+          $Res Function(_$CartItemRemovedImpl) then) =
+      __$$CartItemRemovedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DefaultApiResponse data});
 }
 
 /// @nodoc
-class __$$ItemRemovedImplCopyWithImpl<$Res>
-    extends _$CartStateCopyWithImpl<$Res, _$ItemRemovedImpl>
-    implements _$$ItemRemovedImplCopyWith<$Res> {
-  __$$ItemRemovedImplCopyWithImpl(
-      _$ItemRemovedImpl _value, $Res Function(_$ItemRemovedImpl) _then)
+class __$$CartItemRemovedImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$CartItemRemovedImpl>
+    implements _$$CartItemRemovedImplCopyWith<$Res> {
+  __$$CartItemRemovedImplCopyWithImpl(
+      _$CartItemRemovedImpl _value, $Res Function(_$CartItemRemovedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CartState
@@ -570,7 +571,7 @@ class __$$ItemRemovedImplCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$ItemRemovedImpl(
+    return _then(_$CartItemRemovedImpl(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -581,8 +582,8 @@ class __$$ItemRemovedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ItemRemovedImpl implements ItemRemoved {
-  const _$ItemRemovedImpl(this.data);
+class _$CartItemRemovedImpl implements _CartItemRemoved {
+  const _$CartItemRemovedImpl(this.data);
 
   @override
   final DefaultApiResponse data;
@@ -596,7 +597,7 @@ class _$ItemRemovedImpl implements ItemRemoved {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ItemRemovedImpl &&
+            other is _$CartItemRemovedImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
@@ -608,8 +609,9 @@ class _$ItemRemovedImpl implements ItemRemoved {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ItemRemovedImplCopyWith<_$ItemRemovedImpl> get copyWith =>
-      __$$ItemRemovedImplCopyWithImpl<_$ItemRemovedImpl>(this, _$identity);
+  _$$CartItemRemovedImplCopyWith<_$CartItemRemovedImpl> get copyWith =>
+      __$$CartItemRemovedImplCopyWithImpl<_$CartItemRemovedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -660,13 +662,13 @@ class _$ItemRemovedImpl implements ItemRemoved {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ItemAdded value) itemAdded,
-    required TResult Function(ItemRemoved value) itemRemoved,
-    required TResult Function(CartItemsFetched value) cartItemsFetched,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(_CartInitial value) initial,
+    required TResult Function(_CartLoading value) loading,
+    required TResult Function(_CartItemAdded value) itemAdded,
+    required TResult Function(_CartItemRemoved value) itemRemoved,
+    required TResult Function(_CartItemsFetched value) cartItemsFetched,
+    required TResult Function(_CartSuccess value) success,
+    required TResult Function(_CartError value) error,
   }) {
     return itemRemoved(this);
   }
@@ -674,13 +676,13 @@ class _$ItemRemovedImpl implements ItemRemoved {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ItemAdded value)? itemAdded,
-    TResult? Function(ItemRemoved value)? itemRemoved,
-    TResult? Function(CartItemsFetched value)? cartItemsFetched,
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(_CartInitial value)? initial,
+    TResult? Function(_CartLoading value)? loading,
+    TResult? Function(_CartItemAdded value)? itemAdded,
+    TResult? Function(_CartItemRemoved value)? itemRemoved,
+    TResult? Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult? Function(_CartSuccess value)? success,
+    TResult? Function(_CartError value)? error,
   }) {
     return itemRemoved?.call(this);
   }
@@ -688,13 +690,13 @@ class _$ItemRemovedImpl implements ItemRemoved {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ItemAdded value)? itemAdded,
-    TResult Function(ItemRemoved value)? itemRemoved,
-    TResult Function(CartItemsFetched value)? cartItemsFetched,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(_CartInitial value)? initial,
+    TResult Function(_CartLoading value)? loading,
+    TResult Function(_CartItemAdded value)? itemAdded,
+    TResult Function(_CartItemRemoved value)? itemRemoved,
+    TResult Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult Function(_CartSuccess value)? success,
+    TResult Function(_CartError value)? error,
     required TResult orElse(),
   }) {
     if (itemRemoved != null) {
@@ -704,15 +706,16 @@ class _$ItemRemovedImpl implements ItemRemoved {
   }
 }
 
-abstract class ItemRemoved implements CartState {
-  const factory ItemRemoved(final DefaultApiResponse data) = _$ItemRemovedImpl;
+abstract class _CartItemRemoved implements CartState {
+  const factory _CartItemRemoved(final DefaultApiResponse data) =
+      _$CartItemRemovedImpl;
 
   DefaultApiResponse get data;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ItemRemovedImplCopyWith<_$ItemRemovedImpl> get copyWith =>
+  _$$CartItemRemovedImplCopyWith<_$CartItemRemovedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -751,7 +754,7 @@ class __$$CartItemsFetchedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CartItemsFetchedImpl implements CartItemsFetched {
+class _$CartItemsFetchedImpl implements _CartItemsFetched {
   const _$CartItemsFetchedImpl(this.data);
 
   @override
@@ -831,13 +834,13 @@ class _$CartItemsFetchedImpl implements CartItemsFetched {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ItemAdded value) itemAdded,
-    required TResult Function(ItemRemoved value) itemRemoved,
-    required TResult Function(CartItemsFetched value) cartItemsFetched,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(_CartInitial value) initial,
+    required TResult Function(_CartLoading value) loading,
+    required TResult Function(_CartItemAdded value) itemAdded,
+    required TResult Function(_CartItemRemoved value) itemRemoved,
+    required TResult Function(_CartItemsFetched value) cartItemsFetched,
+    required TResult Function(_CartSuccess value) success,
+    required TResult Function(_CartError value) error,
   }) {
     return cartItemsFetched(this);
   }
@@ -845,13 +848,13 @@ class _$CartItemsFetchedImpl implements CartItemsFetched {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ItemAdded value)? itemAdded,
-    TResult? Function(ItemRemoved value)? itemRemoved,
-    TResult? Function(CartItemsFetched value)? cartItemsFetched,
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(_CartInitial value)? initial,
+    TResult? Function(_CartLoading value)? loading,
+    TResult? Function(_CartItemAdded value)? itemAdded,
+    TResult? Function(_CartItemRemoved value)? itemRemoved,
+    TResult? Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult? Function(_CartSuccess value)? success,
+    TResult? Function(_CartError value)? error,
   }) {
     return cartItemsFetched?.call(this);
   }
@@ -859,13 +862,13 @@ class _$CartItemsFetchedImpl implements CartItemsFetched {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ItemAdded value)? itemAdded,
-    TResult Function(ItemRemoved value)? itemRemoved,
-    TResult Function(CartItemsFetched value)? cartItemsFetched,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(_CartInitial value)? initial,
+    TResult Function(_CartLoading value)? loading,
+    TResult Function(_CartItemAdded value)? itemAdded,
+    TResult Function(_CartItemRemoved value)? itemRemoved,
+    TResult Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult Function(_CartSuccess value)? success,
+    TResult Function(_CartError value)? error,
     required TResult orElse(),
   }) {
     if (cartItemsFetched != null) {
@@ -875,8 +878,8 @@ class _$CartItemsFetchedImpl implements CartItemsFetched {
   }
 }
 
-abstract class CartItemsFetched implements CartState {
-  const factory CartItemsFetched(final GetCartItems data) =
+abstract class _CartItemsFetched implements CartState {
+  const factory _CartItemsFetched(final GetCartItems data) =
       _$CartItemsFetchedImpl;
 
   GetCartItems get data;
@@ -889,20 +892,20 @@ abstract class CartItemsFetched implements CartState {
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$CartSuccessImplCopyWith<$Res> {
+  factory _$$CartSuccessImplCopyWith(
+          _$CartSuccessImpl value, $Res Function(_$CartSuccessImpl) then) =
+      __$$CartSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DefaultApiResponse data});
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$CartStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$CartSuccessImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$CartSuccessImpl>
+    implements _$$CartSuccessImplCopyWith<$Res> {
+  __$$CartSuccessImplCopyWithImpl(
+      _$CartSuccessImpl _value, $Res Function(_$CartSuccessImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CartState
@@ -912,7 +915,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$SuccessImpl(
+    return _then(_$CartSuccessImpl(
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -923,8 +926,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements Success {
-  const _$SuccessImpl(this.data);
+class _$CartSuccessImpl implements _CartSuccess {
+  const _$CartSuccessImpl(this.data);
 
   @override
   final DefaultApiResponse data;
@@ -938,7 +941,7 @@ class _$SuccessImpl implements Success {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$CartSuccessImpl &&
             (identical(other.data, data) || other.data == data));
   }
 
@@ -950,8 +953,8 @@ class _$SuccessImpl implements Success {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$CartSuccessImplCopyWith<_$CartSuccessImpl> get copyWith =>
+      __$$CartSuccessImplCopyWithImpl<_$CartSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1002,13 +1005,13 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ItemAdded value) itemAdded,
-    required TResult Function(ItemRemoved value) itemRemoved,
-    required TResult Function(CartItemsFetched value) cartItemsFetched,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(_CartInitial value) initial,
+    required TResult Function(_CartLoading value) loading,
+    required TResult Function(_CartItemAdded value) itemAdded,
+    required TResult Function(_CartItemRemoved value) itemRemoved,
+    required TResult Function(_CartItemsFetched value) cartItemsFetched,
+    required TResult Function(_CartSuccess value) success,
+    required TResult Function(_CartError value) error,
   }) {
     return success(this);
   }
@@ -1016,13 +1019,13 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ItemAdded value)? itemAdded,
-    TResult? Function(ItemRemoved value)? itemRemoved,
-    TResult? Function(CartItemsFetched value)? cartItemsFetched,
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(_CartInitial value)? initial,
+    TResult? Function(_CartLoading value)? loading,
+    TResult? Function(_CartItemAdded value)? itemAdded,
+    TResult? Function(_CartItemRemoved value)? itemRemoved,
+    TResult? Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult? Function(_CartSuccess value)? success,
+    TResult? Function(_CartError value)? error,
   }) {
     return success?.call(this);
   }
@@ -1030,13 +1033,13 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ItemAdded value)? itemAdded,
-    TResult Function(ItemRemoved value)? itemRemoved,
-    TResult Function(CartItemsFetched value)? cartItemsFetched,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(_CartInitial value)? initial,
+    TResult Function(_CartLoading value)? loading,
+    TResult Function(_CartItemAdded value)? itemAdded,
+    TResult Function(_CartItemRemoved value)? itemRemoved,
+    TResult Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult Function(_CartSuccess value)? success,
+    TResult Function(_CartError value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1046,33 +1049,33 @@ class _$SuccessImpl implements Success {
   }
 }
 
-abstract class Success implements CartState {
-  const factory Success(final DefaultApiResponse data) = _$SuccessImpl;
+abstract class _CartSuccess implements CartState {
+  const factory _CartSuccess(final DefaultApiResponse data) = _$CartSuccessImpl;
 
   DefaultApiResponse get data;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$CartSuccessImplCopyWith<_$CartSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
+abstract class _$$CartErrorImplCopyWith<$Res> {
+  factory _$$CartErrorImplCopyWith(
+          _$CartErrorImpl value, $Res Function(_$CartErrorImpl) then) =
+      __$$CartErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$CartStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+class __$$CartErrorImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$CartErrorImpl>
+    implements _$$CartErrorImplCopyWith<$Res> {
+  __$$CartErrorImplCopyWithImpl(
+      _$CartErrorImpl _value, $Res Function(_$CartErrorImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of CartState
@@ -1082,7 +1085,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$ErrorImpl(
+    return _then(_$CartErrorImpl(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -1093,8 +1096,8 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements Error {
-  const _$ErrorImpl({required this.error});
+class _$CartErrorImpl implements _CartError {
+  const _$CartErrorImpl({required this.error});
 
   @override
   final String error;
@@ -1108,7 +1111,7 @@ class _$ErrorImpl implements Error {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
+            other is _$CartErrorImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -1120,8 +1123,8 @@ class _$ErrorImpl implements Error {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+  _$$CartErrorImplCopyWith<_$CartErrorImpl> get copyWith =>
+      __$$CartErrorImplCopyWithImpl<_$CartErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1172,13 +1175,13 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(ItemAdded value) itemAdded,
-    required TResult Function(ItemRemoved value) itemRemoved,
-    required TResult Function(CartItemsFetched value) cartItemsFetched,
-    required TResult Function(Success value) success,
-    required TResult Function(Error value) error,
+    required TResult Function(_CartInitial value) initial,
+    required TResult Function(_CartLoading value) loading,
+    required TResult Function(_CartItemAdded value) itemAdded,
+    required TResult Function(_CartItemRemoved value) itemRemoved,
+    required TResult Function(_CartItemsFetched value) cartItemsFetched,
+    required TResult Function(_CartSuccess value) success,
+    required TResult Function(_CartError value) error,
   }) {
     return error(this);
   }
@@ -1186,13 +1189,13 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(ItemAdded value)? itemAdded,
-    TResult? Function(ItemRemoved value)? itemRemoved,
-    TResult? Function(CartItemsFetched value)? cartItemsFetched,
-    TResult? Function(Success value)? success,
-    TResult? Function(Error value)? error,
+    TResult? Function(_CartInitial value)? initial,
+    TResult? Function(_CartLoading value)? loading,
+    TResult? Function(_CartItemAdded value)? itemAdded,
+    TResult? Function(_CartItemRemoved value)? itemRemoved,
+    TResult? Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult? Function(_CartSuccess value)? success,
+    TResult? Function(_CartError value)? error,
   }) {
     return error?.call(this);
   }
@@ -1200,13 +1203,13 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(ItemAdded value)? itemAdded,
-    TResult Function(ItemRemoved value)? itemRemoved,
-    TResult Function(CartItemsFetched value)? cartItemsFetched,
-    TResult Function(Success value)? success,
-    TResult Function(Error value)? error,
+    TResult Function(_CartInitial value)? initial,
+    TResult Function(_CartLoading value)? loading,
+    TResult Function(_CartItemAdded value)? itemAdded,
+    TResult Function(_CartItemRemoved value)? itemRemoved,
+    TResult Function(_CartItemsFetched value)? cartItemsFetched,
+    TResult Function(_CartSuccess value)? success,
+    TResult Function(_CartError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1216,14 +1219,14 @@ class _$ErrorImpl implements Error {
   }
 }
 
-abstract class Error implements CartState {
-  const factory Error({required final String error}) = _$ErrorImpl;
+abstract class _CartError implements CartState {
+  const factory _CartError({required final String error}) = _$CartErrorImpl;
 
   String get error;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+  _$$CartErrorImplCopyWith<_$CartErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

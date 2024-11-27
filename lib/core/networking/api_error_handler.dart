@@ -45,7 +45,6 @@ class ResponseMessage {
   static const String FORBIDDEN = "Forbidden";
   static const String INTERNAL_SERVER_ERROR = "Internal Server Error";
   static const String NOT_FOUND = "Not Found";
-
   static const String CONNECT_TIMEOUT = "Connection Timeout";
   static const String CANCEL = "Request Cancelled";
   static const String RECEIVE_TIMEOUT = "Receive Timeout";

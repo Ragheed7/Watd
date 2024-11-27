@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
 import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
 import 'package:waie/features/cart/data/repository/cart_repo.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
-import 'cart_state.dart';
+import 'package:waie/features/cart/logic/cart_state.dart';
+import 'package:waie/features/products_list/data/model/product_models/product.dart';
 
 class CartCubit extends Cubit<CartState> {
   final CartRepo _cartRepo;
@@ -73,6 +73,7 @@ class CartCubit extends Cubit<CartState> {
     response.when(
       success: (getCartItems) {
         if (getCartItems.isSuccess == true) {
+          // Ensure that getCartItems.result is List<Product>?
           _cartItems = getCartItems.result ?? []; // Update the internal list
           emit(CartState.cartItemsFetched(getCartItems));
         } else {
@@ -87,7 +88,7 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
+
   // Get current cart items
   List<Product> get currentCartItems => _cartItems;
 }
-

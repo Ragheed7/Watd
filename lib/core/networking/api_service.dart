@@ -12,6 +12,10 @@ import 'package:waie/features/auth/model/refresh_token_request_body.dart';
 import 'package:waie/features/auth/model/refresh_token_response.dart';
 import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
 import 'package:waie/features/cart/data/model/get_cart_items.dart';
+import 'package:waie/features/cart/data/model/order_models/create_order_request.dart';
+import 'package:waie/features/cart/data/model/order_models/create_order_response.dart';
+import 'package:waie/features/cart/data/model/order_models/pay_order_request.dart';
+import 'package:waie/features/cart/data/model/order_models/pay_order_response.dart';
 import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/login/data/model/login_request_body.dart';
@@ -72,4 +76,15 @@ abstract class ApiService {
   // Get Cart Items
   @GET(ApiConsts.getCartItems)
   Future<GetCartItems> getCartItems();
+
+  // Create Order
+  @POST(ApiConsts.createOrder)
+  Future<CreateOrderResponse> createOrder(@Body() CreateOrderRequest request);
+
+  // Pay Order
+  @POST(ApiConsts.payOrder)
+  Future<PayOrderResponse> payOrder(
+    @Path('OrderId') int orderId,
+    @Body() PayOrderRequest request,
+  );
 }

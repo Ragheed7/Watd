@@ -4,7 +4,7 @@ import 'package:waie/features/product_screen/presentation/widgets/add_to_cart_bu
 import 'package:waie/features/product_screen/presentation/widgets/images_slider.dart';
 import 'package:waie/features/product_screen/presentation/widgets/product_description.dart';
 import 'package:waie/features/product_screen/presentation/widgets/title_category_and_price.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:waie/features/products_list/data/model/product_models/product.dart';
 
 class ProductScreen extends StatefulWidget {
   final Product product;

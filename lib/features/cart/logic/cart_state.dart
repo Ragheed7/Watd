@@ -6,12 +6,11 @@ part 'cart_state.freezed.dart';
 
 @freezed
 class CartState with _$CartState {
-  const factory CartState.initial() = _Initial;
-  const factory CartState.loading() = Loading;
-  const factory CartState.itemAdded(DefaultApiResponse data) = ItemAdded;
-  const factory CartState.itemRemoved(DefaultApiResponse data) = ItemRemoved;
-  const factory CartState.cartItemsFetched(GetCartItems data) = CartItemsFetched;
-  const factory CartState.success(DefaultApiResponse data) = Success;
-  const factory CartState.error({required String error}) = Error;
-  // const factory CartState.itemAlreadyExists({required String error}) = ItemAlreadyExists;
+  const factory CartState.initial() = _CartInitial;
+  const factory CartState.loading() = _CartLoading;
+  const factory CartState.itemAdded(DefaultApiResponse data) = _CartItemAdded;
+  const factory CartState.itemRemoved(DefaultApiResponse data) = _CartItemRemoved;
+  const factory CartState.cartItemsFetched(GetCartItems data) = _CartItemsFetched;
+  const factory CartState.success(DefaultApiResponse data) = _CartSuccess;
+  const factory CartState.error({required String error}) = _CartError;
 }

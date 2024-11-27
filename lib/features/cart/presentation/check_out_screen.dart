@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/extensions.dart';
+import 'package:waie/core/helpers/extensions.dart'; 
 import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:waie/features/cart/data/model/order_models/create_order_request.dart';
 import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_addresses_cubit.dart';
 import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
-import 'package:waie/features/cart/logic/cart_state.dart' as cart_state; 
-import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart' as address_state; 
+import 'package:waie/features/cart/logic/cart_state.dart' as cart_state;
+import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart' as address_state;
+import 'package:waie/features/cart/logic/order%20logic/create_order_cubit.dart';
+import 'package:waie/features/cart/logic/order%20logic/create_order_state.dart';
+import 'package:waie/features/cart/logic/order%20logic/pay_order_cubit.dart';
+import 'package:waie/features/cart/logic/order%20logic/pay_order_state.dart';
+import 'package:waie/features/cart/presentation/widgets/order_confirmation_screen.dart';
 import 'package:waie/features/cart/presentation/widgets/order_summary_screen.dart';
 import 'package:waie/features/cart/presentation/widgets/payment_section_screen.dart';
 import 'package:waie/features/cart/presentation/widgets/delivery_address_section_screen.dart';
@@ -15,6 +21,7 @@ import 'package:waie/features/cart/presentation/widgets/cart_section_screen.dart
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/payment_screen.dart';
+import 'package:waie/features/cart/presentation/widgets/payment_success_screen.dart';
 
 class CheckOutScreen extends StatefulWidget {
   const CheckOutScreen({Key? key}) : super(key: key);
@@ -33,18 +40,41 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     });
   }
 
-  void _processPayment() {
-    // Validate CVV
-    if (_cvv.length < 3 || _cvv.length > 3) {
+  void _processOrderCreation() {
+    // Initiate Order Creation
+    _createOrder();
+  }
+
+  Future<void> _createOrder() async {
+    final createOrderCubit = context.read<CreateOrderCubit>();
+    final selectedAddressState = context.read<SelectedAddressCubit>().state;
+    final cartCubit = context.read<CartCubit>();
+    final cartItems = cartCubit.currentCartItems;
+
+    // Validate selected address
+    if (selectedAddressState is! address_state.Success<Address>) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please enter a valid CVV")),
+        SnackBar(content: Text("Please select a delivery address.")),
       );
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Payment Successful!")),
+    // Validate cart items
+    if (cartItems.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Your cart is empty.")),
+      );
+      return;
+    }
+
+    final shippingAddressId = selectedAddressState.data.addressId;
+
+    final createOrderRequest = CreateOrderRequest(
+      shippingAddressId: shippingAddressId,
     );
+
+    // Dispatch CreateOrder
+    createOrderCubit.createOrder(createOrderRequest);
   }
 
   @override
@@ -54,10 +84,99 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
       appBar: AppBarScreen(title: 'Checkout'),
       body: MultiBlocListener(
         listeners: [
+          // Listener for CreateOrderCubit
+          BlocListener<CreateOrderCubit, CreateOrderState>(
+            listener: (context, state) {
+              state.when(
+                initial: () {},
+                loading: () {
+                  // Show loading indicator
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (_) => Center(child: CircularProgressIndicator()),
+                  );
+                },
+                success: (createOrderResponse) {
+                  Navigator.of(context).pop(); // Remove loading dialog
+                  if (createOrderResponse.isSuccess) {
+                    final orderId = createOrderResponse.result.orderId;
+
+                    // Clear the cart upon successful order creation
+                    // context.read<CartCubit>().clearCart();
+
+                    // Navigate to Order Confirmation Screen with orderId
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderConfirmationScreen(
+                          orderId: orderId,
+                        ),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(createOrderResponse.message)),
+                    );
+                  }
+                },
+                failure: (error) {
+                  Navigator.of(context).pop(); // Remove loading dialog
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(error)),
+                  );
+                },
+              );
+            },
+          ),
+          // Listener for PayOrderCubit
+          BlocListener<PayOrderCubit, PayOrderState>(
+            listener: (context, state) {
+              state.when(
+                initial: () {},
+                loading: () {
+                  // Show loading indicator
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (_) => Center(child: CircularProgressIndicator()),
+                  );
+                },
+                success: (payOrderResponse) {
+                  Navigator.of(context).pop(); // Remove loading dialog
+                  if (payOrderResponse.isSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Payment Successful!")),
+                    );
+                    // Navigate to Payment Success Screen
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PaymentSuccessScreen(
+                          orderId: payOrderResponse.result.orderId,
+                        ),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(payOrderResponse.message)),
+                    );
+                  }
+                },
+                failure: (error) {
+                  Navigator.of(context).pop(); // Remove loading dialog
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(error)),
+                  );
+                },
+              );
+            },
+          ),
+          // Listener for SelectedAddressCubit
           BlocListener<SelectedAddressCubit, address_state.AddressState<Address>>(
             listener: (context, state) {
               if (state is address_state.Success<Address>) {
-                
+                // Optionally, perform actions upon successful address selection
               } else if (state is address_state.Error<Address>) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.error)),
@@ -65,10 +184,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               }
             },
           ),
+          // Listener for SelectedPaymentCardCubit
           BlocListener<SelectedPaymentCardCubit, PaymentCardState>(
             listener: (context, state) {
               if (state is PaymentCardSelected) {
-                
+                // Optionally, perform actions upon successful payment card selection
               } else if (state is PaymentCardError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(state.error)),
@@ -90,8 +210,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 // Calculate totals
                 double itemsTotal = 0;
                 for (var item in cartItems) {
-                  if (item?.price != null) {
-                    itemsTotal += item!.price!;
+                  if (item.price != null) {
+                    itemsTotal += item.price!;
                   }
                 }
                 double totalPayment = itemsTotal + SharedPrefKeys.deliveryFee;
@@ -115,7 +235,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 Text(
                                   "Delivery Address",
                                   style: TextStyle(
-                                      fontSize: 19, fontWeight: FontWeight.w600),
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 TextButton(
                                   onPressed: () async {
@@ -157,7 +278,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 Text(
                                   "Payment",
                                   style: TextStyle(
-                                      fontSize: 19, fontWeight: FontWeight.w600),
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 TextButton(
                                   onPressed: () async {
@@ -181,7 +303,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                               ],
                             ),
                             SizedBox(height: 5),
-                            // Display Selected Payment Card with CVV Input
+                            // Display Selected Payment Card
                             BlocBuilder<SelectedPaymentCardCubit, PaymentCardState>(
                               builder: (context, state) {
                                 if (state is PaymentCardSelected) {
@@ -205,8 +327,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             // Buy Button
                             Center(
                               child: ElevatedButton(
-                                onPressed: _cvv.isValidCvv()
-                                    ? _processPayment
+                                onPressed: (_cvv.isValidCvv())
+                                    ? _processOrderCreation
                                     : null, // Disable button if CVV is invalid
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color.fromRGBO(118, 192, 67, 1),
@@ -247,4 +369,3 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     );
   }
 }
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/features/products_list/data/model/product_models/product.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 
 class ProductDescription extends StatelessWidget {

@@ -4,6 +4,8 @@ import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/presentation/widgets/product_image.dart';
 import 'package:waie/features/products_list/presentation/widgets/product_item_details.dart';
 
+import '../../data/model/product_models/product.dart';
+
 class ProductItem extends StatelessWidget {
   final Product product;
   final CategoryData? categoryData;
@@ -42,9 +44,7 @@ class ProductItem extends StatelessWidget {
               product: product,
             ),
             // Right side (details)
-            Expanded(
-              child: ProductItemDetails(product: product),
-            ),
+            ProductItemDetails(product: product),
           ],
         ),
       );
