@@ -1,22 +1,29 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
 
-part 'create_order_response.g.dart';
+part 'get_orders.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class CreateOrderResponse {
-  final Order result;
+class GetOrders {
+  final List<Order> result;
   final bool isSuccess;
   final String? message;
 
-  CreateOrderResponse({
+  GetOrders({
     required this.result,
     required this.isSuccess,
     this.message,
   });
 
-  factory CreateOrderResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateOrderResponseFromJson(json);
+  factory GetOrders.fromJson(Map<String, dynamic> json) =>
+      _$GetOrdersFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CreateOrderResponseToJson(this);
+  Map<String, dynamic> toJson() => _$GetOrdersToJson(this);
 }
+
+
+
+
+
+
+

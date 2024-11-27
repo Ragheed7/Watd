@@ -1,39 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
 
 class OrderHeaderScreen extends StatelessWidget {
+  final Order order;
+
+  OrderHeaderScreen({required this.order});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Order details",
-          style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
+          "Order ID: ${order.orderId}",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 15),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 18),
-          width: MediaQuery.of(context).size.width,
-          height: 130,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(color: Colors.black12, blurRadius: 4, spreadRadius: 2),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("\nOrder number: 456123567", style: TextStyle(fontSize: 16)),
-              Text("Order date: 21/08/2024", style: TextStyle(fontSize: 16)),
-              Text("Estimated delivery date: 28/08/2024",
-                  style: TextStyle(fontSize: 16)),
-              Text("Order status: on the way", style: TextStyle(fontSize: 16)),
-            ],
-          ),
+        SizedBox(height: 5),
+        Text(
+          "Status: ${_getStatusText(order.status)}",
+          style: TextStyle(fontSize: 16),
+        ),
+        SizedBox(height: 5),
+        Text(
+          "Created At: ${_formatDate(order.createdAt)}",
+          style: TextStyle(fontSize: 16),
+        ),
+        SizedBox(height: 5),
+        Text(
+          "Shipping Status: ${_getShippingStatusText(order.shippingStatus)}",
+          style: TextStyle(fontSize: 16),
         ),
       ],
     );
+  }
+
+  String _formatDate(DateTime date) {
+    // Date format DD/MM/YYYY
+    return "${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}";
+  }
+
+  String _getStatusText(int status) {
+    switch (status) {
+      case 1:
+        return "Pending";
+      case 2:
+        return "Processing";
+      case 3:
+        return "On the way";
+      case 4:
+        return "Delivered";
+      default:
+        return "Unknown";
+    }
+  }
+
+  String _getShippingStatusText(int shippingStatus) {
+    switch (shippingStatus) {
+      case 1:
+        return "Not Shipped";
+      case 2:
+        return "Shipped";
+      case 3:
+        return "In Transit";
+      case 4:
+        return "Delivered";
+      default:
+        return "Unknown";
+    }
   }
 }

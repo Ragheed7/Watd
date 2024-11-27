@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 class OrderItemScreen extends StatelessWidget {
   final String image;
   final String title;
-  final List<String> details;
+  final List<String> details; // Assuming details is a list of strings
   final String price;
 
   OrderItemScreen({
@@ -15,51 +16,49 @@ class OrderItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(bottom: 15),
+      margin: EdgeInsets.symmetric(vertical: 8),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 150,
-            width: 150,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
+          // Product Image
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              image,
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Image.asset(
+                  "assets/images/waie2.png",
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                );
+              },
             ),
           ),
-          SizedBox(width: 8),
+          SizedBox(width: 10),
+          // Product Details
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
-                ...details.map((detail) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2),
-                      child: Text(
-                        detail,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                      ),
+                SizedBox(height: 4),
+                ...details.map((detail) => Text(
+                      detail,
+                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                     )),
-                SizedBox(height: 10),
-                Text(
-                  price,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(118, 192, 67, 1),
-                  ),
-                ),
               ],
             ),
+          ),
+          // Price
+          Text(
+            price,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
         ],
       ),

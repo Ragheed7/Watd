@@ -8,7 +8,7 @@ class PaymentSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Optionally, remove the back button to prevent navigating back to the confirmation screen
+      // Remove the back button to prevent navigating back to the confirmation screen
       appBar: AppBar(
         title: Text("Payment Successful"),
         automaticallyImplyLeading: false,

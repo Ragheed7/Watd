@@ -18,7 +18,7 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
         if (data.isSuccess) {
           emit(CreateOrderState.success(data));
         } else {
-          emit(CreateOrderState.failure(error: data.message));
+          emit(CreateOrderState.failure(error: data.message?? "Sorry, can't create order"));
         }
       },
       failure: (error) {

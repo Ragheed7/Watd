@@ -116,7 +116,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(createOrderResponse.message)),
+                      SnackBar(content: Text(createOrderResponse.message ?? "Sorry about that! we can't create your order at the moment, try again in couple of minutes ")),
                     );
                   }
                 },

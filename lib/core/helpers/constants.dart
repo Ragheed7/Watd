@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 bool isLoggedInUser = false;
 
 class SharedPrefKeys {
