@@ -19,6 +19,8 @@ import 'package:waie/features/cart/data/model/order_models/pay_order_request.dar
 import 'package:waie/features/cart/data/model/order_models/pay_order_response.dart';
 import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
+import 'package:waie/features/home/data/model/services/create_service_request.dart';
+import 'package:waie/features/home/data/model/services/create_service_response.dart';
 import 'package:waie/features/login/data/model/login_request_body.dart';
 import 'package:waie/features/login/data/model/login_response.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
@@ -95,4 +97,10 @@ abstract class ApiService {
   // Get Orders
   @GET(ApiConsts.getOrders)
   Future<GetOrders> getOrders();
+
+  // Create Service Request
+  @POST(ApiConsts.createService)
+  Future<CreateServiceResponse> createService(
+    @Body() CreateServiceRequest request,
+  );
 }

@@ -15,6 +15,7 @@ import 'package:waie/features/cart/data/repository/order_repo.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
 import 'package:waie/features/cart/logic/order%20logic/create_order_cubit.dart';
 import 'package:waie/features/cart/logic/order%20logic/pay_order_cubit.dart';
+import 'package:waie/features/home/logic/cubit/create_service_cubit.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 import 'package:waie/waie_app.dart';
 
@@ -34,6 +35,9 @@ void main() async {
         BlocProvider(
           create: (_) => getIt<AddressCubit>(),
         ),
+        BlocProvider(
+          create: (_) => getIt<UserCubit>(),
+        ),
         BlocProvider<CartCubit>(
           create: (_) => getIt<CartCubit>()..fetchCartItems(),
         ),
@@ -43,11 +47,14 @@ void main() async {
         BlocProvider<SelectedPaymentCardCubit>(
           create: (context) => SelectedPaymentCardCubit(),
         ),
-         BlocProvider<CreateOrderCubit>(
+        BlocProvider<CreateOrderCubit>(
           create: (context) => CreateOrderCubit(getIt<OrderRepo>()),
         ),
         BlocProvider<PayOrderCubit>(
           create: (context) => PayOrderCubit(getIt<OrderRepo>()),
+        ),
+        BlocProvider<CreateServiceCubit>(
+          create: (_) => getIt<CreateServiceCubit>(),
         ),
       ],
       child: Waie(

@@ -13,3 +13,10 @@ class ImageLoader {
   static const String enviroment = "assets/images/env01.png";
   static const String homeBanner = "assets/images/banner.png";
 }
+
+class RequestType{
+    static const int Repair=0;
+    static const int Return=1;
+    static const int Sell=2;
+    static const int Donate = 3;
+}

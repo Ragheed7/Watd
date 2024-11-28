@@ -13,7 +13,9 @@ import 'package:waie/features/cart/data/repository/order_repo.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
 import 'package:waie/features/cart/logic/order%20logic/create_order_cubit.dart';
 import 'package:waie/features/cart/logic/order%20logic/pay_order_cubit.dart';
+import 'package:waie/features/home/data/repository/create_service_repo.dart';
 import 'package:waie/features/home/data/repository/home_repo.dart';
+import 'package:waie/features/home/logic/cubit/create_service_cubit.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/login/data/repository/login_repo.dart';
 import 'package:waie/features/login/logic/cubit/login_cubit.dart';
@@ -67,5 +69,10 @@ Future<void> setupGetIt() async {
 
   // Register GetOrdersCubit
   getIt.registerFactory<GetOrdersCubit>(() => GetOrdersCubit(getIt<OrderRepo>()));
+
+  // Register CreateService
+  getIt.registerLazySingleton<CreateServiceRepository>(() => CreateServiceRepository(getIt<ApiService>()));
+  getIt.registerFactory<CreateServiceCubit>(() => CreateServiceCubit(getIt<CreateServiceRepository>()));
+
 }
 
