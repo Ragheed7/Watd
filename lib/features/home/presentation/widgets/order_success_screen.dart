@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/routing/routes.dart';
 import 'package:waie/features/home/presentation/widgets/container_button_model.dart';
-import 'package:waie/navigation_menu.dart';
 
 
 class OrderSuccessScreen extends StatelessWidget {
@@ -42,11 +42,7 @@ class OrderSuccessScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BottomNavBar()
-                    ));
+                Navigator.of(context).pushReplacementNamed(Routes.navigationMenu);
               },
               child: ContainerButtonModel(
                 itext: "Continue Shopping",

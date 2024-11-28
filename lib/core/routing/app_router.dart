@@ -56,10 +56,7 @@ class AppRouter {
 
       case Routes.navigationMenu:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<UserCubit>(),
-            child: const BottomNavBar(),
-        ));
+          builder: (context) => const BottomNavBar());
 
          case Routes.myAccountScreen:
         return MaterialPageRoute(
