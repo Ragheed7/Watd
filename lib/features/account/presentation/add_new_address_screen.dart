@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/routing/routes.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class AddNewAddressScreen extends StatefulWidget {
@@ -18,8 +20,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
       TextEditingController(text: 'Saudi Arabia');
   final TextEditingController stateController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
-  final TextEditingController streetAddressController =
-      TextEditingController();
+  final TextEditingController streetAddressController = TextEditingController();
   final TextEditingController zipCodeController = TextEditingController();
 
   @override
@@ -131,6 +132,13 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                               country: countryController.text,
                             );
                             addressCubit.createAddress(newAddress);
+                            Navigator.pushReplacement<void, void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                const SavedAddressScreen(),
+                              ),
+                            );
                           }
                         },
                         color: Color.fromRGBO(118, 192, 67, 1),

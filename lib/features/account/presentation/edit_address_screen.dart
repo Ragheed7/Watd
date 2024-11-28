@@ -4,6 +4,7 @@ import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.
 import 'package:waie/core/shared_models/user_addresses/data/model/update_address.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
+import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class EditAddressScreen extends StatefulWidget {
@@ -122,7 +123,13 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                               country: countryController.text,
                             );
                             addressCubit.updateAddress(updatedAddress);
-                            Navigator.pop(context);
+                            Navigator.pushReplacement<void, void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                const SavedAddressScreen(),
+                              ),
+                            );
                           }
                         },
                         color: Color.fromRGBO(118, 192, 67, 1),

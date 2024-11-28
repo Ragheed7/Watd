@@ -12,6 +12,11 @@ import 'package:waie/features/auth/model/refresh_token_request_body.dart';
 import 'package:waie/features/auth/model/refresh_token_response.dart';
 import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
 import 'package:waie/features/cart/data/model/get_cart_items.dart';
+import 'package:waie/features/cart/data/model/order_models/create_order_request.dart';
+import 'package:waie/features/cart/data/model/order_models/create_order_response.dart';
+import 'package:waie/features/cart/data/model/order_models/get_orders.dart';
+import 'package:waie/features/cart/data/model/order_models/pay_order_request.dart';
+import 'package:waie/features/cart/data/model/order_models/pay_order_response.dart';
 import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/login/data/model/login_request_body.dart';
@@ -53,9 +58,10 @@ abstract class ApiService {
   @GET(ApiConsts.getAddresses)
   Future<GetAddresses> getAddresses();
 
-  // Create address 
+  // Create address
   @POST(ApiConsts.createAddress)
-  Future<CreateAddressResponse> createAddress(@Body() CreateAddress createAddress);
+  Future<CreateAddressResponse> createAddress(
+      @Body() CreateAddress createAddress);
 
   // Update address
   @PUT(ApiConsts.updateAddress)
@@ -63,13 +69,30 @@ abstract class ApiService {
 
   // Add item to cart
   @POST(ApiConsts.addItemToCart)
-  Future<DefaultApiResponse> addItemToCart(@Body() AddToCartItemRequest request);
+  Future<DefaultApiResponse> addItemToCart(
+      @Body() AddToCartItemRequest request);
 
   // Remove item from cart
   @POST(ApiConsts.removeItemFromCart)
-  Future<DefaultApiResponse> removeItemFromCart(@Body() RemoveFromCartItemRequest request);
+  Future<DefaultApiResponse> removeItemFromCart(
+      @Body() RemoveFromCartItemRequest request);
 
   // Get Cart Items
   @GET(ApiConsts.getCartItems)
   Future<GetCartItems> getCartItems();
+
+  // Create Order
+  @POST(ApiConsts.createOrder)
+  Future<CreateOrderResponse> createOrder(@Body() CreateOrderRequest request);
+
+  // Pay Order
+  @POST(ApiConsts.payOrder)
+  Future<PayOrderResponse> payOrder(
+    @Path('OrderId') int orderId,
+    @Body() PayOrderRequest request,
+  );
+
+  // Get Orders
+  @GET(ApiConsts.getOrders)
+  Future<GetOrders> getOrders();
 }

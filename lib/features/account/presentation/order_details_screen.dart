@@ -1,47 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/helpers/constants.dart';
+import 'package:waie/core/networking/api_constants.dart';
 import 'package:waie/features/account/presentation/widgets/delivery_address_screen.dart';
 import 'package:waie/features/account/presentation/widgets/order_header_screen.dart';
 import 'package:waie/features/account/presentation/widgets/order_item_screen.dart';
 import 'package:waie/features/account/presentation/widgets/order_summary_screen.dart';
+import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
-  final List<String> imageList = [
-    "assets/images/Offices.png",
-    "assets/images/Bedrooms.jpg",
-    "assets/images/Kitchens.jpg",
-    "assets/images/living room.png",
-  ];
+  final Order order;
 
-  final List<String> productTitle = [
-    "Office Chair",
-    "Bedroom Set",
-    "Kitchen Cabinets",
-    "Living Room Sofa",
-  ];
-
-  final List<String> prices = ["SAR 250", "SAR 300", "SAR 450", "SAR 350"];
-
-  final List<List<String>> contentDetails = [
-    [
-      "A wooden dining table that brings a cozy and modern feel to any dining room at computer science and also all the world",
-    ],
-    [
-      "A Round wooden dining table",
-    ],
-    [
-      "A wooden dining table with a Scandinavian design that brings a cozy and modern furniture around the world of kitchen",
-    ],
-    [
-      "A Round wooden dining table and living room",
-    ],
-  ];
+  OrderDetailsScreen({required this.order});
 
   @override
   Widget build(BuildContext context) {
+    // Extract data from the order
+    final imageList = order.orderItems
+        .map((item) => item.product.images!.isNotEmpty
+            ? (ApiConsts.serverBaseUrl + item.product.images![0].imageUrl!) 
+            : "assets/images/waie2.png")
+        .toList();
+    final productTitles = order.orderItems.map((item) => item.product.nameEn ?? "Product").toList();
+    final prices = order.orderItems.map((item) => "SAR ${item.product.price?.toStringAsFixed(2)}").toList();
+    final contentDetails = order.orderItems
+        .map((item) => [item.product.descriptionEn ?? "No description available."])
+        .toList();
+
+    double totalPayment = order.totalPrice + SharedPrefKeys.deliveryFee;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Order details"),
+        title: Text("Order Details"),
         centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -55,73 +45,66 @@ class OrderDetailsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Divider(),
-                OrderHeaderScreen(),
+                OrderHeaderScreen(order: order),
                 SizedBox(height: 15),
-                DeliveryAddressScreen(),
+                DeliveryAddressScreen(address: order.shippingAddress),
                 SizedBox(height: 20),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Order",
-                            style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Text(
-                            "4 items",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
+                // Order Items Header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Order Items",
+                      style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      "${order.orderItems.length} items",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 15),
+                // List of Order Items
                 ListView.builder(
-                  itemCount: imageList.length,
+                  itemCount: order.orderItems.length,
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return OrderItemScreen(
-                      image: imageList[index],
-                      title: productTitle[index],
+                      image: imageList[index] ?? "assets/images/waie2.png",
+                      title: productTitles[index],
                       details: contentDetails[index],
                       price: prices[index],
                     );
                   },
                 ),
                 SizedBox(height: 20),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Total Payment",
-                            style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
+                // Order Summary
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Total Payment",
+                      style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w600,
                       ),
-                      SizedBox(height: 10),
-                      Divider(),
-                      SizedBox(height: 5),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                OrderSummaryScreen(),
+                SizedBox(height: 10),
+                Divider(),
+                SizedBox(height: 5),
+                OrderSummaryScreen(
+                  items: [
+                    {"label": "Subtotal", "price": "SAR ${order.totalPrice.toStringAsFixed(2)}"},
+                    {"label": "Delivery", "price": "SAR ${SharedPrefKeys.deliveryFee.toStringAsFixed(2)}"},
+                  ],
+                  total: "SAR ${totalPayment.toStringAsFixed(2)}",
+                ),
               ],
             ),
           ),

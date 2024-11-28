@@ -27,9 +27,8 @@ extension ListExtension<T> on List<T>? {
 }
 
 // Extension to validate CVV
-extension CvvValidation on String {
+extension CvvValidator on String {
   bool isValidCvv() {
-    final regex = RegExp(r'^\d{3,4}$');
-    return regex.hasMatch(this);
+    return RegExp(r'^\d{3}$').hasMatch(this);
   }
 }

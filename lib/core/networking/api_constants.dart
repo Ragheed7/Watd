@@ -12,6 +12,9 @@ class ApiConsts {
   static const String addItemToCart = 'Cart/AddCartItem';
   static const String removeItemFromCart = 'Cart/RemoveCartItem';
   static const String getCartItems = 'Cart/GetCartItems';
+  static const String createOrder = 'Order/CreateOrder';
+  static const String getOrders = "Order/GetOrders";
+  static const String payOrder = 'Pay/{OrderId}';
 }
 
 class ApiErrors {

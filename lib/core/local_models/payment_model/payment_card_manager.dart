@@ -14,7 +14,6 @@ class PaymentCardManager {
 
   static const String _storageKey = 'payment_cards';
 
-  // Made public by removing the underscore
   Future<void> loadPaymentCards() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jsonString = prefs.getString(_storageKey);

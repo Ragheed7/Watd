@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/core/theming/colors.dart';
+import 'package:waie/features/products_list/data/model/product_models/product.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/presentation/widgets/product_item.dart';
 import 'package:waie/features/product_screen/presentation/ProductScreen.dart';

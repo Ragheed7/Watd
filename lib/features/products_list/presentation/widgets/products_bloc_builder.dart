@@ -6,7 +6,9 @@ import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/products_list/logic/cubit/product_state.dart';
 import 'package:waie/features/products_list/presentation/widgets/products_list_view.dart';
-import 'package:waie/features/search/presentation/widgets/products_grid_view.dart'; 
+import 'package:waie/features/search/presentation/widgets/products_grid_view.dart';
+
+import '../../data/model/product_models/product.dart'; 
 
 class ProductsBlocBuilder extends StatelessWidget {
   final CategoryData? categoryData;

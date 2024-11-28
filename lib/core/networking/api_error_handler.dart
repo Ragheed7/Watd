@@ -45,7 +45,6 @@ class ResponseMessage {
   static const String FORBIDDEN = "Forbidden";
   static const String INTERNAL_SERVER_ERROR = "Internal Server Error";
   static const String NOT_FOUND = "Not Found";
-
   static const String CONNECT_TIMEOUT = "Connection Timeout";
   static const String CANCEL = "Request Cancelled";
   static const String RECEIVE_TIMEOUT = "Receive Timeout";
@@ -108,7 +107,11 @@ class ErrorHandler implements Exception {
       apiErrorModel = _handleError(error);
     } else {
       apiErrorModel = DataSource.DEFAULT.getFailure();
+      print("Unhandled error type: ${error.runtimeType}");
+      print("Error details: $error"); // Log the error details
     }
+    // Log the error message
+    print("ErrorHandler: ${apiErrorModel.message}");
   }
 
   ApiErrorModel _handleError(DioException error) {
@@ -125,7 +128,14 @@ class ErrorHandler implements Exception {
             error.response?.statusMessage != null &&
             error.response?.data != null &&
             error.response!.data is Map<String, dynamic>) {
-          return ApiErrorModel.fromJson(error.response!.data);
+          try {
+            // Attempt to parse ApiErrorModel
+            return ApiErrorModel.fromJson(error.response!.data);
+          } catch (e, stacktrace) {
+            print("Error parsing ApiErrorModel: $e");
+            print("Stacktrace: $stacktrace");
+            return DataSource.DEFAULT.getFailure();
+          }
         } else {
           return DataSource.DEFAULT.getFailure();
         }
@@ -140,6 +150,7 @@ class ErrorHandler implements Exception {
     }
   }
 }
+
 
 
 

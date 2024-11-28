@@ -8,7 +8,11 @@ import 'package:waie/features/account/presentation/widgets/user_info/data/reposi
 import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
 import 'package:waie/features/auth/repo/auth_repo.dart';
 import 'package:waie/features/cart/data/repository/cart_repo.dart';
+import 'package:waie/features/cart/logic/order%20logic/get_orders_cubit.dart';
+import 'package:waie/features/cart/data/repository/order_repo.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
+import 'package:waie/features/cart/logic/order%20logic/create_order_cubit.dart';
+import 'package:waie/features/cart/logic/order%20logic/pay_order_cubit.dart';
 import 'package:waie/features/home/data/repository/home_repo.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/login/data/repository/login_repo.dart';
@@ -55,5 +59,13 @@ Future<void> setupGetIt() async {
   // Register CartRepo and CartCubit
   getIt.registerLazySingleton<CartRepo>(() => CartRepo(getIt<ApiService>()));
   getIt.registerFactory<CartCubit>(() => CartCubit(getIt<CartRepo>()));
+
+  // Register OrderRepo, and Create and pay order cubits
+  getIt.registerLazySingleton<OrderRepo>(() => OrderRepo(getIt<ApiService>()));
+  getIt.registerFactory<CreateOrderCubit>(() => CreateOrderCubit(getIt<OrderRepo>())); 
+  getIt.registerFactory<PayOrderCubit>(() => PayOrderCubit(getIt<OrderRepo>()));
+
+  // Register GetOrdersCubit
+  getIt.registerFactory<GetOrdersCubit>(() => GetOrdersCubit(getIt<OrderRepo>()));
 }
 

@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 
 class OrderSummaryScreen extends StatelessWidget {
-  final List<Map<String, String>> items = [
-    {"label": "item 1", "price": "SAR 500"},
-    {"label": "item 2", "price": "SAR 100"},
-    {"label": "item 3", "price": "SAR 20"},
-    {"label": "item 4", "price": "SAR 10"},
-    {"label": "Delivery", "price": "SAR 35"},
-  ];
+  final List<Map<String, String>> items;
+  final String total;
+
+  OrderSummaryScreen({required this.items, required this.total});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ...items.map((item) => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(item["label"]!, style: TextStyle(fontSize: 15)),
-                Text(item["price"]!, style: TextStyle(fontSize: 15)),
-              ],
+        ...items.map((item) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(item["label"]!, style: TextStyle(fontSize: 15)),
+                  Text(item["price"]!, style: TextStyle(fontSize: 15)),
+                ],
+              ),
             )),
         Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Total Payment", style: TextStyle(fontSize: 15)),
+            Text("Total Payment", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
             Text(
-              "SAR 655",
+              total,
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:waie/core/networking/api_error_handler.dart';
+import 'package:waie/features/products_list/data/model/product_models/product.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 
 part 'product_state.freezed.dart';

@@ -29,7 +29,7 @@ class CartRepo {
     }
   }
 
-   Future<ApiResult<GetCartItems>> getCartItems() async {
+  Future<ApiResult<GetCartItems>> getCartItems() async {
     try {
       final response = await _apiService.getCartItems();
       return ApiResult.success(response);

@@ -5,7 +5,7 @@ import 'package:waie/core/shared_models/user_addresses/data/model/update_address
 import 'package:waie/core/shared_models/user_addresses/data/repository/address_repo.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
 
-class AddressCubit extends Cubit<AddressState<GetAddresses>> { // Ensure the generic type is GetAddresses
+class AddressCubit extends Cubit<AddressState<GetAddresses>> { 
   final AddressRepo _addressRepo;
 
   AddressCubit(this._addressRepo) : super(const AddressState.initial());

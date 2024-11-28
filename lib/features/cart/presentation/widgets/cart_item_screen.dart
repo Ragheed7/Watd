@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/networking/api_constants.dart';
 import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:waie/features/products_list/data/model/product_models/product.dart';
 import 'package:waie/core/theming/colors.dart';
 
 class CartItemScreen extends StatelessWidget {
@@ -17,16 +17,15 @@ class CartItemScreen extends StatelessWidget {
       return 'assets/images/default_product.png';
     }
     if (imageUrl.startsWith('http') || imageUrl.startsWith('https')) {
-      return imageUrl; // Absolute URL, no need to prepend
+      return imageUrl; 
     }
-    // Relative URL, prepend with serverBaseUrl
+    
     return ApiConsts.serverBaseUrl + imageUrl;
   }
 
   @override
   Widget build(BuildContext context) {
     // Extract necessary product details
-    // Construct the full image URL
     final fullImageUrl = product.images != null && product.images!.isNotEmpty
         ? getFullImageUrl(product.images!.first.imageUrl)
         : 'assets/images/Bedrooms.jpg';

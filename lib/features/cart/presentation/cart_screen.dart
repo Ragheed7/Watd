@@ -56,7 +56,7 @@ class _CartScreenState extends State<CartScreen> {
             cartItemsFetched: (data) {
               final cartItems = data.result ?? [];
               if (cartItems.isEmpty) {
-                return Center(child: Text("Your cart is empty"));
+                return Center(child: Image.asset("assets/images/EmptyCart.png", width: 150, height: 200, ));
               }
 
               // Calculate total

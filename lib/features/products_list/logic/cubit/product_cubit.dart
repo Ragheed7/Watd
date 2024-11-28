@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/data/repository/product_repo.dart';
 import 'package:waie/features/products_list/logic/cubit/product_state.dart';
+
+import '../../data/model/product_models/product.dart';
 
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit(this._productRepo) : super(const ProductState.initial());

@@ -1,37 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:waie/features/cart/data/model/order_models/sub_order_models/shipping_address.dart';
 
 class DeliveryAddressScreen extends StatelessWidget {
+  final ShippingAddress address;
+
+  DeliveryAddressScreen({required this.address});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Delivery address",
+          "Delivery Address",
           style: TextStyle(fontSize: 19, fontWeight: FontWeight.w600),
         ),
-        SizedBox(height: 15),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 18),
-          width: MediaQuery.of(context).size.width,
-          height: 160,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(color: Colors.black12, blurRadius: 4, spreadRadius: 2),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("\nSaudi Arabia", style: TextStyle(fontSize: 16)),
-              Text("Qassim", style: TextStyle(fontSize: 16)),
-              Text("Buraidah", style: TextStyle(fontSize: 16)),
-              Text("3, Saleh Street", style: TextStyle(fontSize: 16)),
-              Text("97545", style: TextStyle(fontSize: 16)),
-            ],
-          ),
+        SizedBox(height: 10),
+        Text(
+          "${address.streetAddress},",
+          style: TextStyle(fontSize: 16),
+        ),
+        Text(
+          "${address.city}, ${address.state},",
+          style: TextStyle(fontSize: 16),
+        ),
+        Text(
+          "${address.country} - ${address.zipCode}",
+          style: TextStyle(fontSize: 16),
         ),
       ],
     );

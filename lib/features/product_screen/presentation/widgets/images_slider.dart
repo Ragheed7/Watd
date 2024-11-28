@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:waie/core/networking/api_constants.dart'; 
 import 'package:waie/core/theming/colors.dart';
+import 'package:waie/features/products_list/data/model/product_models/image_data.dart';
+import 'package:waie/features/products_list/data/model/product_models/product.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
 
 class ImagesSlider extends StatefulWidget {
