@@ -9,6 +9,7 @@ import 'package:waie/features/account/presentation/track_order_screen.dart';
 import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
 import 'package:waie/features/account/presentation/widgets/account_option_list_tile_screen.dart';
 import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
+import 'package:waie/features/account/presentation/widgets/my_services.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -88,6 +89,18 @@ class AccountScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => MyOrderScreen(),
+                      ),
+                    );
+                  },
+                ),
+                AccountOptionListTileScreen(
+                  icon: Icons.handyman,
+                  title: 'My services',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyServices(),
                       ),
                     );
                   },

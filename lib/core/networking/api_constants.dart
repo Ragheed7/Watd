@@ -16,6 +16,7 @@ class ApiConsts {
   static const String getOrders = "Order/GetOrders";
   static const String payOrder = 'Pay/{OrderId}';
   static const String createService = 'ServiceRequest/CreateService';
+  static const String getUserServices = 'ServiceRequest/GetCurrentUserServices';
 }
 
 class ApiErrors {

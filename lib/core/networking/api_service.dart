@@ -21,6 +21,7 @@ import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart
 import 'package:waie/features/home/data/model/category_response.dart';
 import 'package:waie/features/home/data/model/services/create_service_request.dart';
 import 'package:waie/features/home/data/model/services/create_service_response.dart';
+import 'package:waie/features/home/data/model/services/get_user_services.dart';
 import 'package:waie/features/login/data/model/login_request_body.dart';
 import 'package:waie/features/login/data/model/login_response.dart';
 import 'package:waie/features/products_list/data/model/product_response.dart';
@@ -103,4 +104,8 @@ abstract class ApiService {
   Future<CreateServiceResponse> createService(
     @Body() CreateServiceRequest request,
   );
+  
+  // Get User Services
+  @GET(ApiConsts.getUserServices)
+  Future<GetUserServices> getUserServices();
 }

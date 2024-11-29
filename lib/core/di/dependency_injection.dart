@@ -14,8 +14,10 @@ import 'package:waie/features/cart/logic/cart_cubit.dart';
 import 'package:waie/features/cart/logic/order%20logic/create_order_cubit.dart';
 import 'package:waie/features/cart/logic/order%20logic/pay_order_cubit.dart';
 import 'package:waie/features/home/data/repository/create_service_repo.dart';
+import 'package:waie/features/home/data/repository/get_user_services_repo.dart';
 import 'package:waie/features/home/data/repository/home_repo.dart';
 import 'package:waie/features/home/logic/cubit/create_service_cubit.dart';
+import 'package:waie/features/home/logic/cubit/get_user_services_cubit.dart';
 import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/login/data/repository/login_repo.dart';
 import 'package:waie/features/login/logic/cubit/login_cubit.dart';
@@ -24,7 +26,7 @@ import 'package:waie/features/products_list/data/repository/product_repo.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 
 final getIt = GetIt.instance;
-  
+
 Future<void> setupGetIt() async {
   // Initialize Dio using DioFactory
   Dio dio = await DioFactory.getDio();
@@ -33,7 +35,8 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
 
   // Register AuthRepository
-  getIt.registerLazySingleton<AuthRepository>(() => AuthRepository(getIt<ApiService>()));
+  getIt.registerLazySingleton<AuthRepository>(
+      () => AuthRepository(getIt<ApiService>()));
 
   // Register LoginRepo and LoginCubit
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt<ApiService>()));
@@ -44,18 +47,22 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt<HomeRepo>()));
 
   // Register ProductRepo and ProductCubit
-  getIt.registerLazySingleton<ProductRepo>(() => ProductRepo(getIt<ApiService>()));
+  getIt.registerLazySingleton<ProductRepo>(
+      () => ProductRepo(getIt<ApiService>()));
   getIt.registerFactory<ProductCubit>(() => ProductCubit(getIt<ProductRepo>()));
 
   // Register UserCubit
   getIt.registerLazySingleton<UserCubit>(() => UserCubit());
 
   // Register UpdateUserRepo and UpdateUserCubit
-  getIt.registerLazySingleton<UpdateUserRepo>(() => UpdateUserRepo(getIt<ApiService>()));
-  getIt.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(getIt<UpdateUserRepo>()));
+  getIt.registerLazySingleton<UpdateUserRepo>(
+      () => UpdateUserRepo(getIt<ApiService>()));
+  getIt.registerFactory<UpdateUserCubit>(
+      () => UpdateUserCubit(getIt<UpdateUserRepo>()));
 
   // Register AddreessRepo and AddressCubit
-  getIt.registerLazySingleton<AddressRepo>(() => AddressRepo(getIt<ApiService>()));
+  getIt.registerLazySingleton<AddressRepo>(
+      () => AddressRepo(getIt<ApiService>()));
   getIt.registerFactory<AddressCubit>(() => AddressCubit(getIt<AddressRepo>()));
 
   // Register CartRepo and CartCubit
@@ -64,15 +71,23 @@ Future<void> setupGetIt() async {
 
   // Register OrderRepo, and Create and pay order cubits
   getIt.registerLazySingleton<OrderRepo>(() => OrderRepo(getIt<ApiService>()));
-  getIt.registerFactory<CreateOrderCubit>(() => CreateOrderCubit(getIt<OrderRepo>())); 
+  getIt.registerFactory<CreateOrderCubit>(
+      () => CreateOrderCubit(getIt<OrderRepo>()));
   getIt.registerFactory<PayOrderCubit>(() => PayOrderCubit(getIt<OrderRepo>()));
 
   // Register GetOrdersCubit
-  getIt.registerFactory<GetOrdersCubit>(() => GetOrdersCubit(getIt<OrderRepo>()));
+  getIt.registerFactory<GetOrdersCubit>(
+      () => GetOrdersCubit(getIt<OrderRepo>()));
 
   // Register CreateService
-  getIt.registerLazySingleton<CreateServiceRepository>(() => CreateServiceRepository(getIt<ApiService>()));
-  getIt.registerFactory<CreateServiceCubit>(() => CreateServiceCubit(getIt<CreateServiceRepository>()));
+  getIt.registerLazySingleton<CreateServiceRepository>(
+      () => CreateServiceRepository(getIt<ApiService>()));
+  getIt.registerFactory<CreateServiceCubit>(
+      () => CreateServiceCubit(getIt<CreateServiceRepository>()));
 
+  // Inside your setupGetIt() function in service_locator.dart
+  getIt.registerLazySingleton<GetUserServicesRepository>(
+      () => GetUserServicesRepository(getIt<ApiService>()));
+  getIt.registerFactory<GetUserServicesCubit>(
+      () => GetUserServicesCubit(getIt<GetUserServicesRepository>()));
 }
-

@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:waie/core/helpers/constants.dart';
+import 'package:waie/core/helpers/error_dialog.dart';
+import 'package:waie/core/networking/api_error_handler.dart';
+import 'package:waie/core/networking/api_error_model.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 import 'package:waie/features/home/data/model/services/create_service_request.dart';
 import 'package:waie/features/home/logic/cubit/create_service_cubit.dart';
@@ -23,6 +26,7 @@ class _DonateScreenState extends State<DonateScreen> {
   final TextEditingController descriptionController = TextEditingController();
 
   List<File> selectedImages = [];
+  ApiErrorModel apiErrorModel = DataSource.DEFAULT.getFailure();
 
   @override
   void dispose() {
@@ -120,41 +124,7 @@ class _DonateScreenState extends State<DonateScreen> {
           },
           failure: (error) {
             Navigator.of(context).pop(); // Close the loading dialog
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                icon: const Icon(
-                  Icons.error,
-                  color: Colors.red,
-                  size: 32,
-                ),
-                content: Text(
-                  error,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'cabin',
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(); // Close the error dialog
-                    },
-                    child: const Text(
-                      "Got it",
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: 'cabin',
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
+            showErrorDialog(context, apiErrorModel.message ?? "");
           },
         );
       },
