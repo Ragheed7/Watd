@@ -20,3 +20,4 @@ class RequestType{
     static const int Sell=2;
     static const int Donate = 3;
 }
+

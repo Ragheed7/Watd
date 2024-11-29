@@ -56,31 +56,31 @@ class AppRouter {
 
       case Routes.navigationMenu:
         return MaterialPageRoute(
-          builder: (context) => const BottomNavBar());
+            builder: (context) => const BottomNavBar());
 
-         case Routes.myAccountScreen:
+      case Routes.myAccountScreen:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => getIt<UserCubit>(),
-            child: const MyaccountScreen(),
-        ));
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<UserCubit>(),
+                  child: const MyaccountScreen(),
+                ));
 
-        // case Routes.cartScreen:
-        // return MaterialPageRoute(
-        //   builder: (context) => BlocProvider(
-        //     create: (context) => getIt<CartCubit>()..fetchCartItems(),
-        //     child: const CartScreen(),
-        // ));
+      // case Routes.cartScreen:
+      // return MaterialPageRoute(
+      //   builder: (context) => BlocProvider(
+      //     create: (context) => getIt<CartCubit>()..fetchCartItems(),
+      //     child: const CartScreen(),
+      // ));
 
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder: (context) => HomeScreen(),
         );
 
-        // case Routes.productsScreen:
-        // return MaterialPageRoute(
-        //   builder: (context) => ProductsListScreen(),
-        // );
+      // case Routes.productsScreen:
+      // return MaterialPageRoute(
+      //   builder: (context) => ProductsListScreen(),
+      // );
 
       default:
         return null;
