@@ -130,12 +130,32 @@ class _ApiService implements ApiService {
     required int pageNumber,
     required int pageSize,
     int? categoryId,
+    String? name,
+    double? minPrice,
+    double? maxPrice,
+    int? color,
+    int? brandId,
+    int? styleId,
+    int? materialId,
+    int? productStatus,
+    String? sortBy,
+    bool? isDescending,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'PageNumber': pageNumber,
       r'PageSize': pageSize,
       r'CategoryId': categoryId,
+      r'Name': name,
+      r'MinPrice': minPrice,
+      r'MaxPrice': maxPrice,
+      r'Color': color,
+      r'BrandId': brandId,
+      r'StyleId': styleId,
+      r'MaterialId': materialId,
+      r'ProductStatus': productStatus,
+      r'SortBy': sortBy,
+      r'IsDescending': isDescending,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -160,6 +180,223 @@ class _ApiService implements ApiService {
     late ProductResponse _value;
     try {
       _value = ProductResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<LookupResponse<ColorsLookUp>> getColors() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<LookupResponse<ColorsLookUp>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'Product/ProductColorLookup',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LookupResponse<ColorsLookUp> _value;
+    try {
+      _value = LookupResponse<ColorsLookUp>.fromJson(
+        _result.data!,
+        (json) => ColorsLookUp.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<LookupResponse<CategoryLookUp>> getCategoryLookup() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<LookupResponse<CategoryLookUp>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'Product/GetCategoryLookUp',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LookupResponse<CategoryLookUp> _value;
+    try {
+      _value = LookupResponse<CategoryLookUp>.fromJson(
+        _result.data!,
+        (json) => CategoryLookUp.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<LookupResponse<BrandLookUp>> getBrands() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<LookupResponse<BrandLookUp>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'Product/GetBrandsLookUp',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LookupResponse<BrandLookUp> _value;
+    try {
+      _value = LookupResponse<BrandLookUp>.fromJson(
+        _result.data!,
+        (json) => BrandLookUp.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<LookupResponse<StyleLookUp>> getStyles() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<LookupResponse<StyleLookUp>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'Product/GetStyleLookUp',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LookupResponse<StyleLookUp> _value;
+    try {
+      _value = LookupResponse<StyleLookUp>.fromJson(
+        _result.data!,
+        (json) => StyleLookUp.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<LookupResponse<MaterialLookUp>> getMaterials() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<LookupResponse<MaterialLookUp>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'Product/GetMaterialLookUp',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LookupResponse<MaterialLookUp> _value;
+    try {
+      _value = LookupResponse<MaterialLookUp>.fromJson(
+        _result.data!,
+        (json) => MaterialLookUp.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<LookupResponse<ProductStatusLookUp>> getProductStatuses() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options =
+        _setStreamType<LookupResponse<ProductStatusLookUp>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'Product/ProductStatusLookUp',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late LookupResponse<ProductStatusLookUp> _value;
+    try {
+      _value = LookupResponse<ProductStatusLookUp>.fromJson(
+        _result.data!,
+        (json) => ProductStatusLookUp.fromJson(json as Map<String, dynamic>),
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -457,7 +694,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'Pay/${orderId}',
+          'Order/Pay/${orderId}',
           queryParameters: queryParameters,
           data: _data,
         )

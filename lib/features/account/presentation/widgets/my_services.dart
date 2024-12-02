@@ -30,6 +30,7 @@ class MyServices extends StatelessWidget {
         ..fetchUserServices(),
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: Text(
             "My Services",
             style: TextStyle(
@@ -52,6 +53,7 @@ class MyServices extends StatelessWidget {
                     final serviceStatus = getServiceStatus(service.serviceRequestStatus);
 
                     return Card(
+                      color: Colors.white,
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       elevation: 5,
                       child: ListTile(

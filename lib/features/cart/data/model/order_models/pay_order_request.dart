@@ -4,18 +4,23 @@ part 'pay_order_request.g.dart';
 
 @JsonSerializable()
 class PayOrderRequest {
+@JsonKey(name: 'CreditCardNumber')
   final String creditCardNumber;
+
+  @JsonKey(name: 'CardholderName')
   final String cardholderName;
-  final String expirationDate; // Format: YYYY-MM-DD
+
+  @JsonKey(name: 'ExpirationDate')
+  final String expirationDate;
+
+  @JsonKey(name: 'Cvv')
   final String cvv;
-  final bool cash;
 
   PayOrderRequest({
     required this.creditCardNumber,
     required this.cardholderName,
     required this.expirationDate,
     required this.cvv,
-    required this.cash,
   });
 
   factory PayOrderRequest.fromJson(Map<String, dynamic> json) =>

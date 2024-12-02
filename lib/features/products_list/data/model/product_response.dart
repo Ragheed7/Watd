@@ -7,12 +7,12 @@ part 'product_response.g.dart';
 class ProductResponse {
   final bool? isSuccess;
   final String? message;
-  final List<Product?>? result;
+  final List<Product> result;
 
   ProductResponse({
     this.isSuccess,
     this.message,
-    this.result,
+    required this.result,
   });
 
   factory ProductResponse.fromJson(Map<String, dynamic> json) =>

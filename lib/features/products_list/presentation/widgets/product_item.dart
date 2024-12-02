@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/shared_models/category_data_model/category_data.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
 import 'package:waie/features/products_list/presentation/widgets/product_image.dart';
 import 'package:waie/features/products_list/presentation/widgets/product_item_details.dart';
 

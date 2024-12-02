@@ -11,6 +11,7 @@ import 'package:waie/features/account/presentation/widgets/account_option_list_t
 import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
 import 'package:waie/features/account/presentation/widgets/my_services.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
+import 'package:waie/features/login/presentation/login_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   @override
@@ -120,7 +121,11 @@ class AccountScreen extends StatelessWidget {
                 AccountOptionListTileScreen(
                   icon: Icons.reply,
                   title: 'Return',
-                  onTap: () {},
+                  onTap: () {
+                    MaterialPageRoute(
+                      builder: (context) => LoginScreen(),
+                    );
+                  },
                 ),
                 SizedBox(height: 130),
                 LogoutButtonWidget(

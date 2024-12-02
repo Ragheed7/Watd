@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/features/cart/data/model/order_models/get_orders.dart';
 import 'package:waie/features/cart/data/repository/order_repo.dart';
 import 'get_orders_state.dart';
 

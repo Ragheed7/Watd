@@ -17,7 +17,7 @@ class PaymentSuccessScreen extends StatelessWidget {
         child: Text(
           "Your payment for Order #$orderId was successful!",
           style: TextStyle(fontSize: 18),
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.center,  
         ),
       ),
     );

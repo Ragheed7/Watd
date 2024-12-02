@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:waie/core/routing/routes.dart';
 import 'package:waie/core/theming/colors.dart';
+import 'package:waie/navigation_menu.dart';
 
 class OTPScreen extends StatefulWidget {
-    final String phoneNumber;
+  final String phoneNumber;
 
   const OTPScreen({Key? key, required this.phoneNumber}) : super(key: key);
 
@@ -60,7 +61,6 @@ class _OTPScreenState extends State<OTPScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Stack(
         children: [
@@ -145,7 +145,7 @@ class _OTPScreenState extends State<OTPScreen> {
                           style: TextStyle(
                             color: _isResendAllowed
                                 ? ColorsManager.mainGreen
-                                : ColorsManager.secondaryGrey, 
+                                : ColorsManager.secondaryGrey,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'cabin',
                           ),
@@ -156,7 +156,11 @@ class _OTPScreenState extends State<OTPScreen> {
                   SizedBox(height: 56),
                   MaterialButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacementNamed(Routes.navigationMenu);
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) => BottomNavBar()),
+                        (Route<dynamic> route) => false,
+                      );
                     },
                     color: ColorsManager.mainGreen,
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 9),

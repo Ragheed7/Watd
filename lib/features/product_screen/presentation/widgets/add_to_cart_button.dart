@@ -21,9 +21,9 @@ class AddToCartButton extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           itemAdded: (data) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Item added to cart successfully")),
-            );
+            // ScaffoldMessenger.of(context).showSnackBar(
+            //   SnackBar(content: Text("Item added to cart successfully")),
+            // );
           },
           error: (error) {
             ScaffoldMessenger.of(context).showSnackBar(

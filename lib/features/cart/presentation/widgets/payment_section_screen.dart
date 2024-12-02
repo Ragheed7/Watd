@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
-import 'package:waie/core/theming/colors.dart';
 
 class PaymentSectionScreen extends StatefulWidget {
   final PaymentCard paymentCard;
-  final Function(String cvv) onCvvChanged; 
+  final Function(String cvv) onCvvChanged;
 
   const PaymentSectionScreen({
     Key? key,
@@ -18,7 +17,6 @@ class PaymentSectionScreen extends StatefulWidget {
 
 class _PaymentSectionScreenState extends State<PaymentSectionScreen> {
   final TextEditingController _cvvController = TextEditingController();
-  final FocusNode _cvvFocusNode = FocusNode();
   String? _cvvError;
 
   @override
@@ -31,19 +29,14 @@ class _PaymentSectionScreenState extends State<PaymentSectionScreen> {
   void dispose() {
     _cvvController.removeListener(_onCvvChanged);
     _cvvController.dispose();
-    _cvvFocusNode.dispose();
     super.dispose();
   }
 
   void _onCvvChanged() {
     final cvv = _cvvController.text;
-    if (cvv.length > 4) {
+    if (!RegExp(r'^\d{3}$').hasMatch(cvv)) {
       setState(() {
-        _cvvError = "CVV can't exceed 3 digits";
-      });
-    } else if (cvv.length < 3) {
-      setState(() {
-        _cvvError = "CVV must be at exactly 3 digits";
+        _cvvError = "CVV must be 3 digits";
       });
     } else {
       setState(() {
@@ -82,17 +75,16 @@ class _PaymentSectionScreenState extends State<PaymentSectionScreen> {
           // CVV Input Field
           TextField(
             controller: _cvvController,
-            focusNode: _cvvFocusNode,
             keyboardType: TextInputType.number,
-            obscureText: true, 
+            obscureText: true,
             decoration: InputDecoration(
-              prefixIcon: Padding(padding: EdgeInsets.only(left: 8), child: Icon(Icons.payment, size: 30,)),
+              prefixIcon: Icon(Icons.lock),
               labelText: "CVV",
               hintText: "Enter CVV",
               errorText: _cvvError,
               border: OutlineInputBorder(),
             ),
-            maxLength: 3, // CVV is 3 digits
+            maxLength: 3,
           ),
         ],
       ),

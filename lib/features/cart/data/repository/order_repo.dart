@@ -5,6 +5,7 @@ import 'package:waie/features/cart/data/model/order_models/create_order_request.
 import 'package:waie/features/cart/data/model/order_models/create_order_response.dart';
 import 'package:waie/features/cart/data/model/order_models/get_orders.dart';
 import 'package:waie/features/cart/data/model/order_models/pay_order_request.dart';
+import 'package:waie/features/cart/data/model/order_models/pay_order_request_wrapper.dart';
 import 'package:waie/features/cart/data/model/order_models/pay_order_response.dart';
 
 class OrderRepo {
@@ -23,6 +24,7 @@ class OrderRepo {
 
   Future<ApiResult<PayOrderResponse>> payOrder(int orderId, PayOrderRequest request) async {
     try {
+      // final wrappedRequest = PayOrderRequestWrapper(payOrderDto: request);
       final response = await _apiService.payOrder(orderId, request);
       return ApiResult.success(response);
     } catch (error) {
