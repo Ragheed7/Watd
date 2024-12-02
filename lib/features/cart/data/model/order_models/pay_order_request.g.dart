@@ -8,18 +8,16 @@ part of 'pay_order_request.dart';
 
 PayOrderRequest _$PayOrderRequestFromJson(Map<String, dynamic> json) =>
     PayOrderRequest(
-      creditCardNumber: json['creditCardNumber'] as String,
-      cardholderName: json['cardholderName'] as String,
-      expirationDate: json['expirationDate'] as String,
-      cvv: json['cvv'] as String,
-      cash: json['cash'] as bool,
+      creditCardNumber: json['CreditCardNumber'] as String,
+      cardholderName: json['CardholderName'] as String,
+      expirationDate: json['ExpirationDate'] as String,
+      cvv: json['Cvv'] as String,
     );
 
 Map<String, dynamic> _$PayOrderRequestToJson(PayOrderRequest instance) =>
     <String, dynamic>{
-      'creditCardNumber': instance.creditCardNumber,
-      'cardholderName': instance.cardholderName,
-      'expirationDate': instance.expirationDate,
-      'cvv': instance.cvv,
-      'cash': instance.cash,
+      'CreditCardNumber': instance.creditCardNumber,
+      'CardholderName': instance.cardholderName,
+      'ExpirationDate': instance.expirationDate,
+      'Cvv': instance.cvv,
     };

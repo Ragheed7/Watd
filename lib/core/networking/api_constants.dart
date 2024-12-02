@@ -14,9 +14,15 @@ class ApiConsts {
   static const String getCartItems = 'Cart/GetCartItems';
   static const String createOrder = 'Order/CreateOrder';
   static const String getOrders = "Order/GetOrders";
-  static const String payOrder = 'Pay/{OrderId}';
+  static const String payOrder = 'Order/Pay/{OrderId}';
   static const String createService = 'ServiceRequest/CreateService';
   static const String getUserServices = 'ServiceRequest/GetCurrentUserServices';
+  static const String getColors = 'Product/ProductColorLookup';
+  static const String getMaterials = 'Product/GetMaterialLookUp';
+  static const String getBrands = 'Product/GetBrandsLookUp';
+  static const String getCategories = 'Product/GetCategoryLookUp';
+  static const String getProductStatuses = 'Product/ProductStatusLookUp';
+  static const String getStyles = 'Product/GetStyleLookUp';
 }
 
 class ApiErrors {

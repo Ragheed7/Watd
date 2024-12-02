@@ -9,10 +9,10 @@ part 'product.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Product {
-  final int? productId;
+  final int productId;
   final CategoryData? category;
-  final String? nameAr;
-  final String? nameEn;
+  final String nameAr;
+  final String nameEn;
   final String? descriptionAr;  
   final String? descriptionEn;
   final ProductMaterial? material;
@@ -27,10 +27,10 @@ class Product {
   final int? productStatus;
 
   Product({
-    this.productId,
+    required this.productId,
     this.category,
-    this.nameAr,
-    this.nameEn,
+    required this.nameAr,
+    required this.nameEn,
     this.descriptionAr,
     this.descriptionEn,
     this.material,

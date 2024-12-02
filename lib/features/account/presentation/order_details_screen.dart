@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/networking/api_constants.dart';
-import 'package:waie/features/account/presentation/widgets/delivery_address_screen.dart';
-import 'package:waie/features/account/presentation/widgets/order_header_screen.dart';
-import 'package:waie/features/account/presentation/widgets/order_item_screen.dart';
-import 'package:waie/features/account/presentation/widgets/order_summary_screen.dart';
 import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
+import 'package:waie/features/cart/presentation/widgets/order_confirmation_screen.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   final Order order;
@@ -17,16 +13,22 @@ class OrderDetailsScreen extends StatelessWidget {
     // Extract data from the order
     final imageList = order.orderItems
         .map((item) => item.product.images!.isNotEmpty
-            ? (ApiConsts.serverBaseUrl + item.product.images![0].imageUrl!) 
+            ? (ApiConsts.serverBaseUrl + item.product.images![0].imageUrl!)
             : "assets/images/waie2.png")
         .toList();
-    final productTitles = order.orderItems.map((item) => item.product.nameEn ?? "Product").toList();
-    final prices = order.orderItems.map((item) => "SAR ${item.product.price?.toStringAsFixed(2)}").toList();
+    final productTitles = order.orderItems
+        .map((item) => item.product.nameEn ?? "Product")
+        .toList();
+    final prices = order.orderItems
+        .map((item) => "SAR ${item.product.price?.toStringAsFixed(2)}")
+        .toList();
     final contentDetails = order.orderItems
-        .map((item) => [item.product.descriptionEn ?? "No description available."])
+        .map((item) =>
+            [item.product.descriptionEn ?? "No description available."])
         .toList();
 
-    double totalPayment = order.totalPrice + SharedPrefKeys.deliveryFee;
+    double totalPayment =
+        order.totalPrice + 20.0; // Replace with actual delivery fee
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -45,9 +47,38 @@ class OrderDetailsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Divider(),
-                OrderHeaderScreen(order: order),
+                // Order Header
+                Text(
+                  "Order #${order.orderId}",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
                 SizedBox(height: 15),
-                DeliveryAddressScreen(address: order.shippingAddress),
+                // Delivery Address
+                Container(
+                  padding: EdgeInsets.all(16),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        order.shippingAddress.streetAddress,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        "${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zipCode}",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        order.shippingAddress.country,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(height: 20),
                 // Order Items Header
                 Row(
@@ -73,11 +104,24 @@ class OrderDetailsScreen extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    return OrderItemScreen(
-                      image: imageList[index] ?? "assets/images/waie2.png",
-                      title: productTitles[index],
-                      details: contentDetails[index],
-                      price: prices[index],
+                    return ListTile(
+                      leading: Image.network(
+                        imageList[index] ?? "assets/images/waie2.png",
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            'assets/images/waie2.png',
+                            height: 50,
+                            width: 50,
+                            fit: BoxFit.cover,
+                          );
+                        },
+                      ),
+                      title: Text(productTitles[index]),
+                      subtitle: Text(contentDetails[index].join('\n')),
+                      trailing: Text(prices[index]),
                     );
                   },
                 ),
@@ -93,18 +137,52 @@ class OrderDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
+                    Text(
+                      "SAR ${totalPayment.toStringAsFixed(2)}",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromRGBO(118, 192, 67, 1),
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Divider(),
-                SizedBox(height: 5),
-                OrderSummaryScreen(
-                  items: [
-                    {"label": "Subtotal", "price": "SAR ${order.totalPrice.toStringAsFixed(2)}"},
-                    {"label": "Delivery", "price": "SAR ${SharedPrefKeys.deliveryFee.toStringAsFixed(2)}"},
-                  ],
-                  total: "SAR ${totalPayment.toStringAsFixed(2)}",
-                ),
+                SizedBox(height: 20),
+                // Check if the order is unpaid
+                if (order.transaction == null)
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Navigate to the payment confirmation screen with the Order object
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                OrderConfirmationScreen(order: order),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(118, 192, 67, 1),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.3,
+                          vertical: 16,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                      child: Text(
+                        "Pay Now",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'cabin',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

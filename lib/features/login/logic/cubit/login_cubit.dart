@@ -21,9 +21,18 @@ class LoginCubit extends Cubit<LoginState> {
   void emitLoginStates() async {
     emit(const LoginState.loading());
 
+    // Get the phone number from the controller
+    String phoneNumber = phoneController.text.trim();
+
+    // Remove leading zero if present
+    if (phoneNumber.startsWith('0')) {
+      phoneNumber = phoneNumber.substring(1);
+    }
+
+    // Create the login request with the processed phone number
     final response = await _loginRepo.login(
       LoginRequestBody(
-        phone: phoneController.text,
+        phone: phoneNumber,
       ),
     );
 
@@ -58,7 +67,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> saveUserData(UserData? userData) async {
     if (userData != null) {
       final userJson = jsonEncode(userData.toJson());
-      print('Saving userData: $userJson'); 
+      print('Saving userData: $userJson');
       await SharedPrefHelper.setSecuredString(SharedPrefKeys.userData, userJson);
     }
   }

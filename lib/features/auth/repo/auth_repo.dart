@@ -69,7 +69,7 @@ class AuthRepository {
   Future<void> logout() async {
     await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.userToken);
     await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.refreshToken);
-    await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.userData);
+    // await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.userData);
     // clear additional data
   }
 }

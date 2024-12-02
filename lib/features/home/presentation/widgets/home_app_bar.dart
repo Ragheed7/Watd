@@ -17,25 +17,25 @@ class HomeAppBar extends StatelessWidget {
           child: Image.asset("assets/images/waie2.png"),
         ),
         Spacer(),
-         Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width / 9,
-          decoration: BoxDecoration(
-            color: Colors.black12.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Center(
-            child: Icon(
-              Icons.favorite_border,
-              color: ColorsManager.mainGreen,
-            ),
-          ),
-        ),
-        horizontalSpace(8),
+        //  Container(
+        //   height: 50,
+        //   width: MediaQuery.of(context).size.width / 9,
+        //   decoration: BoxDecoration(
+        //     color: Colors.black12.withOpacity(0.05),
+        //     borderRadius: BorderRadius.circular(10),
+        //   ),
+        //   child: Center(
+        //     child: Icon(
+        //       Icons.favorite_border,
+        //       color: ColorsManager.mainGreen,
+        //     ),
+        //   ),
+        // ),
+        // horizontalSpace(8),
 
         Container(
           height: 50,
-          width: MediaQuery.of(context).size.width / 9,
+          width: MediaQuery.of(context).size.width / 8,
           decoration: BoxDecoration(
             color: Colors.black12.withOpacity(0.05),
             borderRadius: BorderRadius.circular(10),

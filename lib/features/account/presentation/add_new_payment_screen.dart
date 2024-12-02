@@ -78,12 +78,15 @@ class _AddNewPaymentScreenState extends State<AddNewPaymentScreen> {
       return 'Please enter expiry year';
     }
     int? year = int.tryParse(value);
-    int currentYear = DateTime.now().year % 100; // Get last two digits of year
-    if (year == null || year < currentYear || year > currentYear + 10) {
-      return 'Invalid year';
-    }
-    return null;
+    int currentYear = DateTime.now().year; 
+   if (year == null || value.length != 4) {
+    return 'Please enter a valid four-digit year';
   }
+  if (year < currentYear || year > currentYear + 10) {
+    return 'Invalid year';
+  }
+  return null;
+}
 
   @override
   Widget build(BuildContext context) {

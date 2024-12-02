@@ -18,7 +18,7 @@ class PayOrderCubit extends Cubit<PayOrderState> {
         if (data.isSuccess) {
           emit(PayOrderState.success(data));
         } else {
-          emit(PayOrderState.failure(error: data.message));
+          emit(PayOrderState.failure(error: data.message ?? "Something went wrong in pay order cubit"));
         }
       },
       failure: (error) {

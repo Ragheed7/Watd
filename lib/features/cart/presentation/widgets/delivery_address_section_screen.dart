@@ -1,5 +1,3 @@
-// delivery_address_section_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
 

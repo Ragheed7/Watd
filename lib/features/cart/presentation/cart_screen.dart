@@ -43,7 +43,7 @@ class _CartScreenState extends State<CartScreen> {
             },
             itemRemoved: (_) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Item removed from cart successfully")),
+                SnackBar(content: Text("Item removed from cart")),
               );
             },
             orElse: () {},
@@ -56,7 +56,12 @@ class _CartScreenState extends State<CartScreen> {
             cartItemsFetched: (data) {
               final cartItems = data.result ?? [];
               if (cartItems.isEmpty) {
-                return Center(child: Image.asset("assets/images/EmptyCart.png", width: 150, height: 200, ));
+                return Center(
+                    child: Image.asset(
+                  "assets/images/EmptyCart.png",
+                  width: 150,
+                  height: 200,
+                ));
               }
 
               // Calculate total
@@ -85,7 +90,10 @@ class _CartScreenState extends State<CartScreen> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             final product = cartItems[index];
-                            return CartItemScreen(product: product);
+                            return CartItemScreen(
+                              product: product,
+                              showDeleteButton: true,
+                            );
                           },
                         ),
                         SizedBox(height: 100),

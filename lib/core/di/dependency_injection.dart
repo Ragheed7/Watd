@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:waie/core/networking/api_service.dart';
 import 'package:waie/core/networking/dio_factory.dart';
+import 'package:waie/core/shared_models/look_ups/logic/lookup_cubit.dart';
+import 'package:waie/core/shared_models/look_ups/repository/lookup_repo.dart';
 import 'package:waie/core/shared_models/user_addresses/data/repository/address_repo.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/data/repository/update_user_repo.dart';
@@ -85,9 +87,15 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<CreateServiceCubit>(
       () => CreateServiceCubit(getIt<CreateServiceRepository>()));
 
-  // Inside your setupGetIt() function in service_locator.dart
+  // Register UserServices repo and cubit
   getIt.registerLazySingleton<GetUserServicesRepository>(
       () => GetUserServicesRepository(getIt<ApiService>()));
   getIt.registerFactory<GetUserServicesCubit>(
       () => GetUserServicesCubit(getIt<GetUserServicesRepository>()));
+
+  // Register LookupRepository and LookupCubit
+  getIt.registerLazySingleton<LookupRepository>(
+      () => LookupRepository(getIt<ApiService>()));
+  getIt.registerFactory<LookupCubit>(
+      () => LookupCubit(getIt<LookupRepository>()));
 }

@@ -2,6 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:waie/core/networking/api_constants.dart';
 import 'package:waie/core/shared_models/default_api_response.dart';
+import 'package:waie/core/shared_models/look_ups/brand_lookup.dart';
+import 'package:waie/core/shared_models/look_ups/category_lookup.dart';
+import 'package:waie/core/shared_models/look_ups/colors_lookup.dart';
+import 'package:waie/core/shared_models/look_ups/lookup_response.dart';
+import 'package:waie/core/shared_models/look_ups/material_lookup.dart';
+import 'package:waie/core/shared_models/look_ups/product_status_lookup.dart';
+import 'package:waie/core/shared_models/look_ups/style_lookup.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/create_address_response.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
@@ -16,6 +23,7 @@ import 'package:waie/features/cart/data/model/order_models/create_order_request.
 import 'package:waie/features/cart/data/model/order_models/create_order_response.dart';
 import 'package:waie/features/cart/data/model/order_models/get_orders.dart';
 import 'package:waie/features/cart/data/model/order_models/pay_order_request.dart';
+import 'package:waie/features/cart/data/model/order_models/pay_order_request_wrapper.dart';
 import 'package:waie/features/cart/data/model/order_models/pay_order_response.dart';
 import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
 import 'package:waie/features/home/data/model/category_response.dart';
@@ -51,7 +59,36 @@ abstract class ApiService {
     @Query('PageNumber') required int pageNumber,
     @Query('PageSize') required int pageSize,
     @Query('CategoryId') int? categoryId,
+    @Query('Name') String? name,
+    @Query('MinPrice') double? minPrice,
+    @Query('MaxPrice') double? maxPrice,
+    @Query('Color') int? color,
+    @Query('BrandId') int? brandId,
+    @Query('StyleId') int? styleId,
+    @Query('MaterialId') int? materialId,
+    @Query('ProductStatus') int? productStatus,
+    @Query('SortBy') String? sortBy,
+    @Query('IsDescending') bool? isDescending,
   });
+
+  // Lookup endpoints
+  @GET(ApiConsts.getColors)
+  Future<LookupResponse<ColorsLookUp>> getColors();
+
+  @GET(ApiConsts.getCategories)
+  Future<LookupResponse<CategoryLookUp>> getCategoryLookup();
+
+  @GET(ApiConsts.getBrands)
+  Future<LookupResponse<BrandLookUp>> getBrands();
+
+  @GET(ApiConsts.getStyles)
+  Future<LookupResponse<StyleLookUp>> getStyles();
+
+  @GET(ApiConsts.getMaterials)
+  Future<LookupResponse<MaterialLookUp>> getMaterials();
+
+  @GET(ApiConsts.getProductStatuses)
+  Future<LookupResponse<ProductStatusLookUp>> getProductStatuses();
 
   @POST(ApiConsts.updateUser)
   Future<UpdateUserResponse> updateUser(
@@ -92,6 +129,7 @@ abstract class ApiService {
   @POST(ApiConsts.payOrder)
   Future<PayOrderResponse> payOrder(
     @Path('OrderId') int orderId,
+    // @Query('OrderId') int orderIdQuery,
     @Body() PayOrderRequest request,
   );
 
@@ -104,7 +142,7 @@ abstract class ApiService {
   Future<CreateServiceResponse> createService(
     @Body() CreateServiceRequest request,
   );
-  
+
   // Get User Services
   @GET(ApiConsts.getUserServices)
   Future<GetUserServices> getUserServices();

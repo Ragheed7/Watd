@@ -11,7 +11,7 @@ class CartSectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: cartItems.map((product) => CartItemScreen(product: product)).toList(),
+      children: cartItems.map((product) => CartItemScreen(product: product, showDeleteButton: true,)).toList(),
     );
   }
 }
