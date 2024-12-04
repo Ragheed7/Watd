@@ -70,19 +70,7 @@ class MyaccountScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => MultiBlocProvider(
-                                        providers: [
-                                          BlocProvider<UpdateUserCubit>(
-                                            create: (context) =>
-                                                getIt<UpdateUserCubit>(),
-                                          ),
-                                           BlocProvider<UserCubit>(
-                                            create: (context) =>
-                                                getIt<UserCubit>(),
-                                           ),
-                                        ],
-                                        child: UpdateUserForm(),
-                                      ),
+                                      builder: (context) => UpdateUserForm(),
                                     ),
                                   );
                                 },

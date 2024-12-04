@@ -67,9 +67,6 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
     // Remove all spaces from the card number
     String sanitizedCardNumber = selectedCard.cardNumber.replaceAll(' ', '');
 
-    // Optional: Remove all whitespace characters (if card number might contain tabs, etc.)
-    // String sanitizedCardNumber = selectedCard.cardNumber.replaceAll(RegExp(r'\s+'), '');
-
     // Validate the sanitized card number
     if (sanitizedCardNumber.length != 16 ||
         !RegExp(r'^\d{16}$').hasMatch(sanitizedCardNumber)) {

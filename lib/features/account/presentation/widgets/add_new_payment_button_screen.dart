@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
 
 class AddNewPaymentButtonScreen extends StatelessWidget {
-  const AddNewPaymentButtonScreen({Key? key}) : super(key: key);
+  final String userId; 
+  const AddNewPaymentButtonScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class AddNewPaymentButtonScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddNewPaymentScreen(),
+              builder: (context) => AddNewPaymentScreen(userId: userId),
             ),
           );
         },

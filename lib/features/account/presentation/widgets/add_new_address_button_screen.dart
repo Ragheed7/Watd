@@ -10,7 +10,7 @@ class AddNewAddressButtonScreen extends StatelessWidget {
       alignment: Alignment.center,
       child: MaterialButton(
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => AddNewAddressScreen(),

@@ -70,6 +70,5 @@ class AuthRepository {
     await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.userToken);
     await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.refreshToken);
     // await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.userData);
-    // clear additional data
   }
 }

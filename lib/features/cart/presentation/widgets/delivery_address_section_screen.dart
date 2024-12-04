@@ -9,7 +9,6 @@ class DeliveryAddressSectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // Your existing UI for displaying the address
       padding: EdgeInsets.all(16),
       width: double.infinity,
       decoration: BoxDecoration(

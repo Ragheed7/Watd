@@ -11,12 +11,12 @@ import '../../data/model/product_models/product.dart';
 
 class ProductsBlocBuilder extends StatelessWidget {
   final CategoryData? categoryData;
-  final bool grid; // The 'grid' parameter
+  final bool grid; 
 
   const ProductsBlocBuilder({
     Key? key,
     this.categoryData,
-    required this.grid, // Mark as required
+    required this.grid, 
   }) : super(key: key);
 
   @override
@@ -25,7 +25,6 @@ class ProductsBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         return state.when(
           initial: () {
-            // Trigger initial load
             context.read<ProductCubit>().getProducts(
                   isInitialLoad: true,
                   categoryId: categoryData?.categoryId,

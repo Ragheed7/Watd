@@ -12,11 +12,16 @@ class PaymentCardManager {
 
   List<PaymentCard> get paymentCards => _paymentCards;
 
-  static const String _storageKey = 'payment_cards';
+  // Helper method to create a unique storage key for each user
+  String _getStorageKeyForUser(String userId) {
+    return 'payment_cards_$userId';
+  }
 
-  Future<void> loadPaymentCards() async {
+  // Load payment cards for a specific user
+  Future<void> loadPaymentCards(String userId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? jsonString = prefs.getString(_storageKey);
+    String key = _getStorageKeyForUser(userId);
+    String? jsonString = prefs.getString(key);
     if (jsonString != null) {
       List<dynamic> jsonList = jsonDecode(jsonString);
       _paymentCards = jsonList.map((json) => PaymentCard.fromJson(json)).toList();
@@ -25,26 +30,30 @@ class PaymentCardManager {
     }
   }
 
-  Future<void> _savePaymentCards() async {
+  // Save payment cards for a specific user
+  Future<void> _savePaymentCards(String userId) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<Map<String, dynamic>> jsonList =
-        _paymentCards.map((card) => card.toJson()).toList();
+    String key = _getStorageKeyForUser(userId);
+    List<Map<String, dynamic>> jsonList = _paymentCards.map((card) => card.toJson()).toList();
     String jsonString = jsonEncode(jsonList);
-    await prefs.setString(_storageKey, jsonString);
+    await prefs.setString(key, jsonString);
   }
 
-  Future<void> addPaymentCard(PaymentCard card) async {
+  // Add a new payment card for a specific user
+  Future<void> addPaymentCard(PaymentCard card, String userId) async {
     _paymentCards.add(card);
-    await _savePaymentCards();
+    await _savePaymentCards(userId);
   }
 
-  Future<void> updatePaymentCard(int index, PaymentCard card) async {
+  // Update an existing payment card for a specific user
+  Future<void> updatePaymentCard(int index, PaymentCard card, String userId) async {
     _paymentCards[index] = card;
-    await _savePaymentCards();
+    await _savePaymentCards(userId);
   }
 
-  Future<void> deletePaymentCard(int index) async {
+  // Delete a payment card for a specific user
+  Future<void> deletePaymentCard(int index, String userId) async {
     _paymentCards.removeAt(index);
-    await _savePaymentCards();
+    await _savePaymentCards(userId);
   }
 }

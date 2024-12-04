@@ -1,11 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/shared_prefs_helper.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_request.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
@@ -32,8 +27,8 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
     final currentUser = userCubit.state;
 
     if (currentUser != null) {
-      _userNameController.text = currentUser.userName ?? '';
-      _emailController.text = currentUser.email ?? '';
+      _userNameController.text = currentUser.userName ?? 'User name';
+      _emailController.text = currentUser.email ?? 'email@example.com';
     }
   }
 
@@ -55,7 +50,7 @@ void _submitUpdate() {
         : _userNameController.text.trim();
 
     final email = _emailController.text.trim().isEmpty
-        ? currentUser?.email ?? ''
+        ? currentUser?.email ?? 'email@example.com'
         : _emailController.text.trim();
 
     final updateUserRequest = UpdateUserRequest(
@@ -72,6 +67,7 @@ void _submitUpdate() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text('Update User'),
       ),
       body: Padding(
@@ -150,8 +146,9 @@ void _submitUpdate() {
                               valueColor:
                                   AlwaysStoppedAnimation<Color>(Colors.white),
                             )
-                          : const Text('Update'),
+                          : const Text('Update', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorsManager.mainGreen,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         textStyle: const TextStyle(fontSize: 16),
                         shape: RoundedRectangleBorder(

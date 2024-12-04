@@ -109,12 +109,13 @@ class CartItemScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
+                    backgroundColor: Colors.white,
                     title: Text("Remove Item"),
                     content: Text("Are you sure you want to remove this item from the cart?"),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(), // Cancel
-                        child: Text("Cancel"),
+                        child: Text("Cancel", style: TextStyle(color: Colors.black),),
                       ),
                       TextButton(
                         onPressed: () {

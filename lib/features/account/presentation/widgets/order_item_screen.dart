@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class OrderItemScreen extends StatelessWidget {
   final String image;
   final String title;
-  final List<String> details; // Assuming details is a list of strings
+  final List<String> details; 
   final String price;
 
   OrderItemScreen({
