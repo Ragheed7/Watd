@@ -8,13 +8,15 @@ class PaymentCardScreen extends StatelessWidget {
   final int cardIndex;
   final VoidCallback onDelete;
   final bool isSelected; // Indicates if the card is selected
+  final String userId;
 
   const PaymentCardScreen({
     Key? key,
     required this.paymentCard,
     required this.cardIndex,
     required this.onDelete,
-    this.isSelected = false, // Default to false
+    this.isSelected = false,
+    required this.userId,
   }) : super(key: key);
 
   @override
@@ -57,6 +59,7 @@ class PaymentCardScreen extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => EditPaymentScreen(
                             cardIndex: cardIndex,
+                            userId: userId,
                           ),
                         ),
                       );
@@ -76,15 +79,54 @@ class PaymentCardScreen extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.delete, color: Colors.red),
                     onPressed: () async {
-                      await PaymentCardManager().deletePaymentCard(cardIndex);
-                      onDelete();
+                      bool shouldDelete = await showDialog<bool>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: Colors.white,
+                                title: Text('Confirm Deletion'),
+                                content: Text(
+                                    'Are you sure you want to delete this payment card?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pop(false); // User cancels deletion
+                                    },
+                                    child: Text(
+                                      'Cancel',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pop(true); // User confirms deletion
+                                    },
+                                    child: Text(
+                                      'Delete',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          ) ??
+                          false; // In case the dialog is dismissed without a choice
+
+                      // If the user confirms the deletion
+                      if (shouldDelete) {
+                        await PaymentCardManager()
+                            .deletePaymentCard(cardIndex, userId);
+                        onDelete();
+                      }
                     },
-                  ),
+                  )
                 ],
               ),
             ],
           ),
-          
+
           // Display Masked Card Number
           Text(
             "Card Number: ${paymentCard.maskedCardNumber}",

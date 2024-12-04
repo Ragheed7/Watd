@@ -5,6 +5,7 @@ import 'package:waie/core/shared_models/user_addresses/data/model/update_address
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
+import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class EditAddressScreen extends StatefulWidget {
@@ -51,13 +52,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Edit Address"),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black,
-        elevation: 0,
-      ),
+      appBar: AppBarScreen(title: "Edit Address"),
       body: BlocListener<AddressCubit, AddressState>(
         listener: (context, state) {
           state.whenOrNull(
@@ -123,6 +118,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                               country: countryController.text,
                             );
                             addressCubit.updateAddress(updatedAddress);
+                            // Navigator.pop(context);
                             Navigator.pushReplacement<void, void>(
                               context,
                               MaterialPageRoute<void>(

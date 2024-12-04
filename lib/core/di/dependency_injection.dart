@@ -62,7 +62,7 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<UpdateUserCubit>(
       () => UpdateUserCubit(getIt<UpdateUserRepo>()));
 
-  // Register AddreessRepo and AddressCubit
+  // Register AddreessRepo and AddressCubit 
   getIt.registerLazySingleton<AddressRepo>(
       () => AddressRepo(getIt<ApiService>()));
   getIt.registerFactory<AddressCubit>(() => AddressCubit(getIt<AddressRepo>()));

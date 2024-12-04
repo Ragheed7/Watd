@@ -107,9 +107,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
     // Remove all spaces from the card number
     String sanitizedCardNumber = selectedCard.cardNumber.replaceAll(' ', '');
 
-    // Optional: Remove all whitespace characters (if card number might contain tabs, etc.)
-    // String sanitizedCardNumber = selectedCard.cardNumber.replaceAll(RegExp(r'\s+'), '');
-
     // Validate the sanitized card number
     if (sanitizedCardNumber.length != 16 ||
         !RegExp(r'^\d{16}$').hasMatch(sanitizedCardNumber)) {
@@ -206,9 +203,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           categoryId: context
                               .read<SearchScreen>().categoryData
                               ?.categoryId,
-                          // searchQuery:
-                          //     _currentSearchQuery, // Pass current search query if applicable
-                          // // Include other filters as necessary
                         );
 
                     // Navigate to Payment Success Screen

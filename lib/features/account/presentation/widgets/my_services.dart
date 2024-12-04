@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/di/dependency_injection.dart';
+import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/service_details_screen.dart';
 import 'package:waie/features/home/data/repository/get_user_services_repo.dart';
 import 'package:waie/features/home/logic/cubit/get_user_services_cubit.dart';
@@ -29,23 +31,25 @@ class MyServices extends StatelessWidget {
       create: (_) => GetUserServicesCubit(getIt<GetUserServicesRepository>())
         ..fetchUserServices(),
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            "My Services",
-            style: TextStyle(
-              fontFamily: 'cabin',
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
+        appBar: AppBarScreen(title: 'My Services'),
         body: BlocBuilder<GetUserServicesCubit, GetUserServicesState>(
           builder: (context, state) {
             return state.when(
               initial: () => Center(child: Text('Loading Services...')),
               loading: () => Center(child: CircularProgressIndicator()),
               success: (data) {
+                if (data.result.isEmpty) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("assets/images/warning-2.png", height: 120, width: 180,),
+                        SizedBox(height: 20,),
+                        Text('No Services found.', style: TextStyle(fontSize: 20),),
+                      ],
+                    ),
+                  );
+                }
                 return ListView.builder(
                   itemCount: data.result.length,
                   itemBuilder: (context, index) {

@@ -5,6 +5,7 @@ import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart'
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
+import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class AddNewAddressScreen extends StatefulWidget {
@@ -39,20 +40,14 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Add New Address"),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black,
-        elevation: 0,
-      ),
+      appBar: AppBarScreen(title: "New Address"),
       body: BlocListener<AddressCubit, AddressState>(
         listener: (context, state) {
           if (state is AddressCreated) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Address added successfully')),
             );
-            Navigator.pop(context);
+            // Navigator.pop(context);
           } else if (state is Error) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.error)),

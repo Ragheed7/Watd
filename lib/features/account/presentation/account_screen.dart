@@ -18,6 +18,13 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserCubit, UserData?>(
       builder: (context, userInfo) {
+        if (userInfo == null) {
+          // Handle the case when the user is not logged in
+          return Center(child: Text("User not logged in"));
+        }
+
+        String userId = userInfo.userId ?? "";
+
         return Scaffold(
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
@@ -26,8 +33,8 @@ class AccountScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AccountHeaderWidget(
-                  accountName: userInfo?.userName ?? 'Account name',
-                  phoneNumber: (userInfo?.phone ?? "0500000000"),
+                  accountName: userInfo.userName ?? 'Account name',
+                  phoneNumber: (userInfo.phone ?? "0500000000"),
                 ),
                 const SizedBox(height: 16),
                 const Divider(),
@@ -66,7 +73,7 @@ class AccountScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PaymentScreen(),
+                        builder: (context) => PaymentScreen(userId: userId), 
                       ),
                     );
                   },
@@ -89,7 +96,7 @@ class AccountScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MyOrderScreen(),
+                        builder: (context) => MyOrderScreen(), 
                       ),
                     );
                   },
@@ -101,7 +108,7 @@ class AccountScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MyServices(),
+                        builder: (context) => MyServices(), 
                       ),
                     );
                   },
@@ -113,7 +120,7 @@ class AccountScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => TrackOrderScreen(),
+                        builder: (context) => TrackOrderScreen(), 
                       ),
                     );
                   },
@@ -121,11 +128,7 @@ class AccountScreen extends StatelessWidget {
                 AccountOptionListTileScreen(
                   icon: Icons.reply,
                   title: 'Return',
-                  onTap: () {
-                    MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
-                    );
-                  },
+                  onTap: () {},
                 ),
                 SizedBox(height: 130),
                 LogoutButtonWidget(

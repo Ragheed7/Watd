@@ -3,13 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
 import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
 import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
+import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/payment_card_screen.dart';
 import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
 
 class PaymentScreen extends StatefulWidget {
   final bool isSelection; // Indicates if the screen is for selecting a card
-
-  const PaymentScreen({Key? key, this.isSelection = false}) : super(key: key);
+  final String userId; // Select payment cards for a specific user
+   
+  const PaymentScreen({Key? key, this.isSelection = false, this.userId = ""}) : super(key: key);
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
@@ -26,7 +28,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   Future<void> _loadPaymentCards() async {
-    await PaymentCardManager().loadPaymentCards();
+    await PaymentCardManager().loadPaymentCards(widget.userId);
     setState(() {
       paymentCards = PaymentCardManager().paymentCards;
       isLoading = false;
@@ -45,21 +47,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     if (isLoading) {
       return Scaffold(
-        appBar: AppBar(title: Text("Payment"), backgroundColor: Colors.white),
+        appBar: AppBarScreen(title: 'Payment'),
         backgroundColor: Colors.white,
         body: Center(child: CircularProgressIndicator()),
       );
     } else {
       return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text("Payment"),
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => Navigator.pop(context),
-          ),
-        ),
+        appBar: AppBarScreen(title: 'Payment'),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
@@ -70,11 +65,23 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       child: Column(
                         children: [
                           Expanded(
-                            child: Align(
-                              alignment: FractionalOffset.center,
-                              child: Text(
-                                'No payment cards found.',
-                                style: TextStyle(fontSize: 18),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    "assets/images/warning-2.png",
+                                    height: 120,
+                                    width: 180,
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    'No Services found.',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -88,7 +95,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          AddNewPaymentScreen(),
+                                          AddNewPaymentScreen(userId: widget.userId,),
                                     ),
                                   );
                                   if (result == true) {
@@ -156,6 +163,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   PaymentCardScreen(
                                     paymentCard: card, // Pass the entire card
                                     cardIndex: index,
+                                    userId: widget.userId,
                                     onDelete: () {
                                       setState(() {
                                         // Refresh the payment cards list
@@ -170,10 +178,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                                         .state
                                                     is PaymentCardSelected
                                                 ? (context
-                                                        .read<
-                                                            SelectedPaymentCardCubit>()
-                                                        .state
-                                                    as PaymentCardSelected)
+                                                            .read<
+                                                                SelectedPaymentCardCubit>()
+                                                            .state
+                                                        as PaymentCardSelected)
                                                     .selectedCard
                                                 : null),
                                   ),
@@ -191,7 +199,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               bool? result = await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => AddNewPaymentScreen(),
+                                  builder: (context) => AddNewPaymentScreen(userId: widget.userId,),
                                 ),
                               );
                               if (result == true) {

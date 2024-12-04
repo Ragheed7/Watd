@@ -55,7 +55,6 @@ class _FilterOptionsState extends State<FilterOptions> {
   String? _sortBy;
   bool? _isDescending;
 
-  // Controllers for TextFields
   late TextEditingController _minPriceController;
   late TextEditingController _maxPriceController;
 
@@ -73,7 +72,6 @@ class _FilterOptionsState extends State<FilterOptions> {
     _sortBy = widget.initialSortBy;
     _isDescending = widget.initialIsDescending;
 
-    // Initialize controllers
     _minPriceController = TextEditingController(text: _minPrice?.toString());
     _maxPriceController = TextEditingController(text: _maxPrice?.toString());
   }
@@ -149,7 +147,6 @@ class _FilterOptionsState extends State<FilterOptions> {
             Container(
               decoration: BoxDecoration(
                 color: ColorsManager.grey,
-                // Removed borderRadius from the divider line
               ),
               height: 1.5,
               width: 75,
@@ -500,14 +497,14 @@ class _FilterOptionsState extends State<FilterOptions> {
                       fontFamily: 'cabin',
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color: ColorsManager.mainGreen, // Changed text color
+                      color: ColorsManager.mainGreen, 
                     ),
                   ),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                        ColorsManager.mainGreen, // Changed button color
+                        ColorsManager.mainGreen, 
                   ),
                   onPressed: () {
                     widget.onApplyFilters({

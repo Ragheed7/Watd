@@ -5,11 +5,8 @@ import 'package:waie/core/routing/routes.dart';
 import 'package:waie/features/OnBoarding/landing_screen.dart';
 import 'package:waie/features/OnBoarding/welcome_screen.dart';
 import 'package:waie/features/account/presentation/myaccount.dart';
-import 'package:waie/features/cart/logic/cart_cubit.dart';
-import 'package:waie/features/cart/presentation/cart_screen.dart';
 import 'package:waie/features/home/presentation/home_screen.dart';
 import 'package:waie/features/login/logic/cubit/login_cubit.dart';
-import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 import 'package:waie/features/login/presentation/login_screen.dart';
 import 'package:waie/features/otp/otp_screen.dart';
 import 'package:waie/features/signup/signup_screen.dart';
@@ -60,10 +57,7 @@ class AppRouter {
 
       case Routes.myAccountScreen:
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => getIt<UserCubit>(),
-                  child: const MyaccountScreen(),
-                ));
+            builder: (context) => const MyaccountScreen());
 
       // case Routes.cartScreen:
       // return MaterialPageRoute(

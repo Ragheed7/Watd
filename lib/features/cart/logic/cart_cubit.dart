@@ -73,7 +73,6 @@ class CartCubit extends Cubit<CartState> {
     response.when(
       success: (getCartItems) {
         if (getCartItems.isSuccess == true) {
-          // Ensure that getCartItems.result is List<Product>?
           _cartItems = getCartItems.result ?? []; // Update the internal list
           emit(CartState.cartItemsFetched(getCartItems));
         } else {

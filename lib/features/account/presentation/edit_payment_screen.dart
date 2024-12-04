@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
 import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
 import 'package:waie/features/account/presentation/widgets/card_number_input_formatter.dart';
@@ -8,8 +6,9 @@ import 'package:waie/features/account/presentation/widgets/user_info/presentatio
 
 class EditPaymentScreen extends StatefulWidget {
   final int cardIndex;
+  final String userId; 
 
-  const EditPaymentScreen({super.key, required this.cardIndex});
+  const EditPaymentScreen({super.key, required this.cardIndex, required this.userId});
 
   @override
   _EditPaymentScreenState createState() => _EditPaymentScreenState();
@@ -29,10 +28,8 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
     PaymentCard card = PaymentCardManager().paymentCards[widget.cardIndex];
     cardNumberController = TextEditingController(text: card.cardNumber);
     cardHolderNameController = TextEditingController(text: card.cardHolderName);
-    expiryMonthController =
-        TextEditingController(text: card.expiryMonth.toString());
-    expiryYearController =
-        TextEditingController(text: card.expiryYear.toString());
+    expiryMonthController = TextEditingController(text: card.expiryMonth.toString());
+    expiryYearController = TextEditingController(text: card.expiryYear.toString());
   }
 
   @override
@@ -52,9 +49,11 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
         expiryMonth: int.parse(expiryMonthController.text),
         expiryYear: int.parse(expiryYearController.text),
       );
-      await PaymentCardManager()
-          .updatePaymentCard(widget.cardIndex, updatedCard);
-      Navigator.pop(context, true);
+
+      // Save the updated card for the correct user
+      await PaymentCardManager().updatePaymentCard(widget.cardIndex, updatedCard, widget.userId);
+
+      Navigator.pop(context, true); // Pop and return true to indicate the changes were saved
     }
   }
 
@@ -63,7 +62,6 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
       return 'Please enter card number';
     }
 
-    // Remove any non-digit characters before validation
     String digitsOnly = value.replaceAll(RegExp(r'\D'), '');
     if (digitsOnly.length != 16) {
       return 'Card number must be 16 digits';
@@ -94,12 +92,15 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
       return 'Please enter expiry year';
     }
     int? year = int.tryParse(value);
-    int currentYear = DateTime.now().year % 100; // Get last two digits of year
-    if (year == null || year < currentYear || year > currentYear + 10) {
-      return 'Invalid year';
-    }
-    return null;
+    int currentYear = DateTime.now().year; 
+   if (year == null || value.length != 4) {
+    return 'Please enter a valid four-digit year';
   }
+  if (year < currentYear || year > currentYear + 10) {
+    return 'Invalid year';
+  }
+  return null;
+}
 
   @override
   Widget build(BuildContext context) {

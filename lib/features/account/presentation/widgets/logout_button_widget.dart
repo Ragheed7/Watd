@@ -31,16 +31,17 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
                 bool? confirm = await showDialog<bool>(
                   context: context,
                   builder: (context) => AlertDialog(
+                    backgroundColor: Colors.white,
                     title: const Text('Confirm Logout'),
                     content: const Text('Are you sure you want to log out?'),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(false),
-                        child: const Text('Cancel'),
+                        child: const Text('Cancel', style: TextStyle(color: Colors.black),),
                       ),
                       TextButton(
                         onPressed: () => Navigator.of(context).pop(true),
-                        child: const Text('Logout'),
+                        child: const Text('Logout', style: TextStyle(color: Colors.red),),
                       ),
                     ],
                   ),

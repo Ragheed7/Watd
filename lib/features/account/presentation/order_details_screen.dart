@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/networking/api_constants.dart';
 import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
+import 'package:waie/features/cart/data/model/order_models/sub_order_models/transaction.dart';
 import 'package:waie/features/cart/presentation/widgets/order_confirmation_screen.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
@@ -28,7 +30,7 @@ class OrderDetailsScreen extends StatelessWidget {
         .toList();
 
     double totalPayment =
-        order.totalPrice + 20.0; // Replace with actual delivery fee
+        order.totalPrice + SharedPrefKeys.deliveryFee; 
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -46,7 +48,7 @@ class OrderDetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Divider(),
+                // Divider(),
                 // Order Header
                 Text(
                   "Order #${order.orderId}",
@@ -75,6 +77,45 @@ class OrderDetailsScreen extends StatelessWidget {
                       Text(
                         order.shippingAddress.country,
                         style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                // Order Status
+                Text(
+                  "Order Status",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Created at: ${_formatDate(order.createdAt)}",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        "Order Status: ${_getStatusText(order.status)}",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        "Shipping Status: ${_getShippingStatusText(order.shippingStatus)}",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        "Payment Status: ${_getTransactionStatus(order.transaction)}",
+                        style: TextStyle(fontSize: 14),
                       ),
                     ],
                   ),
@@ -189,5 +230,51 @@ class OrderDetailsScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+String _formatDate(DateTime date) {
+  // Format the date as needed, e.g., DD/MM/YYYY
+  return "${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}";
+}
+
+String _getStatusText(int status) {
+  // Map status codes to readable text
+  switch (status) {
+    case 0:
+      return "Processing";
+    case 1:
+      return "Completed";
+    case 2:
+      return "Canceled";
+    default:
+      return "Unknown";
+  }
+}
+
+String _getShippingStatusText(int status) {
+  // Map status codes to readable text
+  switch (status) {
+    case 0:
+      return "Not Shipped yet";
+    case 1:
+      return "In Transit";
+    case 2:
+      return "Out For Delivery";
+    case 3:
+      return "Delivered";
+    case 4:
+      return "Failed Delivery";
+    default:
+      return "Unknown";
+  }
+}
+
+String _getTransactionStatus(Transaction? transt) {
+  // Map status codes to readable text
+  if (transt == null) {
+    return "Not paid yet";
+  } else {
+    return "Paid";
   }
 }

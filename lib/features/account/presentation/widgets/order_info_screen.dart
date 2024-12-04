@@ -3,7 +3,8 @@ import 'package:waie/core/networking/api_constants.dart';
 import 'package:waie/features/account/presentation/order_details_screen.dart';
 import 'package:waie/features/account/presentation/widgets/order_images_list_screen.dart';
 import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
-import 'package:waie/features/cart/presentation/widgets/order_confirmation_screen.dart'; // Import the updated OrderConfirmationScreen
+import 'package:waie/features/cart/data/model/order_models/sub_order_models/transaction.dart';
+import 'package:waie/features/cart/presentation/widgets/order_confirmation_screen.dart'; 
 
 class OrderInfoScreen extends StatelessWidget {
   final Order order;
@@ -64,17 +65,17 @@ class OrderInfoScreen extends StatelessWidget {
           ),
           SizedBox(height: 4),
           Text(
-            "Created at: ${_formatDate(order.createdAt)}",
-            style: TextStyle(fontSize: 14),
-          ),
-          SizedBox(height: 6),
-          Text(
             "Estimated delivery: ${order.shippingDate != null ? _formatDate(order.shippingDate!) : "N/A"}",
             style: TextStyle(fontSize: 14),
           ),
           SizedBox(height: 6),
           Text(
-            "Status: ${_getStatusText(order.status)}",
+            "Shipping Status: ${_getShippingStatusText(order.shippingStatus)}",
+            style: TextStyle(fontSize: 14),
+          ),
+          SizedBox(height: 6),
+          Text(
+            "Payment Status: ${_getTransactionStatus(order.transaction)}",
             style: TextStyle(fontSize: 14),
           ),
           SizedBox(height: 12),
@@ -129,15 +130,40 @@ class OrderInfoScreen extends StatelessWidget {
     // Map status codes to readable text
     switch (status) {
       case 0:
-        return "Pending";
-      case 1:
         return "Processing";
+      case 1:
+        return "Completed";
       case 2:
-        return "On the way";
-      case 3:
-        return "Delivered";
+        return "Canceled";
       default:
         return "Unknown";
     }
   }
 }
+
+  String _getShippingStatusText(int status) {
+    // Map status codes to readable text
+    switch (status) {
+      case 0:
+        return "Not Shipped yet";
+      case 1:
+        return "In Transit";
+      case 2:
+        return "Out For Delivery";
+      case 3:
+        return "Delivered";
+      case 4:
+        return "Failed Delivery";
+      default:
+        return "Unknown";
+    }
+  }
+
+    String _getTransactionStatus(Transaction? transt) {
+    // Map status codes to readable text
+    if (transt == null){
+      return "Not paid yet";
+    }else{
+      return "Paid";
+    }
+  }

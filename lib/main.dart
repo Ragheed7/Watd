@@ -9,6 +9,7 @@ import 'package:waie/core/helpers/shared_prefs_helper.dart';
 import 'package:waie/core/routing/app_router.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
 import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_addresses_cubit.dart';
 import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
 import 'package:waie/features/cart/data/repository/order_repo.dart';
@@ -37,6 +38,9 @@ void main() async {
         ),
         BlocProvider(
           create: (_) => getIt<UserCubit>(),
+        ),
+         BlocProvider(
+          create: (_) => getIt<UpdateUserCubit>(),
         ),
         BlocProvider<CartCubit>(
           create: (_) => getIt<CartCubit>()..fetchCartItems(),

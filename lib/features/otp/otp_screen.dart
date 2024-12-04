@@ -51,7 +51,6 @@ class _OTPScreenState extends State<OTPScreen> {
   }
 
   void _resendOTP() {
-    // Your logic to resend OTP goes here
 
     // Restart the timer
     _timer.cancel();
@@ -124,7 +123,6 @@ class _OTPScreenState extends State<OTPScreen> {
                     showFieldAsBox: true,
                     onCodeChanged: (String code) {},
                     onSubmit: (String verificationCode) {
-                      // Handle OTP submission
                     },
                   ),
                   SizedBox(height: 32),

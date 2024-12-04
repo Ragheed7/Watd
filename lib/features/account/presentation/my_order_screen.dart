@@ -23,7 +23,16 @@ class MyOrderScreen extends StatelessWidget {
               loading: () => Center(child: CircularProgressIndicator()),
               success: (data) {
                 if (data.result.isEmpty) {
-                  return Center(child: Text('No orders found.'));
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset("assets/images/warning-2.png", height: 120, width: 180,),
+                        SizedBox(height: 20,),
+                        Text('No orders found.', style: TextStyle(fontSize: 20),),
+                      ],
+                    ),
+                  );
                 }
                 return ListView.separated(
                   padding: EdgeInsets.all(20),

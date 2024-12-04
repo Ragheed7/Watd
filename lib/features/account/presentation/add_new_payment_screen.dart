@@ -5,7 +5,9 @@ import 'package:waie/features/account/presentation/widgets/card_number_input_for
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class AddNewPaymentScreen extends StatefulWidget {
-  const AddNewPaymentScreen({super.key});
+    final String userId; // Select payment cards for a specific user
+
+  const AddNewPaymentScreen({super.key, required this.userId});
 
   @override
   _AddNewPaymentScreenState createState() => _AddNewPaymentScreenState();
@@ -37,7 +39,7 @@ class _AddNewPaymentScreenState extends State<AddNewPaymentScreen> {
         expiryMonth: int.parse(expiryMonthController.text),
         expiryYear: int.parse(expiryYearController.text),
       );
-      await PaymentCardManager().addPaymentCard(newCard);
+      await PaymentCardManager().addPaymentCard(newCard, widget.userId);
       Navigator.pop(context, true);
     }
   }

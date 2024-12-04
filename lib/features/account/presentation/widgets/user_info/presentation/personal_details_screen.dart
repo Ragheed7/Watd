@@ -39,7 +39,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
     if (value == null || value.isEmpty) {
       return 'Please enter your username';
     }
-    // Example: Username must be at least 4 characters
     if (value.length < 4) {
       return 'Username must be at least 4 characters long';
     }
@@ -70,10 +69,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
           ],
         ),
       );
-
-      // Alternatively, you can send the data to a server or perform other actions
-      // Example:
-      // sendDataToServer(email, username);
     }
   }
 
