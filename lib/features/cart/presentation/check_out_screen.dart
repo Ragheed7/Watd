@@ -22,6 +22,7 @@ import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/payment_screen.dart';
 import 'package:waie/features/cart/presentation/widgets/payment_success_screen.dart';
+import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/search/presentation/search_screen.dart';
 
@@ -201,7 +202,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     context.read<ProductCubit>().getProducts(
                           isInitialLoad: true,
                           categoryId: context
-                              .read<SearchScreen>().categoryData
+                              .read<SearchScreen>()
+                              .categoryData
                               ?.categoryId,
                         );
 
@@ -322,12 +324,28 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 ),
                                 TextButton(
                                   onPressed: () async {
-                                    // Navigate to Change Payment Method Screen and await selection
+                                    // Retrieve userId from UserCubit
+                                    final userCubit = context.read<UserCubit>();
+                                    final userId = userCubit.state?.userId;
+
+                                    if (userId == null || userId.isEmpty) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content:
+                                                Text("User not logged in.")),
+                                      );
+                                      return;
+                                    }
+
+                                    // Navigate to PaymentScreen with userId
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            PaymentScreen(isSelection: true),
+                                        builder: (context) => PaymentScreen(
+                                          isSelection: true,
+                                          userId: userId,
+                                        ),
                                       ),
                                     );
                                     // The SelectedPaymentCardCubit will handle the selection

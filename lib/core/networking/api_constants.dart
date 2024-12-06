@@ -1,6 +1,6 @@
 class ApiConsts {
-  static const String baseUrl = "http://finprojectapi.somee.com/api/";
-  static const String serverBaseUrl = "http://finprojectapi.somee.com/";
+  static const String baseUrl = "https://finprojectapi.somee.com/api/";
+  static const String serverBaseUrl = "https://finprojectapi.somee.com/";
   static const String login = "Authentication/Customer/Login";
   static const String categories = "Product/GetCategories";
   static const String Product = "Product/SearchProducts";

@@ -11,7 +11,7 @@ class PaymentScreen extends StatefulWidget {
   final bool isSelection; // Indicates if the screen is for selecting a card
   final String userId; // Select payment cards for a specific user
    
-  const PaymentScreen({Key? key, this.isSelection = false, this.userId = ""}) : super(key: key);
+  const PaymentScreen({Key? key, this.isSelection = false, required this.userId}) : super(key: key);
 
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
