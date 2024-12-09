@@ -42,7 +42,8 @@ class _ProductsListViewState extends State<ProductsListView> {
 
   void _onScroll() {
     // Check if we are at the bottom of the list
-    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200) {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
       // Request more products
       context.read<ProductCubit>().getProducts();
     }
@@ -51,34 +52,42 @@ class _ProductsListViewState extends State<ProductsListView> {
   @override
   Widget build(BuildContext context) {
     final productCubit = context.read<ProductCubit>();
-    return ListView.builder(
-      controller: _scrollController,
-      // physics: NeverScrollableScrollPhysics(),
-      // shrinkWrap: true,
-      itemCount: widget.products.length + 1, // Add 1 for the loading indicator
-      itemBuilder: (context, index) {
-        if (index < widget.products.length) {
-          final product = widget.products[index];
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProductScreen(product: product),
+    return SafeArea(
+      child: RefreshIndicator(
+        color: ColorsManager.mainGreen,
+        backgroundColor: Colors.white,
+        onRefresh: () async {
+          // Refresh the product list
+          await context.read<ProductCubit>().getProducts(isInitialLoad: true);
+        },
+        child: ListView.builder(
+          controller: _scrollController,
+          itemCount: widget.products.length + 1,
+          itemBuilder: (context, index) {
+            if (index < widget.products.length) {
+              final product = widget.products[index];
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductScreen(product: product),
+                    ),
+                  );
+                },
+                child: ProductItem(
+                  product: product,
+                  categoryData: widget.categoryData,
+                  isGrid: false,
                 ),
               );
-            },
-            child: ProductItem(
-              product: product,
-              categoryData: widget.categoryData,
-              isGrid: false,
-            ),
-          );
-        } else {
-          // Show loading indicator at the end
-          return _buildLoadingIndicator(productCubit);
-        }
-      },
+            } else {
+              // Show loading indicator at the end
+              return _buildLoadingIndicator(context.read<ProductCubit>());
+            }
+          },
+        ),
+      ),
     );
   }
 
@@ -87,7 +96,9 @@ class _ProductsListViewState extends State<ProductsListView> {
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: CircularProgressIndicator(color: ColorsManager.mainGreen,),
+          child: CircularProgressIndicator(
+            color: ColorsManager.mainGreen,
+          ),
         ),
       );
     } else if (!productCubit.hasMoreData) {

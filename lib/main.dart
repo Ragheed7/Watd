@@ -21,10 +21,10 @@ import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 import 'package:waie/waie_app.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await setupGetIt();
-  //fixing text hiding bug of screenUtils in release mode
-  await ScreenUtil.ensureScreenSize();
+    WidgetsFlutterBinding.ensureInitialized();
+    await setupGetIt();
+    //fixing text hiding bug of screenUtils in release mode
+    await ScreenUtil.ensureScreenSize();
   await checkIfLoggedInUser();
   // Load UserData and update UserCubit
   if (isLoggedInUser) {

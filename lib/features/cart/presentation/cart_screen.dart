@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
 import 'package:waie/features/cart/logic/cart_state.dart';
@@ -52,7 +53,7 @@ class _CartScreenState extends State<CartScreen> {
         builder: (context, state) {
           return state.when(
             initial: () => Center(child: Text("Initializing Cart...")),
-            loading: () => Center(child: CircularProgressIndicator()),
+            loading: () => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
             cartItemsFetched: (data) {
               final cartItems = data.result ?? [];
               if (cartItems.isEmpty) {
@@ -72,34 +73,41 @@ class _CartScreenState extends State<CartScreen> {
                 }
               }
 
-              return SingleChildScrollView(
-                child: SafeArea(
-                  child: Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CartSummaryScreen(
-                          itemCount: cartItems.length,
-                          totalPrice: total,
-                        ),
-                        SizedBox(height: 15),
-                        ListView.builder(
-                          itemCount: cartItems.length,
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            final product = cartItems[index];
-                            return CartItemScreen(
-                              product: product,
-                              showDeleteButton: true,
-                            );
-                          },
-                        ),
-                        SizedBox(height: 100),
-                        CheckoutButtonScreen(),
-                        SizedBox(height: 20),
-                      ],
+              return RefreshIndicator(
+                 color: ColorsManager.mainGreen,
+                  backgroundColor: Colors.white,
+                  onRefresh: () async {
+                    await context.read<CartCubit>().fetchCartItems(); 
+                  },
+                child: SingleChildScrollView(
+                  child: SafeArea(
+                    child: Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CartSummaryScreen(
+                            itemCount: cartItems.length,
+                            totalPrice: total,
+                          ),
+                          SizedBox(height: 15),
+                          ListView.builder(
+                            itemCount: cartItems.length,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              final product = cartItems[index];
+                              return CartItemScreen(
+                                product: product,
+                                showDeleteButton: true,
+                              );
+                            },
+                          ),
+                          SizedBox(height: 100),
+                          CheckoutButtonScreen(),
+                          SizedBox(height: 20),
+                        ],
+                      ),
                     ),
                   ),
                 ),

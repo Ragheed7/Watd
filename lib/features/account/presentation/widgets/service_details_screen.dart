@@ -30,6 +30,7 @@ class ServiceDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           'Service #${service.requestId} Details',
           style: TextStyle(

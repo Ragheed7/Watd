@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/shared_models/category_data_model/category_data.dart';
 import 'package:waie/core/shared_models/look_ups/logic/lookup_cubit.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/products_list/presentation/widgets/products_bloc_builder.dart';
@@ -74,31 +75,31 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-void _showFilterOptions() {
-  showModalBottomSheet(
-    context: context,
-    backgroundColor: Colors.transparent,
-    builder: (context) {
-      return BlocProvider(
-        create: (context) => getIt<LookupCubit>()..fetchLookups(),
-        child: FilterOptions(
-          onApplyFilters: _onApplyFilters,
-          initialMinPrice: _currentFilters['minPrice'],
-          initialMaxPrice: _currentFilters['maxPrice'],
-          initialSelectedCategory: _currentFilters['categoryId'] ?? widget.categoryData?.categoryId,
-          initialSelectedColor: _currentFilters['color'],
-          initialSelectedBrand: _currentFilters['brandId'],
-          initialSelectedStyle: _currentFilters['styleId'],
-          initialSelectedMaterial: _currentFilters['materialId'],
-          initialProductStatus: _currentFilters['productStatus'],
-          initialSortBy: _currentFilters['sortBy'],
-          initialIsDescending: _currentFilters['isDescending'],
-        ),
-      );
-    },
-  );
-}
-
+  void _showFilterOptions() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) {
+        return BlocProvider(
+          create: (context) => getIt<LookupCubit>()..fetchLookups(),
+          child: FilterOptions(
+            onApplyFilters: _onApplyFilters,
+            initialMinPrice: _currentFilters['minPrice'],
+            initialMaxPrice: _currentFilters['maxPrice'],
+            initialSelectedCategory: _currentFilters['categoryId'] ??
+                widget.categoryData?.categoryId,
+            initialSelectedColor: _currentFilters['color'],
+            initialSelectedBrand: _currentFilters['brandId'],
+            initialSelectedStyle: _currentFilters['styleId'],
+            initialSelectedMaterial: _currentFilters['materialId'],
+            initialProductStatus: _currentFilters['productStatus'],
+            initialSortBy: _currentFilters['sortBy'],
+            initialIsDescending: _currentFilters['isDescending'],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,37 +112,58 @@ void _showFilterOptions() {
             onTap: () {
               FocusScope.of(context).unfocus();
             },
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 20),
-                  child: HomeAppBar(),
-                ),
-                Expanded(
-                  child: NestedScrollView(
-                    headerSliverBuilder:
-                        (BuildContext context, bool innerBoxIsScrolled) {
-                      return [
-                        SliverAppBar(
-                          pinned: true,
-                          backgroundColor: Colors.white,
-                          title: SearchAppBar(
-                            onSearchChanged: _onSearchChanged,
-                            onFilterPressed: _showFilterOptions,
+            child: RefreshIndicator(
+              color: ColorsManager.mainGreen,
+              backgroundColor: Colors.white,
+              onRefresh: () async {
+                await _productCubit.getProducts(
+                  isInitialLoad: true,
+                  categoryId: _currentFilters['categoryId'] ??
+                      widget.categoryData?.categoryId,
+                  searchQuery: _currentSearchQuery,
+                  minPrice: _currentFilters['minPrice'],
+                  maxPrice: _currentFilters['maxPrice'],
+                  color: _currentFilters['color'],
+                  brandId: _currentFilters['brandId'],
+                  styleId: _currentFilters['styleId'],
+                  materialId: _currentFilters['materialId'],
+                  productStatus: _currentFilters['productStatus'],
+                  sortBy: _currentFilters['sortBy'],
+                  isDescending: _currentFilters['isDescending'],
+                );
+              },
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16, top: 20),
+                    child: HomeAppBar(),
+                  ),
+                  Expanded(
+                    child: NestedScrollView(
+                      headerSliverBuilder:
+                          (BuildContext context, bool innerBoxIsScrolled) {
+                        return [
+                          SliverAppBar(
+                            pinned: true,
+                            backgroundColor: Colors.white,
+                            title: SearchAppBar(
+                              onSearchChanged: _onSearchChanged,
+                              onFilterPressed: _showFilterOptions,
+                            ),
                           ),
+                        ];
+                      },
+                      body: Padding(
+                        padding: EdgeInsets.only(left: 16, right: 16, top: 20),
+                        child: ProductsBlocBuilder(
+                          categoryData: widget.categoryData,
+                          grid: true,
                         ),
-                      ];
-                    },
-                    body: Padding(
-                      padding: EdgeInsets.only(left: 16, right: 16, top: 20),
-                      child: ProductsBlocBuilder(
-                        categoryData: widget.categoryData,
-                        grid: true,
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

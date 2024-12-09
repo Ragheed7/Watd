@@ -26,7 +26,7 @@ class ProductCubit extends Cubit<ProductState> {
   String? sortBy;
   bool? isDescending;
 
-  void getProducts({
+  Future<void> getProducts({
     bool isInitialLoad = false,
     int? categoryId,
     String? searchQuery,

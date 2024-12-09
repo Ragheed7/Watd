@@ -29,7 +29,7 @@ class LoginBlocListener extends StatelessWidget {
           },
           success: (loginResponse) {
             Navigator.of(context).pop(); // Close the loading dialog
-             // Get the phone number from the LoginCubit
+            // Get the phone number from the LoginCubit
             final loginCubit = context.read<LoginCubit>();
             String phoneNumber = loginCubit.phoneController.text;
 
@@ -53,6 +53,7 @@ class LoginBlocListener extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
         icon: const Icon(
           Icons.error,
           color: Colors.red,

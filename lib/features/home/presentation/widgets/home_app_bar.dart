@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/spacing.dart';
 import 'package:waie/core/theming/colors.dart';
 
 class HomeAppBar extends StatelessWidget {
