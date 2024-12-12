@@ -8,6 +8,7 @@ import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/helpers/error_dialog.dart';
 import 'package:waie/core/networking/api_error_handler.dart';
 import 'package:waie/core/networking/api_error_model.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 import 'package:waie/features/home/data/model/services/create_service_request.dart';
 import 'package:waie/features/home/logic/cubit/create_service_cubit.dart';
@@ -22,16 +23,31 @@ class DonateScreen extends StatefulWidget {
 
 class _DonateScreenState extends State<DonateScreen> {
   final _formKey = GlobalKey<FormState>();
-
   final TextEditingController descriptionController = TextEditingController();
 
   List<File> selectedImages = [];
   ApiErrorModel apiErrorModel = DataSource.DEFAULT.getFailure();
+  ValueNotifier<bool> isFormValid = ValueNotifier(false);
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Add listener to validate the form dynamically
+    descriptionController.addListener(validateForm);
+  }
 
   @override
   void dispose() {
+    descriptionController.removeListener(validateForm);
     descriptionController.dispose();
     super.dispose();
+  }
+
+  void validateForm() {
+    bool isValid = descriptionController.text.isNotEmpty &&
+        selectedImages.isNotEmpty;
+    isFormValid.value = isValid;
   }
 
   Future<void> pickImages() async {
@@ -41,6 +57,7 @@ class _DonateScreenState extends State<DonateScreen> {
       if (pickedFiles != null && pickedFiles.isNotEmpty) {
         setState(() {
           selectedImages = pickedFiles.map((e) => File(e.path)).toList();
+          validateForm(); // Revalidate form when images are added
         });
       }
     } catch (e) {
@@ -55,7 +72,8 @@ class _DonateScreenState extends State<DonateScreen> {
       if (image == null) return '';
 
       img.Image resized = img.copyResize(image, width: 800);
-      Uint8List compressed = Uint8List.fromList(img.encodeJpg(resized, quality: 70));
+      Uint8List compressed =
+          Uint8List.fromList(img.encodeJpg(resized, quality: 70));
       return base64Encode(compressed);
     } catch (e) {
       print('Error compressing image: $e');
@@ -104,10 +122,9 @@ class _DonateScreenState extends State<DonateScreen> {
       listener: (context, state) {
         state.whenOrNull(
           loading: () {
-            // Show loading indicator
             showDialog(
               context: context,
-              barrierDismissible: false, // Prevent closing while loading
+              barrierDismissible: false,
               builder: (context) => const Center(
                 child: CircularProgressIndicator(),
               ),
@@ -177,7 +194,8 @@ class _DonateScreenState extends State<DonateScreen> {
                                     onTap: pickImages,
                                     child: Container(
                                       width: 100,
-                                      margin: EdgeInsets.only(right: 10, bottom: 18),
+                                      margin: EdgeInsets.only(
+                                          right: 10, bottom: 18),
                                       decoration: BoxDecoration(
                                         color: Colors.grey[200],
                                         borderRadius: BorderRadius.circular(10),
@@ -196,7 +214,8 @@ class _DonateScreenState extends State<DonateScreen> {
                                         width: 100,
                                         margin: EdgeInsets.only(right: 10),
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           child: Image.file(
                                             selectedImages[index],
                                             fit: BoxFit.cover,
@@ -212,6 +231,7 @@ class _DonateScreenState extends State<DonateScreen> {
                                           onTap: () {
                                             setState(() {
                                               selectedImages.removeAt(index);
+                                              validateForm(); // Revalidate form when removing images
                                             });
                                           },
                                           child: CircleAvatar(
@@ -240,33 +260,80 @@ class _DonateScreenState extends State<DonateScreen> {
                       labelText: "Description",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter description';
+                          return 'Please enter a description';
+                        }
+                        final words = value.trim().split(RegExp(r'\s+'));
+                        if (words.length < 10) {
+                          return 'Description must be at least 10 words long';
                         }
                         return null;
                       },
                       maxLines: 5,
                     ),
                     SizedBox(height: 100),
-                    Center(
-                      child: MaterialButton(
-                        onPressed: () {
-                          submitRequest(context);
-                        },
-                        color: Color.fromRGBO(118, 192, 67, 1),
-                        padding: EdgeInsets.symmetric(horizontal: 90, vertical: 16),
-                        child: Text(
-                          'Submit Request',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'cabin',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
+                    ValueListenableBuilder<bool>(
+                      valueListenable: isFormValid,
+                      builder: (context, isValid, child) {
+                        return Center(
+                          child: MaterialButton(
+                            onPressed: isValid
+                                ? () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          backgroundColor: Colors.white,
+                                          title: Text("Confirm Submission"),
+                                          content: Text(
+                                              "Are you sure you want to submit this request?"),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text("Cancel",
+                                                  style: TextStyle(
+                                                      color: Colors.red)),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                                submitRequest(context);
+                                              },
+                                              child: Text(
+                                                "Confirm",
+                                                style: TextStyle(
+                                                    color: ColorsManager
+                                                        .mainGreen),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                : null,
+                            color: isValid
+                                ? Color.fromRGBO(118, 192, 67, 1)
+                                : Colors.grey,
+                            disabledColor: Colors.grey,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 90, vertical: 16),
+                            child: Text(
+                              'Submit Request',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'cabin',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
                           ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     SizedBox(height: 10),
                   ],
@@ -279,3 +346,4 @@ class _DonateScreenState extends State<DonateScreen> {
     );
   }
 }
+

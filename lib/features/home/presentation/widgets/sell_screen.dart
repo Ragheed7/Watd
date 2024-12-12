@@ -1,17 +1,18 @@
 import 'dart:convert';
-import 'dart:io'; 
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart'; 
+import 'package:image_picker/image_picker.dart';
 import 'package:waie/core/helpers/constants.dart';
+import 'package:waie/core/helpers/image_compression.dart';
 import 'package:waie/core/routing/routes.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 import 'package:waie/features/home/data/model/services/create_service_request.dart';
 import 'package:waie/features/home/logic/cubit/create_service_cubit.dart';
 import 'package:waie/features/home/logic/cubit/create_service_state.dart';
-import 'package:waie/features/home/presentation/widgets/order_success_screen.dart';
-import 'package:image/image.dart' as img; 
+import 'package:image/image.dart' as img;
 
 class SellScreen extends StatefulWidget {
   @override
@@ -23,16 +24,39 @@ class _SellScreenState extends State<SellScreen> {
 
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController purchasePriceController = TextEditingController();
-  final TextEditingController requestedPriceController = TextEditingController();
+  final TextEditingController requestedPriceController =
+      TextEditingController();
 
   List<File> selectedImages = [];
+  ValueNotifier<bool> isFormValid = ValueNotifier(false);
+
+  @override
+  void initState() {
+    super.initState();
+
+    descriptionController.addListener(validateForm);
+    purchasePriceController.addListener(validateForm);
+    requestedPriceController.addListener(validateForm);
+  }
 
   @override
   void dispose() {
+    descriptionController.removeListener(validateForm);
+    purchasePriceController.removeListener(validateForm);
+    requestedPriceController.removeListener(validateForm);
     descriptionController.dispose();
     purchasePriceController.dispose();
     requestedPriceController.dispose();
     super.dispose();
+  }
+
+  void validateForm() {
+    bool isValid = descriptionController.text.isNotEmpty &&
+        purchasePriceController.text.isNotEmpty &&
+        requestedPriceController.text.isNotEmpty &&
+        selectedImages.isNotEmpty;
+
+    isFormValid.value = isValid;
   }
 
   Future<void> pickImages() async {
@@ -42,25 +66,11 @@ class _SellScreenState extends State<SellScreen> {
       if (pickedFiles != null && pickedFiles.isNotEmpty) {
         setState(() {
           selectedImages = pickedFiles.map((e) => File(e.path)).toList();
+          validateForm(); // Revalidate the form when images are added
         });
       }
     } catch (e) {
       print('Error picking images: $e');
-    }
-  }
-
-  Future<String> compressAndEncodeImage(File file) async {
-    try {
-      final bytes = await file.readAsBytes();
-      img.Image? image = img.decodeImage(bytes);
-      if (image == null) return '';
-
-      img.Image resized = img.copyResize(image, width: 800);
-      Uint8List compressed = Uint8List.fromList(img.encodeJpg(resized, quality: 70));
-      return base64Encode(compressed);
-    } catch (e) {
-      print('Error compressing image: $e');
-      return '';
     }
   }
 
@@ -105,10 +115,9 @@ class _SellScreenState extends State<SellScreen> {
       listener: (context, state) {
         state.whenOrNull(
           loading: () {
-            // Show loading indicator
             showDialog(
               context: context,
-              barrierDismissible: false, // Prevent closing while loading
+              barrierDismissible: false,
               builder: (context) => const Center(
                 child: CircularProgressIndicator(),
               ),
@@ -116,7 +125,7 @@ class _SellScreenState extends State<SellScreen> {
           },
           success: (data) {
             Navigator.of(context).pop(); // Close the loading dialog
-           Navigator.of(context).pushReplacementNamed(Routes.navigationMenu);
+            Navigator.of(context).pushReplacementNamed(Routes.navigationMenu);
           },
           failure: (error) {
             Navigator.of(context).pop(); // Close the loading dialog
@@ -178,7 +187,6 @@ class _SellScreenState extends State<SellScreen> {
                   children: [
                     Divider(),
                     SizedBox(height: 10),
-                    // Image upload section
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 18),
                       width: MediaQuery.of(context).size.width,
@@ -207,7 +215,8 @@ class _SellScreenState extends State<SellScreen> {
                                     onTap: pickImages,
                                     child: Container(
                                       width: 100,
-                                      margin: EdgeInsets.only(right: 10, bottom: 18),
+                                      margin: EdgeInsets.only(
+                                          right: 10, bottom: 18),
                                       decoration: BoxDecoration(
                                         color: Colors.grey[200],
                                         borderRadius: BorderRadius.circular(10),
@@ -226,7 +235,8 @@ class _SellScreenState extends State<SellScreen> {
                                         width: 100,
                                         margin: EdgeInsets.only(right: 10),
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           child: Image.file(
                                             selectedImages[index],
                                             fit: BoxFit.cover,
@@ -242,6 +252,7 @@ class _SellScreenState extends State<SellScreen> {
                                           onTap: () {
                                             setState(() {
                                               selectedImages.removeAt(index);
+                                              validateForm(); // Revalidate form when removing images
                                             });
                                           },
                                           child: CircleAvatar(
@@ -272,7 +283,14 @@ class _SellScreenState extends State<SellScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter purchase price';
                         }
-                        return null;
+                        final double? price = double.tryParse(value);
+                        if (price == null) {
+                          return 'Please enter a valid number';
+                        }
+                        if (price < 0) {
+                          return 'Please enter a positive number';
+                        }
+                        return null; // valid
                       },
                       keyboardType: TextInputType.number,
                     ),
@@ -284,7 +302,22 @@ class _SellScreenState extends State<SellScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter requested price';
                         }
-                        return null;
+                        final double? requestedPrice = double.tryParse(value);
+                        if (requestedPrice == null) {
+                          return 'Please enter a valid number';
+                        }
+                        if (requestedPrice < 0) {
+                          return 'Requested price cannot be negative';
+                        }
+                        final double? purchasePrice =
+                            double.tryParse(purchasePriceController.text);
+                        if (purchasePrice == null) {
+                          return 'Please enter a valid purchase price first';
+                        }
+                        if (requestedPrice > purchasePrice) {
+                          return 'Requested price must be less than the purchase price';
+                        }
+                        return null; // valid
                       },
                       keyboardType: TextInputType.number,
                     ),
@@ -294,33 +327,80 @@ class _SellScreenState extends State<SellScreen> {
                       labelText: "Description",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter description';
+                          return 'Please enter a description';
+                        }
+                        final words = value.trim().split(RegExp(r'\s+'));
+                        if (words.length < 10) {
+                          return 'Description must be at least 10 words long';
                         }
                         return null;
                       },
                       maxLines: 5,
                     ),
                     SizedBox(height: 15),
-                    Center(
-                      child: MaterialButton(
-                        onPressed: () {
-                          submitRequest(context);
-                        },
-                        color: Color.fromRGBO(118, 192, 67, 1),
-                        padding: EdgeInsets.symmetric(horizontal: 90, vertical: 16),
-                        child: Text(
-                          'Submit Request',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'cabin',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
+                    ValueListenableBuilder<bool>(
+                      valueListenable: isFormValid,
+                      builder: (context, isValid, child) {
+                        return Center(
+                          child: MaterialButton(
+                            onPressed: isValid
+                                ? () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          backgroundColor: Colors.white,
+                                          title: Text("Confirm Submission"),
+                                          content: Text(
+                                              "Are you sure you want to submit this request?"),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text("Cancel",
+                                                  style: TextStyle(
+                                                      color: Colors.red)),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                                submitRequest(context);
+                                              },
+                                              child: Text(
+                                                "Confirm",
+                                                style: TextStyle(
+                                                    color: ColorsManager
+                                                        .mainGreen),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }
+                                : null,
+                            color: isValid
+                                ? Color.fromRGBO(118, 192, 67, 1)
+                                : Colors.grey,
+                            disabledColor: Colors.grey,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 90, vertical: 16),
+                            child: Text(
+                              'Submit Request',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'cabin',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
                           ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
+                        );
+                      },
                     ),
                     SizedBox(height: 10),
                   ],
@@ -333,5 +413,3 @@ class _SellScreenState extends State<SellScreen> {
     );
   }
 }
-
-

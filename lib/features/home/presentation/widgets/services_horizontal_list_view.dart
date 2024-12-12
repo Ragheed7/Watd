@@ -23,7 +23,7 @@ class ServicesHorizontalListView extends StatelessWidget {
           return Container(
             width: 120,
             margin: EdgeInsets.only(
-                right: index == 0 ? 0 : 10), // spacing between items
+                right: index == 0 ? 0 : 10), 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

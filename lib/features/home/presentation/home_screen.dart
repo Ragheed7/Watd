@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                     servicesImgs: servicesImgs,
                   ),
                   verticalSpace(24),
-                  LeftSectionTitle(text: "Top Categories"),
+                  LeftSectionTitle(text: "Categories"),
                   verticalSpace(20),
                   CategoriesBlocBuilder(),
                 ],
