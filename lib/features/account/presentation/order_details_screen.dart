@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/networking/api_constants.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
 import 'package:waie/features/cart/data/model/order_models/sub_order_models/transaction.dart';
 import 'package:waie/features/cart/presentation/widgets/order_confirmation_screen.dart';
@@ -183,7 +184,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        color: Color.fromRGBO(118, 192, 67, 1),
+                        color: ColorsManager.mainGreen,
                       ),
                     ),
                   ],
@@ -204,7 +205,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(118, 192, 67, 1),
+                        backgroundColor: ColorsManager.mainGreen,
                         padding: EdgeInsets.symmetric(
                           horizontal: MediaQuery.of(context).size.width * 0.3,
                           vertical: 16,

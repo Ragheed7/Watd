@@ -16,15 +16,15 @@ class Waie extends StatelessWidget {
       minTextAdapt: true,
       designSize: const Size(390, 833),
       child: MaterialApp(
-        title: "Waie App",
+        title: "Waei App",
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRouter.generateRoute,
         theme: ThemeData(
           primaryColor: ColorsManager.mainGreen,
           scaffoldBackgroundColor: Colors.white,
         ),
-        initialRoute: isLoggedInUser ? Routes.navigationMenu : Routes.loginScreen,
-        // initialRoute: Routes.loginScreen
+        initialRoute: isLoggedInUser ? Routes.navigationMenu : Routes.welcomeScreen,
+        // initialRoute: Routes.welcomeScreen
       ),
     );
   }

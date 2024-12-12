@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/cart/presentation/check_out_screen.dart';
 
 class CheckoutButtonScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class CheckoutButtonScreen extends StatelessWidget {
             MaterialPageRoute(builder: (context) => CheckOutScreen()),
           );
         },
-        color: Color.fromRGBO(118, 192, 67, 1),
+        color: ColorsManager.mainGreen,
         padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width * 0.1,
           vertical: 16,

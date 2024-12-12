@@ -4,6 +4,7 @@ import 'package:waie/core/shared_models/user_addresses/data/model/create_address
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
@@ -19,16 +20,22 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController countryController =
       TextEditingController(text: 'Saudi Arabia');
-  final TextEditingController stateController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
   final TextEditingController streetAddressController = TextEditingController();
   final TextEditingController zipCodeController = TextEditingController();
 
+  String? selectedState;
+  String? selectedCity;
+
+  final Map<String, List<String>> cities = {
+    'Riyadh': ['Riyadh', 'Diriyah', 'Kharj'],
+    'Qassim': ['Buraydah', 'Onaizah'],
+    'Makkah': ['Makkah', 'Jeddah'],
+  };
+
+  final List<String> states = ['Riyadh', 'Qassim', 'Makkah'];
+
   @override
   void dispose() {
-    countryController.dispose();
-    stateController.dispose();
-    cityController.dispose();
     streetAddressController.dispose();
     zipCodeController.dispose();
     super.dispose();
@@ -47,7 +54,12 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Address added successfully')),
             );
-            // Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const SavedAddressScreen(),
+              ),
+            );
           } else if (state is Error) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.error)),
@@ -70,26 +82,45 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                       enabled: false,
                     ),
                     SizedBox(height: 20),
-                    UserInfoTextFormField(
-                      controller: stateController,
-                      labelText: "State/Province/Region",
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter state/province/region';
-                        }
-                        return null;
+                    DropdownButtonFormField<String>(
+                      dropdownColor: Colors.white,
+                      decoration: InputDecoration(labelText: "Region"),
+                      value: selectedState,
+                      items: states.map((state) {
+                        return DropdownMenuItem(
+                          value: state,
+                          child: Text(state),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedState = value;
+                          selectedCity = null; 
+                        });
                       },
+                      validator: (value) =>
+                          value == null ? 'Please select a region' : null,
                     ),
                     SizedBox(height: 20),
-                    UserInfoTextFormField(
-                      controller: cityController,
-                      labelText: "City",
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter city';
-                        }
-                        return null;
+                    DropdownButtonFormField<String>(
+                      dropdownColor: Colors.white,
+                      decoration: InputDecoration(labelText: "City"),
+                      value: selectedCity,
+                      items: selectedState == null
+                          ? []
+                          : cities[selectedState]!.map((city) {
+                              return DropdownMenuItem(
+                                value: city,
+                                child: Text(city),
+                              );
+                            }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCity = value;
+                        });
                       },
+                      validator: (value) =>
+                          value == null ? 'Please select a city' : null,
                     ),
                     SizedBox(height: 20),
                     UserInfoTextFormField(
@@ -98,6 +129,10 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter street address';
+                        }
+                        final words = value.trim().split(RegExp(r'\s+'));
+                        if (words.length < 2) {
+                          return 'Street address must be at least 2 words';
                         }
                         return null;
                       },
@@ -110,35 +145,31 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter zip code';
                         }
+                        if (!RegExp(r'^\d{5}$').hasMatch(value)) {
+                          return 'Zip code must be exactly 5 digits';
+                        }
                         return null;
                       },
+                      keyboardType: TextInputType.number,
                     ),
-                    SizedBox(height: 100),
+                    SizedBox(height: 50),
                     Center(
                       child: MaterialButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            // Create a new address
                             final newAddress = CreateAddress(
                               streetAddress: streetAddressController.text,
-                              city: cityController.text,
-                              state: stateController.text,
+                              city: selectedCity!,
+                              state: selectedState!,
                               zipCode: zipCodeController.text,
                               country: countryController.text,
                             );
                             addressCubit.createAddress(newAddress);
-                            Navigator.pushReplacement<void, void>(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                const SavedAddressScreen(),
-                              ),
-                            );
                           }
                         },
-                        color: Color.fromRGBO(118, 192, 67, 1),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 90, vertical: 16),
+                        color: ColorsManager.mainGreen,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 90, vertical: 16),
                         child: Text(
                           'Confirm details',
                           style: TextStyle(
@@ -164,3 +195,4 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
     );
   }
 }
+

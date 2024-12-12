@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/track_order_details_screen.dart';
 
 class TrackOrderScreen extends StatelessWidget {
@@ -46,7 +47,7 @@ class TrackOrderScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    color: Color.fromRGBO(118, 192, 67, 1),
+                    color: ColorsManager.mainGreen,
                     padding: EdgeInsets.symmetric(horizontal: 90, vertical: 16),
                     child: Text(
                       'Search',

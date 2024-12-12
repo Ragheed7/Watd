@@ -165,7 +165,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     child: Text(
                       'Next',
                       style: TextStyle(
-                        color: ColorsManager.mainBlack,
+                        color: Colors.white,
                         fontFamily: 'cabin',
                         fontSize: 20,
                         fontWeight: FontWeight.w400,

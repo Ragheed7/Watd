@@ -126,7 +126,7 @@ class _DonateScreenState extends State<DonateScreen> {
               context: context,
               barrierDismissible: false,
               builder: (context) => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: ColorsManager.mainGreen,),
               ),
             );
           },
@@ -314,7 +314,7 @@ class _DonateScreenState extends State<DonateScreen> {
                                   }
                                 : null,
                             color: isValid
-                                ? Color.fromRGBO(118, 192, 67, 1)
+                                ? ColorsManager.mainGreen
                                 : Colors.grey,
                             disabledColor: Colors.grey,
                             padding: EdgeInsets.symmetric(

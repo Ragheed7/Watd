@@ -119,7 +119,7 @@ class _SellScreenState extends State<SellScreen> {
               context: context,
               barrierDismissible: false,
               builder: (context) => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: ColorsManager.mainGreen,),
               ),
             );
           },
@@ -381,7 +381,7 @@ class _SellScreenState extends State<SellScreen> {
                                   }
                                 : null,
                             color: isValid
-                                ? Color.fromRGBO(118, 192, 67, 1)
+                                ? ColorsManager.mainGreen
                                 : Colors.grey,
                             disabledColor: Colors.grey,
                             padding: EdgeInsets.symmetric(

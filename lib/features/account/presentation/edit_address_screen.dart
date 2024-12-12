@@ -4,6 +4,7 @@ import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.
 import 'package:waie/core/shared_models/user_addresses/data/model/update_address.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
@@ -24,6 +25,17 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
   late TextEditingController cityController;
   late TextEditingController streetAddressController;
   late TextEditingController zipCodeController;
+
+  String? selectedState;
+  String? selectedCity;
+
+  final Map<String, List<String>> cities = {
+    'Riyadh': ['Riyadh', 'Diriyah', 'Kharj'],
+    'Qassim': ['Buraydah', 'Onaizah'],
+    'Makkah': ['Makkah', 'Jeddah'],
+  };
+
+  final List<String> states = ['Riyadh', 'Qassim', 'Makkah'];
 
   @override
   void initState() {
@@ -85,24 +97,75 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                       enabled: false,
                     ),
                     SizedBox(height: 20),
-                    UserInfoTextFormField(
-                      controller: stateController,
-                      labelText: "State/Province/Region",
+                    DropdownButtonFormField<String>(
+                      dropdownColor: Colors.white,
+                      decoration: InputDecoration(labelText: "Region"),
+                      value: selectedState,
+                      items: states.map((state) {
+                        return DropdownMenuItem(
+                          value: state,
+                          child: Text(state),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedState = value;
+                          selectedCity = null;
+                        });
+                      },
+                      validator: (value) =>
+                          value == null ? 'Please select a region' : null,
                     ),
                     SizedBox(height: 20),
-                    UserInfoTextFormField(
-                      controller: cityController,
-                      labelText: "City",
+                    DropdownButtonFormField<String>(
+                      dropdownColor: Colors.white,
+                      decoration: InputDecoration(labelText: "City"),
+                      value: selectedCity,
+                      items: selectedState == null
+                          ? []
+                          : cities[selectedState]!.map((city) {
+                              return DropdownMenuItem(
+                                value: city,
+                                child: Text(city),
+                              );
+                            }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCity = value;
+                        });
+                      },
+                      validator: (value) =>
+                          value == null ? 'Please select a city' : null,
                     ),
                     SizedBox(height: 20),
                     UserInfoTextFormField(
                       controller: streetAddressController,
                       labelText: "Street Address",
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter street address';
+                        }
+                        final words = value.trim().split(RegExp(r'\s+'));
+                        if (words.length < 2) {
+                          return 'Street address must be at least 2 words';
+                        }
+                        return null;
+                      },
                     ),
                     SizedBox(height: 20),
                     UserInfoTextFormField(
                       controller: zipCodeController,
                       labelText: "Zip code (Postal Code)",
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter zip code';
+                        }
+                        if (!RegExp(r'^\d{5}$').hasMatch(value)) {
+                          return 'Zip code must be exactly 5 digits';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.number,
                     ),
                     SizedBox(height: 100),
                     Center(
@@ -123,12 +186,12 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                               context,
                               MaterialPageRoute<void>(
                                 builder: (BuildContext context) =>
-                                const SavedAddressScreen(),
+                                    const SavedAddressScreen(),
                               ),
                             );
                           }
                         },
-                        color: Color.fromRGBO(118, 192, 67, 1),
+                        color: ColorsManager.mainGreen,
                         padding:
                             EdgeInsets.symmetric(horizontal: 90, vertical: 16),
                         child: Text(

@@ -23,7 +23,7 @@ class AccountHeaderWidget extends StatelessWidget {
             child: Icon(
               Icons.person,
               size: 50,
-              color: ColorsManager.grey,
+              color: ColorsManager.mainGreen,
             ),
           ),
           verticalSpace(8),

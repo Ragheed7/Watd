@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
 import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/payment_card_screen.dart';
@@ -49,7 +50,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       return Scaffold(
         appBar: AppBarScreen(title: 'Payment'),
         backgroundColor: Colors.white,
-        body: Center(child: CircularProgressIndicator()),
+        body: Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
       );
     } else {
       return Scaffold(
@@ -102,7 +103,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                     await _loadPaymentCards();
                                   }
                                 },
-                                color: Color.fromRGBO(118, 192, 67, 1),
+                                color: ColorsManager.mainGreen,
                                 padding: EdgeInsets.symmetric(
                                   horizontal:
                                       MediaQuery.of(context).size.width * 0.1,
@@ -206,7 +207,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 await _loadPaymentCards();
                               }
                             },
-                            color: Color.fromRGBO(118, 192, 67, 1),
+                            color: ColorsManager.mainGreen,
                             padding: EdgeInsets.symmetric(
                               horizontal:
                                   MediaQuery.of(context).size.width * 0.1,

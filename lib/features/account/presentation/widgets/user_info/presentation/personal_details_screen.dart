@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/account_screen.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
@@ -116,7 +117,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                         ),
                       );
                     },
-                    color: Color.fromRGBO(118, 192, 67, 1),
+                    color: ColorsManager.mainGreen,
                     padding: EdgeInsets.symmetric(horizontal: 90, vertical: 16),
                     child: Text(
                       'Saved changes',

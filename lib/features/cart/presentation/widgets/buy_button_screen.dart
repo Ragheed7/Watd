@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/theming/colors.dart';
 
 class BuyButtonScreen extends StatelessWidget {
   @override
@@ -6,7 +7,7 @@ class BuyButtonScreen extends StatelessWidget {
     return Center(
       child: MaterialButton(
         onPressed: () {},
-        color: Color.fromRGBO(118, 192, 67, 1),
+        color: ColorsManager.mainGreen,
         padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width * 0.1,
           vertical: 16,

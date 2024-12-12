@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/theming/colors.dart';
 
 class OrderSummaryScreen extends StatelessWidget {
   final double itemsTotal;
@@ -46,7 +47,7 @@ class OrderSummaryScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
-                color: Color.fromRGBO(118, 192, 67, 1),
+                color: ColorsManager.mainGreen,
               ),
             ),
           ],

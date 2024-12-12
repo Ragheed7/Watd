@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/helpers/constants.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/payment_screen.dart';
 import 'package:waie/features/cart/data/model/order_models/pay_order_request.dart';
 import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
@@ -121,7 +122,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                   showDialog(
                     context: context,
                     barrierDismissible: false,
-                    builder: (_) => Center(child: CircularProgressIndicator()),
+                    builder: (_) => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
                   );
                 },
                 success: (payOrderResponse) {
@@ -233,7 +234,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                             "Change",
                             style: TextStyle(
                               fontSize: 14,
-                              color: Color.fromRGBO(118, 192, 67, 1),
+                              color: ColorsManager.mainGreen,
                             ),
                           ),
                         ),
@@ -267,10 +268,46 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                       child: ElevatedButton(
                         onPressed: (_cvv.isNotEmpty &&
                                 RegExp(r'^\d{3,4}$').hasMatch(_cvv))
-                            ? _processPayment
+                            ? () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.white,
+                                      title: Text('Confirm Payment'),
+                                      content: Text(
+                                          'Are you sure you want to proceed with this payment?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pop(); // Close the dialog
+                                          },
+                                          child: Text(
+                                            'Cancel',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pop(); // Close the dialog
+                                            _processPayment(); // Call the payment processing function
+                                          },
+                                          child: Text(
+                                            'Confirm',
+                                            style:
+                                                TextStyle(color: ColorsManager.mainGreen),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
                             : null,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(118, 192, 67, 1),
+                          backgroundColor: ColorsManager.mainGreen,
                           padding: EdgeInsets.symmetric(
                             horizontal:
                                 MediaQuery.of(context).size.width * 0.22,

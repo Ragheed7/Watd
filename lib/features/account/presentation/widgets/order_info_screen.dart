@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/networking/api_constants.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/order_details_screen.dart';
 import 'package:waie/features/account/presentation/widgets/order_images_list_screen.dart';
 import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
@@ -57,7 +58,7 @@ class OrderInfoScreen extends StatelessWidget {
                   "Details",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color.fromRGBO(118, 192, 67, 1),
+                    color: ColorsManager.mainGreen,
                   ),
                 ),
               ),
@@ -83,7 +84,7 @@ class OrderInfoScreen extends StatelessWidget {
           OrderImagesListScreen(imageList: imageList),
           SizedBox(height: 16),
 
-          // Add "Pay Now" button if transaction is null
+          // "Pay Now" button if transaction is null
           if (order.transaction == null)
             Center(
               child: ElevatedButton(
@@ -98,7 +99,7 @@ class OrderInfoScreen extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(118, 192, 67, 1),
+                  backgroundColor: ColorsManager.mainGreen,
                   padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.22,
                     vertical: 16,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
 import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/edit_payment_screen.dart';
 
 class PaymentCardScreen extends StatelessWidget {
@@ -72,7 +73,7 @@ class PaymentCardScreen extends StatelessWidget {
                       "Edit",
                       style: TextStyle(
                         fontSize: 14,
-                        color: Color.fromRGBO(118, 192, 67, 1),
+                        color: ColorsManager.mainGreen,
                       ),
                     ),
                   ),

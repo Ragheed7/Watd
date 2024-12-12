@@ -41,7 +41,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                   (Route<dynamic> route) => false,
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(118, 192, 67, 1),
+                  backgroundColor: ColorsManager.mainGreen,
                   padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.3,
                     vertical: 16,

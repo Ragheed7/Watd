@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
 import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/card_number_input_formatter.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class EditPaymentScreen extends StatefulWidget {
   final int cardIndex;
-  final String userId; 
+  final String userId;
 
-  const EditPaymentScreen({super.key, required this.cardIndex, required this.userId});
+  const EditPaymentScreen(
+      {super.key, required this.cardIndex, required this.userId});
 
   @override
   _EditPaymentScreenState createState() => _EditPaymentScreenState();
@@ -22,23 +24,43 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
   late TextEditingController expiryMonthController;
   late TextEditingController expiryYearController;
 
+  ValueNotifier<bool> isFormValid = ValueNotifier(false);
+
   @override
   void initState() {
     super.initState();
     PaymentCard card = PaymentCardManager().paymentCards[widget.cardIndex];
     cardNumberController = TextEditingController(text: card.cardNumber);
     cardHolderNameController = TextEditingController(text: card.cardHolderName);
-    expiryMonthController = TextEditingController(text: card.expiryMonth.toString());
-    expiryYearController = TextEditingController(text: card.expiryYear.toString());
+    expiryMonthController =
+        TextEditingController(text: card.expiryMonth.toString());
+    expiryYearController =
+        TextEditingController(text: card.expiryYear.toString());
+
+    // Add listeners to validate the form dynamically
+    cardNumberController.addListener(validateForm);
+    cardHolderNameController.addListener(validateForm);
+    expiryMonthController.addListener(validateForm);
+    expiryYearController.addListener(validateForm);
   }
 
   @override
   void dispose() {
+    cardNumberController.removeListener(validateForm);
+    cardHolderNameController.removeListener(validateForm);
+    expiryMonthController.removeListener(validateForm);
+    expiryYearController.removeListener(validateForm);
+
     cardNumberController.dispose();
     cardHolderNameController.dispose();
     expiryMonthController.dispose();
     expiryYearController.dispose();
     super.dispose();
+  }
+
+  void validateForm() {
+    bool isValid = _formKey.currentState?.validate() ?? false;
+    isFormValid.value = isValid;
   }
 
   void _saveChanges() async {
@@ -51,9 +73,11 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
       );
 
       // Save the updated card for the correct user
-      await PaymentCardManager().updatePaymentCard(widget.cardIndex, updatedCard, widget.userId);
+      await PaymentCardManager()
+          .updatePaymentCard(widget.cardIndex, updatedCard, widget.userId);
 
-      Navigator.pop(context, true); // Pop and return true to indicate the changes were saved
+      Navigator.pop(context,
+          true); // Pop and return true to indicate the changes were saved
     }
   }
 
@@ -72,6 +96,10 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
   String? _validateCardHolderName(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter name on card';
+    }
+    final words = value.trim().split(RegExp(r'\s+'));
+    if (words.length < 2) {
+      return 'Holder name must be at least 2 words long';
     }
     return null;
   }
@@ -92,15 +120,15 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
       return 'Please enter expiry year';
     }
     int? year = int.tryParse(value);
-    int currentYear = DateTime.now().year; 
-   if (year == null || value.length != 4) {
-    return 'Please enter a valid four-digit year';
+    int currentYear = DateTime.now().year;
+    if (year == null || value.length != 4) {
+      return 'Please enter a valid four-digit year';
+    }
+    if (year < currentYear || year > currentYear + 10) {
+      return 'Invalid year';
+    }
+    return null;
   }
-  if (year < currentYear || year > currentYear + 10) {
-    return 'Invalid year';
-  }
-  return null;
-}
 
   @override
   Widget build(BuildContext context) {
@@ -159,25 +187,33 @@ class _EditPaymentScreenState extends State<EditPaymentScreen> {
                     ],
                   ),
                   SizedBox(height: 100),
-                  Center(
-                    child: MaterialButton(
-                      onPressed: _saveChanges,
-                      color: Color.fromRGBO(118, 192, 67, 1),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 90, vertical: 16),
-                      child: Text(
-                        'Save changes',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'cabin',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
+                  ValueListenableBuilder<bool>(
+                    valueListenable: isFormValid,
+                    builder: (context, isValid, child) {
+                      return Center(
+                        child: MaterialButton(
+                          onPressed: isValid ? _saveChanges : null,
+                          color: isValid
+                              ? ColorsManager.mainGreen
+                              : Colors.grey,
+                          disabledColor: Colors.grey,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 90, vertical: 16),
+                          child: Text(
+                            'Save changes',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'cabin',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
                         ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                   SizedBox(height: 20),
                 ],

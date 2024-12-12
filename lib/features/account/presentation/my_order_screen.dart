@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/di/dependency_injection.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/account/presentation/widgets/order_info_screen.dart';
 import 'package:waie/features/cart/logic/order%20logic/get_orders_cubit.dart';
@@ -20,7 +21,7 @@ class MyOrderScreen extends StatelessWidget {
           builder: (context, state) {
             return state.when(
               initial: () => Center(child: Text('No orders fetched.')),
-              loading: () => Center(child: CircularProgressIndicator()),
+              loading: () => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
               success: (data) {
                 if (data.result.isEmpty) {
                   return Center(

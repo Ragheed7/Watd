@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/theming/colors.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -11,9 +12,9 @@ class HomeAppBar extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.all(5),
-          height: 70,
-          width: 100,
-          child: Image.asset("assets/images/waie2.png"),
+          height: 60,
+          width: 75,
+          child: Image.asset(ImageLoader.logoWthoutName),
         ),
         Spacer(),
         //  Container(

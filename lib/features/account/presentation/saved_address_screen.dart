@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart'
     as address_state;
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/add_new_address_button_screen.dart';
 import 'package:waie/features/account/presentation/widgets/addreess_card_screen.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
@@ -28,7 +29,7 @@ class SavedAddressScreen extends StatelessWidget {
                   address_state.AddressState<GetAddresses>>(
                 builder: (context, state) {
                   return state.maybeWhen(
-                    orElse: () => Center(child: CircularProgressIndicator()),
+                    orElse: () => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
                     success: (getAddresses) {
                       final addresses = getAddresses.result ?? [];
 
@@ -80,7 +81,7 @@ class SavedAddressScreen extends StatelessWidget {
                     },
                     addressCreated: (_) {
                       context.read<AddressCubit>().getAddresses();
-                      return Center(child: CircularProgressIndicator());
+                      return Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,));
                     },
                     error: (error) => Center(child: Text('Error: $error')),
                   );

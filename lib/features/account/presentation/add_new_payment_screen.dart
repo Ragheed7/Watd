@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/local_models/payment_model/payment_card.dart';
 import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/card_number_input_formatter.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class AddNewPaymentScreen extends StatefulWidget {
-    final String userId; // Select payment cards for a specific user
+  final String userId; // Select payment cards for a specific user
 
   const AddNewPaymentScreen({super.key, required this.userId});
 
@@ -22,13 +23,36 @@ class _AddNewPaymentScreenState extends State<AddNewPaymentScreen> {
   final TextEditingController expiryMonthController = TextEditingController();
   final TextEditingController expiryYearController = TextEditingController();
 
+  ValueNotifier<bool> isFormValid = ValueNotifier(false);
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Add listeners to validate the form dynamically
+    cardNumberController.addListener(validateForm);
+    cardHolderNameController.addListener(validateForm);
+    expiryMonthController.addListener(validateForm);
+    expiryYearController.addListener(validateForm);
+  }
+
   @override
   void dispose() {
+    cardNumberController.removeListener(validateForm);
+    cardHolderNameController.removeListener(validateForm);
+    expiryMonthController.removeListener(validateForm);
+    expiryYearController.removeListener(validateForm);
+
     cardNumberController.dispose();
     cardHolderNameController.dispose();
     expiryMonthController.dispose();
     expiryYearController.dispose();
     super.dispose();
+  }
+
+  void validateForm() {
+    bool isValid = _formKey.currentState?.validate() ?? false;
+    isFormValid.value = isValid;
   }
 
   void _confirmDetails() async {
@@ -61,6 +85,10 @@ class _AddNewPaymentScreenState extends State<AddNewPaymentScreen> {
     if (value == null || value.isEmpty) {
       return 'Please enter name on card';
     }
+    final words = value.trim().split(RegExp(r'\s+'));
+    if (words.length < 2) {
+      return 'Holder name must be at least 2 words long';
+    }
     return null;
   }
 
@@ -80,15 +108,15 @@ class _AddNewPaymentScreenState extends State<AddNewPaymentScreen> {
       return 'Please enter expiry year';
     }
     int? year = int.tryParse(value);
-    int currentYear = DateTime.now().year; 
-   if (year == null || value.length != 4) {
-    return 'Please enter a valid four-digit year';
+    int currentYear = DateTime.now().year;
+    if (year == null || value.length != 4) {
+      return 'Please enter a valid four-digit year';
+    }
+    if (year < currentYear || year > currentYear + 10) {
+      return 'Invalid year';
+    }
+    return null;
   }
-  if (year < currentYear || year > currentYear + 10) {
-    return 'Invalid year';
-  }
-  return null;
-}
 
   @override
   Widget build(BuildContext context) {
@@ -147,25 +175,33 @@ class _AddNewPaymentScreenState extends State<AddNewPaymentScreen> {
                     ],
                   ),
                   SizedBox(height: 100),
-                  Center(
-                    child: MaterialButton(
-                      onPressed: _confirmDetails,
-                      color: Color.fromRGBO(118, 192, 67, 1),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 90, vertical: 16),
-                      child: Text(
-                        'Confirm details',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'cabin',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
+                  ValueListenableBuilder<bool>(
+                    valueListenable: isFormValid,
+                    builder: (context, isValid, child) {
+                      return Center(
+                        child: MaterialButton(
+                          onPressed: isValid ? _confirmDetails : null,
+                          color: isValid
+                              ? ColorsManager.mainGreen
+                              : Colors.grey,
+                          disabledColor: Colors.grey,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 90, vertical: 16),
+                          child: Text(
+                            'Confirm details',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'cabin',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
                         ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                   SizedBox(height: 20),
                 ],

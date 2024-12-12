@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/routing/routes.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/home/presentation/widgets/container_button_model.dart';
 
 
@@ -47,7 +48,7 @@ class OrderSuccessScreen extends StatelessWidget {
               child: ContainerButtonModel(
                 itext: "Continue Shopping",
                 containerWidth: MediaQuery.of(context).size.width,
-                bgColor:Color.fromRGBO(118, 192, 67, 1),
+                bgColor:ColorsManager.mainGreen,
               ),
             ),
           ),

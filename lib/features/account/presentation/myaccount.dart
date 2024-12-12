@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/update_user_form.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
@@ -78,7 +79,7 @@ class MyaccountScreen extends StatelessWidget {
                                   "Edit",
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Color.fromRGBO(118, 192, 67, 1),
+                                    color: ColorsManager.mainGreen,
                                   ),
                                 ),
                               ),

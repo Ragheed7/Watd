@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/theming/colors.dart';
 
 class AccountOptionListTileScreen extends StatelessWidget {
   final IconData icon;
@@ -22,7 +23,7 @@ class AccountOptionListTileScreen extends StatelessWidget {
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(20.0),
         ),
-        child: Icon(icon, size: 24.0),
+        child: Icon(icon, size: 24.0, color: ColorsManager.mainGreen,),
       ),
       title: Text(title),
       trailing: const Icon(Icons.arrow_forward_ios, size: 16),

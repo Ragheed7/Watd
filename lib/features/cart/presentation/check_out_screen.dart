@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/cart/data/model/order_models/create_order_request.dart';
 import 'package:waie/features/cart/data/model/order_models/pay_order_request.dart';
 import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_addresses_cubit.dart';
@@ -149,7 +150,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   showDialog(
                     context: context,
                     barrierDismissible: false,
-                    builder: (_) => Center(child: CircularProgressIndicator()),
+                    builder: (_) => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
                   );
                 },
                 success: (createOrderResponse) async {
@@ -185,7 +186,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   showDialog(
                     context: context,
                     barrierDismissible: false,
-                    builder: (_) => Center(child: CircularProgressIndicator()),
+                    builder: (_) => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
                   );
                 },
                 success: (payOrderResponse) {
@@ -238,7 +239,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           builder: (context, state) {
             return state.when(
               initial: () => Center(child: Text("Initializing Checkout...")),
-              loading: () => Center(child: CircularProgressIndicator()),
+              loading: () => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
               cartItemsFetched: (data) {
                 final cartItems = data.result ?? [];
                 if (cartItems.isEmpty) {
@@ -291,7 +292,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                     "Change",
                                     style: TextStyle(
                                       fontSize: 14,
-                                      color: Color.fromRGBO(118, 192, 67, 1),
+                                      color: ColorsManager.mainGreen,
                                     ),
                                   ),
                                 ),
@@ -354,7 +355,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                     "Change",
                                     style: TextStyle(
                                       fontSize: 14,
-                                      color: Color.fromRGBO(118, 192, 67, 1),
+                                      color: ColorsManager.mainGreen,
                                     ),
                                   ),
                                 ),
@@ -389,11 +390,48 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                               child: ElevatedButton(
                                 onPressed: (_cvv.isNotEmpty &&
                                         RegExp(r'^\d{3,4}$').hasMatch(_cvv))
-                                    ? _processOrderCreation
+                                    ? () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              backgroundColor: Colors.white,
+                                              title: Text('Confirm Purchase'),
+                                              content: Text(
+                                                  'Are you sure you want to proceed with this purchase?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pop(); 
+                                                  },
+                                                  child: Text(
+                                                    'Cancel',
+                                                    style: TextStyle(
+                                                        color: Colors.red),
+                                                  ),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pop(); 
+                                                    _processOrderCreation(); 
+                                                  },
+                                                  child: Text(
+                                                    'Confirm',
+                                                    style: TextStyle(
+                                                        color: ColorsManager.mainGreen),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
                                     : null,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
-                                      Color.fromRGBO(118, 192, 67, 1),
+                                      ColorsManager.mainGreen,
                                   padding: EdgeInsets.symmetric(
                                     horizontal:
                                         MediaQuery.of(context).size.width * 0.3,
@@ -413,6 +451,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 ),
                               ),
                             ),
+
                             SizedBox(height: 100),
                           ],
                         ),

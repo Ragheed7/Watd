@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waie/core/routing/routes.dart';
 import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/my_order_screen.dart';
 import 'package:waie/features/account/presentation/payment_screen.dart';
 import 'package:waie/features/account/presentation/saved_address_screen.dart';
@@ -133,7 +134,7 @@ class AccountScreen extends StatelessWidget {
                 SizedBox(height: 130),
                 LogoutButtonWidget(
                   buttonText: 'Logout',
-                  buttonColor: const Color.fromRGBO(118, 192, 67, 1),
+                  buttonColor: ColorsManager.mainGreen,
                 ),
                 const SizedBox(height: 20),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
 
 class AddNewPaymentButtonScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class AddNewPaymentButtonScreen extends StatelessWidget {
             ),
           );
         },
-        color: Color.fromRGBO(118, 192, 67, 1),
+        color: ColorsManager.mainGreen,
         padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).size.width * 0.1,
           vertical: 16,

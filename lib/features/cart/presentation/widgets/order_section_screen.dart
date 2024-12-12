@@ -20,7 +20,7 @@
 //         builder: (context, state) {
 //           return state.when(
 //             initial: () => Center(child: Text("Loading order details...")),
-//             loading: () => Center(child: CircularProgressIndicator()),
+//             loading: () => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
 //             success: (order) {
 //               // Calculate totals
 //               double itemsTotal = 0;

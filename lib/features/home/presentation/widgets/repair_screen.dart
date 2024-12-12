@@ -122,7 +122,7 @@ class _RepairScreenState extends State<RepairScreen> {
               context: context,
               barrierDismissible: false, // Prevent closing while loading
               builder: (context) => const Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: ColorsManager.mainGreen,),
               ),
             );
           },
@@ -344,7 +344,7 @@ class _RepairScreenState extends State<RepairScreen> {
                                   }
                                 : null,
                             color: isValid
-                                ? Color.fromRGBO(118, 192, 67, 1)
+                                ? ColorsManager.mainGreen
                                 : Colors.grey,
                             disabledColor: Colors.grey,
                             padding: EdgeInsets.symmetric(

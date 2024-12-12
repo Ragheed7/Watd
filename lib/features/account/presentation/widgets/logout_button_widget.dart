@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/routing/routes.dart';
+import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/auth/repo/auth_repo.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 
@@ -25,7 +26,7 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: isLoading
-          ? CircularProgressIndicator()
+          ? CircularProgressIndicator(color: ColorsManager.mainGreen,)
           : MaterialButton(
               onPressed: () async {
                 bool? confirm = await showDialog<bool>(
