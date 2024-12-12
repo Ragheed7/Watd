@@ -165,6 +165,13 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                               country: countryController.text,
                             );
                             addressCubit.createAddress(newAddress);
+                            Navigator.pushReplacement<void, void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    const SavedAddressScreen(),
+                              ),
+                            );
                           }
                         },
                         color: ColorsManager.mainGreen,
