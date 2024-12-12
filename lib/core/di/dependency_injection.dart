@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:waie/core/Notifications/signalr_service.dart';
 import 'package:waie/core/networking/api_service.dart';
 import 'package:waie/core/networking/dio_factory.dart';
 import 'package:waie/core/shared_models/look_ups/logic/lookup_cubit.dart';
@@ -24,6 +25,7 @@ import 'package:waie/features/home/logic/cubit/home_cubit.dart';
 import 'package:waie/features/login/data/repository/login_repo.dart';
 import 'package:waie/features/login/logic/cubit/login_cubit.dart';
 import 'package:waie/features/login/logic/cubit/user_cubit.dart';
+import 'package:waie/features/product_screen/logic/similar_products_cubit.dart';
 import 'package:waie/features/products_list/data/repository/product_repo.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 
@@ -39,6 +41,10 @@ Future<void> setupGetIt() async {
   // Register AuthRepository
   getIt.registerLazySingleton<AuthRepository>(
       () => AuthRepository(getIt<ApiService>()));
+  
+  getIt.registerLazySingleton<SignalRService>(
+  () => SignalRService(getIt<AuthRepository>())
+);
 
   // Register LoginRepo and LoginCubit
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt<ApiService>()));
@@ -52,6 +58,8 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ProductRepo>(
       () => ProductRepo(getIt<ApiService>()));
   getIt.registerFactory<ProductCubit>(() => ProductCubit(getIt<ProductRepo>()));
+
+  getIt.registerFactory<SimilarProductsCubit>(() => SimilarProductsCubit(getIt<ProductRepo>()));
 
   // Register UserCubit
   getIt.registerLazySingleton<UserCubit>(() => UserCubit());

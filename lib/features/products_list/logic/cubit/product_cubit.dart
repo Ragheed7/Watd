@@ -100,5 +100,5 @@ class ProductCubit extends Cubit<ProductState> {
         emit(ProductState.productError(errorHandler));
       },
     );
-  }
+  } 
 }

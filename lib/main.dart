@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:waie/core/Notifications/notification_manager.dart';
+import 'package:waie/core/Notifications/signalr_service.dart';
 import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/helpers/constants.dart';
 import 'package:waie/core/helpers/extensions.dart';
@@ -21,10 +23,12 @@ import 'package:waie/features/login/logic/cubit/user_cubit.dart';
 import 'package:waie/waie_app.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await setupGetIt();
-    //fixing text hiding bug of screenUtils in release mode
-    await ScreenUtil.ensureScreenSize();
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupGetIt();
+  //fixing text hiding bug of screenUtils in release mode
+  await ScreenUtil.ensureScreenSize();
+  await NotificationManager.init();
+  getIt<SignalRService>();
   await checkIfLoggedInUser();
   // Load UserData and update UserCubit
   if (isLoggedInUser) {
@@ -39,7 +43,7 @@ void main() async {
         BlocProvider(
           create: (_) => getIt<UserCubit>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (_) => getIt<UpdateUserCubit>(),
         ),
         BlocProvider<CartCubit>(
