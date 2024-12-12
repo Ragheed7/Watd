@@ -40,6 +40,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_launcher_icons: ^0.14.2
   flutter_local_notifications: ^18.0.1
   flutter_native_splash: ^2.4.3
   flutter_offline: ^4.0.0
@@ -71,6 +72,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
+  adaptive_icon_foreground: "assets/images/foregroundLogo.png"
+  adaptive_icon_background: "#ffffff"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
