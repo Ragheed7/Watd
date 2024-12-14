@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:waie/core/helpers/spacing.dart';
 import 'package:waie/features/product_screen/logic/similar_products_cubit.dart';
 import 'package:waie/features/product_screen/presentation/widgets/add_to_cart_button.dart';
@@ -8,8 +9,6 @@ import 'package:waie/features/product_screen/presentation/widgets/product__info.
 import 'package:waie/features/product_screen/presentation/widgets/product_description.dart';
 import 'package:waie/features/product_screen/presentation/widgets/similar_products.dart';
 import 'package:waie/features/product_screen/presentation/widgets/title_category_and_price.dart';
-import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
-import 'package:get_it/get_it.dart';
 import 'package:waie/features/products_list/data/model/product_models/product.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -22,20 +21,11 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  late SimilarProductsCubit similarProductsCubit;
-
   @override
   void initState() {
     super.initState();
-    similarProductsCubit = GetIt.instance<SimilarProductsCubit>();
-    fetchSimilarProducts();
-  }
-
-  void fetchSimilarProducts() {
-    similarProductsCubit.fetchProducts(
-      categoryId: widget.product.category?.categoryId,
-      pageSize: 8, // You can define this value as needed
-    );
+    // Remove the fetchSimilarProducts() call here
+    // The SimilarProducts widget will handle fetching.
   }
 
   @override
@@ -79,10 +69,16 @@ class _ProductScreenState extends State<ProductScreen> {
                           fontSize: 20,
                           fontWeight: FontWeight.w500)),
                 ),
+                // Just provide the cubit and parameters, don't fetch here
                 BlocProvider.value(
-                  value: similarProductsCubit,
+                  value: GetIt.instance<SimilarProductsCubit>(),
                   child: SimilarProducts(
-                      categoryId: widget.product.category?.categoryId),
+                    currentProductId: widget.product.productId,
+                    categoryId: widget.product.category?.categoryId,
+                    brandId: widget.product.brand!.brandId,
+                    styleId: widget.product.style!.styleId,
+                    materialId: widget.product.material!.materialId,
+                  ),
                 ),
                 verticalSpace(30),
                 AddToCartButton(product: widget.product),
@@ -94,9 +90,11 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  @override
-  void dispose() {
-    similarProductsCubit.close();
-    super.dispose();
-  }
+  // Remove closing the cubit here if SimilarProducts still needs it.
+  // If you must close it, ensure it's not used elsewhere after closing.
+  // @override
+  // void dispose() {
+  //   similarProductsCubit.close();
+  //   super.dispose();
+  // }
 }

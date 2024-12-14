@@ -34,7 +34,7 @@ class AddressCubit extends Cubit<AddressState<GetAddresses>> {
     response.when(
       success: (createAddressResponse) {
         if (createAddressResponse.isSuccess) {
-          emit(AddressState.addressCreated(createAddressResponse as GetAddresses));
+          // emit(AddressState.addressCreated(createAddressResponse as GetAddresses));
           getAddresses();
         } else {
           emit(AddressState.error(
@@ -56,7 +56,7 @@ class AddressCubit extends Cubit<AddressState<GetAddresses>> {
     response.when(
       success: (defaultApiResponse) {
         if (defaultApiResponse.isSuccess) {
-          emit(AddressState.addressUpdated(defaultApiResponse as GetAddresses));
+          // emit(AddressState.addressUpdated(defaultApiResponse as GetAddresses));
           getAddresses();
         } else {
           emit(AddressState.error(

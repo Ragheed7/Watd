@@ -3,6 +3,8 @@ bool isLoggedInUser = false;
 class SharedPrefKeys {
   static const String userToken = "userToken";
   static const String refreshToken = 'refreshToken';
+  static const String accessTokenExpiry = 'accessTokenExpiry';
+  static const String refreshTokenExpiry = 'refreshTokenExpiry';
   static const String userData = 'userData';
   static const double deliveryFee = 35;
 }

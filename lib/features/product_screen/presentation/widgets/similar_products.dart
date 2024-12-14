@@ -6,9 +6,10 @@ import 'package:waie/features/product_screen/presentation/ProductScreen.dart';
 import 'package:waie/features/products_list/data/model/product_models/product.dart';
 import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
 import 'package:waie/features/product_screen/presentation/widgets/images_slider.dart';
-import 'package:waie/features/products_list/logic/cubit/product_state.dart'; 
+import 'package:waie/features/products_list/logic/cubit/product_state.dart';
 
 class SimilarProducts extends StatefulWidget {
+  final int currentProductId;
   final int? categoryId;
   final int? materialId;
   final int? brandId;
@@ -20,6 +21,7 @@ class SimilarProducts extends StatefulWidget {
     this.materialId,
     this.brandId,
     this.styleId,
+    required this.currentProductId,
   });
 
   @override
@@ -27,37 +29,40 @@ class SimilarProducts extends StatefulWidget {
 }
 
 class _SimilarProductsState extends State<SimilarProducts> {
-   @override
+  @override
   void initState() {
     super.initState();
-    context.read<SimilarProductsCubit>().fetchProducts(
-      categoryId: widget.categoryId,
-      materialId: widget.materialId,
-      brandId: widget.brandId,
-      styleId: widget.styleId,
-      pageSize: 8,  
-    );
+    context.read<SimilarProductsCubit>().fetchSimilarProductsOr(
+          currentProductId: widget.currentProductId,
+          categoryId: widget.categoryId,
+          materialId: widget.materialId,
+          brandId: widget.brandId,
+          styleId: widget.styleId,
+          pageSize: 5,
+        );
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SimilarProductsCubit, ProductState>(
-  builder: (context, state) {
-    if (state is ProductLoading) {
-      return CircularProgressIndicator(color: ColorsManager.mainGreen,);
-    } else if (state is ProductSuccess) {
-      return buildSimilarProductsList(state.products);
-    } else if (state is ProductError) {
-      return Text('Failed to load similar products');
-    }
-    return SizedBox();  
-  },
+      builder: (context, state) {
+        if (state is ProductLoading) {
+          return CircularProgressIndicator(
+            color: ColorsManager.mainGreen,
+          );
+        } else if (state is ProductSuccess) {
+          return buildSimilarProductsList(state.products);
+        } else if (state is ProductError) {
+          return Text('Failed to load similar products');
+        }
+        return SizedBox();
+      },
     );
   }
 
-  Widget buildSimilarProductsList(List<Product> products) { 
+  Widget buildSimilarProductsList(List<Product> products) {
     return SizedBox(
-      height: 250, 
+      height: 250,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: products.length,
@@ -67,7 +72,8 @@ class _SimilarProductsState extends State<SimilarProducts> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProductScreen(product: product)),
+                MaterialPageRoute(
+                    builder: (context) => ProductScreen(product: product)),
               );
             },
             child: Padding(
@@ -100,7 +106,9 @@ class _SimilarProductsState extends State<SimilarProducts> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.nameEn ?? "Unknown", maxLines: 1, overflow: TextOverflow.ellipsis,
+                  product.nameEn ?? "Unknown",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,

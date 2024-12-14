@@ -94,7 +94,7 @@ class MyaccountScreen extends StatelessWidget {
                           SizedBox(height: 6),
                           // Display phone number
                           Text(
-                            (userInfo?.phone ?? "0500000000"),
+                            '+966 ' + (userInfo?.phone ?? "0500000000"),
                             style: TextStyle(fontSize: 16),
                           ),
                         ],

@@ -10,7 +10,7 @@ class ProductCubit extends Cubit<ProductState> {
 
   List<Product> productsList = [];
   int currentPage = 1;
-  final int pageSize = 8;
+  final int pageSize = 50;
   bool isLoadingMore = false;
   bool hasMoreData = true;
 

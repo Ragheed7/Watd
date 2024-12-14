@@ -35,7 +35,7 @@ class _ImagesSliderState extends State<ImagesSlider> {
               // Access the imageUrl property
               String? imageUrl = imageData.imageUrl != null
                   ? ApiConsts.serverBaseUrl + imageData.imageUrl!
-                  : 'assets/images/Kitchens.jpg'; 
+                  : 'assets/images/logoWithoutName.png'; 
 
               return Builder(
                 builder: (BuildContext context) {
@@ -48,8 +48,8 @@ class _ImagesSliderState extends State<ImagesSlider> {
                             width: MediaQuery.of(context).size.width,
                             errorBuilder: (context, error, stackTrace) {
                               return Image.asset(
-                                'assets/images/Kitchens.jpg',
-                                fit: BoxFit.cover,
+                                'assets/images/logoWithoutName.png',
+                                fit: BoxFit.fitWidth,
                                 width: MediaQuery.of(context).size.width,
                               );
                             },

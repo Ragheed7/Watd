@@ -150,7 +150,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   showDialog(
                     context: context,
                     barrierDismissible: false,
-                    builder: (_) => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
+                    builder: (_) => Center(
+                        child: CircularProgressIndicator(
+                      color: ColorsManager.mainGreen,
+                    )),
                   );
                 },
                 success: (createOrderResponse) async {
@@ -186,7 +189,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   showDialog(
                     context: context,
                     barrierDismissible: false,
-                    builder: (_) => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
+                    builder: (_) => Center(
+                        child: CircularProgressIndicator(
+                      color: ColorsManager.mainGreen,
+                    )),
                   );
                 },
                 success: (payOrderResponse) {
@@ -239,7 +245,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           builder: (context, state) {
             return state.when(
               initial: () => Center(child: Text("Initializing Checkout...")),
-              loading: () => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
+              loading: () => Center(
+                  child: CircularProgressIndicator(
+                color: ColorsManager.mainGreen,
+              )),
               cartItemsFetched: (data) {
                 final cartItems = data.result ?? [];
                 if (cartItems.isEmpty) {
@@ -254,206 +263,218 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 }
                 double totalPayment = itemsTotal + SharedPrefKeys.deliveryFee;
 
-                return SingleChildScrollView(
-                  child: SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Cart Items Section
-                            CartSectionScreen(cartItems: cartItems),
-                            SizedBox(height: 50),
-                            // Delivery Address
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Delivery Address",
-                                  style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    // Navigate to Change Address Screen and await selection
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            SavedAddressScreen(),
-                                      ),
-                                    );
-                                    // The SelectedAddressCubit will handle the selection
-                                  },
-                                  child: Text(
-                                    "Change",
+                return RefreshIndicator(
+                  color: ColorsManager.mainGreen,
+                  backgroundColor: Colors.white,
+                  onRefresh: () async {
+                    await context.read<CartCubit>().fetchCartItems();
+                  },
+                  child: SingleChildScrollView(
+                    child: SafeArea(
+                      child: Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Cart Items Section
+                              CartSectionScreen(cartItems: cartItems),
+                              SizedBox(height: 50),
+                              // Delivery Address
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Delivery Address",
                                     style: TextStyle(
-                                      fontSize: 14,
-                                      color: ColorsManager.mainGreen,
-                                    ),
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.w600),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5),
-                            // Display Selected Address
-                            BlocBuilder<SelectedAddressCubit,
-                                address_state.AddressState<Address>>(
-                              builder: (context, state) {
-                                if (state is address_state.Success<Address>) {
-                                  return DeliveryAddressSectionScreen(
-                                      address: state.data);
-                                } else {
-                                  return Center(
-                                      child: Text("No address selected"));
-                                }
-                              },
-                            ),
-                            SizedBox(height: 15),
-                            // Payment Section
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Payment",
-                                  style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    // Retrieve userId from UserCubit
-                                    final userCubit = context.read<UserCubit>();
-                                    final userId = userCubit.state?.userId;
-
-                                    if (userId == null || userId.isEmpty) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                            content:
-                                                Text("User not logged in.")),
-                                      );
-                                      return;
-                                    }
-
-                                    // Navigate to PaymentScreen with userId
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PaymentScreen(
-                                          isSelection: true,
-                                          userId: userId,
+                                  TextButton(
+                                    onPressed: () async {
+                                      // Navigate to Change Address Screen and await selection
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              SavedAddressScreen(),
                                         ),
+                                      );
+                                      // The SelectedAddressCubit will handle the selection
+                                    },
+                                    child: Text(
+                                      "Change",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: ColorsManager.mainGreen,
                                       ),
-                                    );
-                                    // The SelectedPaymentCardCubit will handle the selection
-                                  },
-                                  child: Text(
-                                    "Change",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: ColorsManager.mainGreen,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5),
-                            // Display Selected Payment Card
-                            BlocBuilder<SelectedPaymentCardCubit,
-                                PaymentCardState>(
-                              builder: (context, state) {
-                                if (state is PaymentCardSelected) {
-                                  return PaymentSectionScreen(
-                                    paymentCard: state.selectedCard,
-                                    onCvvChanged: _handleCvvChange,
-                                  );
-                                } else {
-                                  return Center(
-                                      child: Text("No payment card selected"));
-                                }
-                              },
-                            ),
-                            SizedBox(height: 40),
-                            // Order Summary
-                            OrderSummaryScreen(
-                              itemsTotal: itemsTotal,
-                              deliveryFee: SharedPrefKeys.deliveryFee,
-                              totalPayment: totalPayment,
-                            ),
-                            SizedBox(height: 20),
-                            // Buy Button
-                            Center(
-                              child: ElevatedButton(
-                                onPressed: (_cvv.isNotEmpty &&
-                                        RegExp(r'^\d{3,4}$').hasMatch(_cvv))
-                                    ? () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return AlertDialog(
-                                              backgroundColor: Colors.white,
-                                              title: Text('Confirm Purchase'),
-                                              content: Text(
-                                                  'Are you sure you want to proceed with this purchase?'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context)
-                                                        .pop(); 
-                                                  },
-                                                  child: Text(
-                                                    'Cancel',
-                                                    style: TextStyle(
-                                                        color: Colors.red),
-                                                  ),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context)
-                                                        .pop(); 
-                                                    _processOrderCreation(); 
-                                                  },
-                                                  child: Text(
-                                                    'Confirm',
-                                                    style: TextStyle(
-                                                        color: ColorsManager.mainGreen),
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          },
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              // Display Selected Address
+                              BlocBuilder<SelectedAddressCubit,
+                                  address_state.AddressState<Address>>(
+                                builder: (context, state) {
+                                  if (state is address_state.Success<Address>) {
+                                    return DeliveryAddressSectionScreen(
+                                        address: state.data);
+                                  } else {
+                                    return Center(
+                                        child: Text("No address selected"));
+                                  }
+                                },
+                              ),
+                              SizedBox(height: 15),
+                              // Payment Section
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Payment",
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      // Retrieve userId from UserCubit
+                                      final userCubit =
+                                          context.read<UserCubit>();
+                                      final userId = userCubit.state?.userId;
+
+                                      if (userId == null || userId.isEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content:
+                                                  Text("User not logged in.")),
                                         );
+                                        return;
                                       }
-                                    : null,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      ColorsManager.mainGreen,
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal:
-                                        MediaQuery.of(context).size.width * 0.3,
-                                    vertical: 16,
+
+                                      // Navigate to PaymentScreen with userId
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PaymentScreen(
+                                            isSelection: true,
+                                            userId: userId,
+                                          ),
+                                        ),
+                                      );
+                                      // The SelectedPaymentCardCubit will handle the selection
+                                    },
+                                    child: Text(
+                                      "Change",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: ColorsManager.mainGreen,
+                                      ),
+                                    ),
                                   ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12.0),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              // Display Selected Payment Card
+                              BlocBuilder<SelectedPaymentCardCubit,
+                                  PaymentCardState>(
+                                builder: (context, state) {
+                                  if (state is PaymentCardSelected) {
+                                    return PaymentSectionScreen(
+                                      paymentCard: state.selectedCard,
+                                      onCvvChanged: _handleCvvChange,
+                                    );
+                                  } else {
+                                    return Center(
+                                        child:
+                                            Text("No payment card selected"));
+                                  }
+                                },
+                              ),
+                              SizedBox(height: 40),
+                              // Order Summary
+                              OrderSummaryScreen(
+                                itemsTotal: itemsTotal,
+                                deliveryFee: SharedPrefKeys.deliveryFee,
+                                totalPayment: totalPayment,
+                              ),
+                              SizedBox(height: 20),
+                              // Buy Button
+                              Center(
+                                child: ElevatedButton(
+                                  onPressed: (_cvv.isNotEmpty &&
+                                          RegExp(r'^\d{3,4}$').hasMatch(_cvv))
+                                      ? () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                backgroundColor: Colors.white,
+                                                title: Text('Confirm Purchase'),
+                                                content: Text(
+                                                    'Are you sure you want to proceed with this purchase?'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: Text(
+                                                      'Cancel',
+                                                      style: TextStyle(
+                                                          color: Colors.red),
+                                                    ),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      _processOrderCreation();
+                                                    },
+                                                    child: Text(
+                                                      'Confirm',
+                                                      style: TextStyle(
+                                                          color: ColorsManager
+                                                              .mainGreen),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+                                      : null,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: ColorsManager.mainGreen,
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          MediaQuery.of(context).size.width *
+                                              0.3,
+                                      vertical: 16,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
                                   ),
-                                ),
-                                child: Text(
-                                  'Buy',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400,
+                                  child: Text(
+                                    'Buy',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
 
-                            SizedBox(height: 100),
-                          ],
+                              SizedBox(height: 100),
+                            ],
+                          ),
                         ),
                       ),
                     ),

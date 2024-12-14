@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:waie/core/theming/colors.dart';
 import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
 import 'package:waie/features/cart/logic/cart_cubit.dart';
@@ -16,12 +18,34 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  // Timer? _timer;
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+
   @override
   void initState() {
     super.initState();
     // Fetch cart items when the screen is initialized
     context.read<CartCubit>().fetchCartItems();
+
+  //  WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     _refreshIndicatorKey.currentState?.show();
+  //     context.read<CartCubit>().fetchCartItems();
+  //   });
+
+    // Timer to fetch cart items every 30 seconds
+    // _timer = Timer.periodic(Duration(seconds: 30), (timer) {
+      // _refreshIndicatorKey.currentState?.show();
+    //   context.read<CartCubit>().fetchCartItems();
+    // },
+    // );
   }
+
+  // @override
+  // void dispose() {
+  //   // Cancel the timer when the widget is disposed
+  //   _timer?.cancel();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +77,16 @@ class _CartScreenState extends State<CartScreen> {
         builder: (context, state) {
           return state.when(
             initial: () => Center(child: Text("Initializing Cart...")),
-            loading: () => Center(child: CircularProgressIndicator(color: ColorsManager.mainGreen,)),
+            loading: () => Center(
+                child: CircularProgressIndicator(
+              color: ColorsManager.mainGreen,
+            )),
             cartItemsFetched: (data) {
               final cartItems = data.result ?? [];
               if (cartItems.isEmpty) {
                 return Center(
                     child: Image.asset(
-                  "assets/images/EmptyCart.png",
+                  "assets/images/EC.png",
                   width: 150,
                   height: 200,
                 ));
@@ -74,42 +101,31 @@ class _CartScreenState extends State<CartScreen> {
               }
 
               return RefreshIndicator(
-                 color: ColorsManager.mainGreen,
-                  backgroundColor: Colors.white,
-                  onRefresh: () async {
-                    await context.read<CartCubit>().fetchCartItems(); 
-                  },
-                child: SingleChildScrollView(
-                  child: SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CartSummaryScreen(
-                            itemCount: cartItems.length,
-                            totalPrice: total,
-                          ),
-                          SizedBox(height: 15),
-                          ListView.builder(
-                            itemCount: cartItems.length,
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              final product = cartItems[index];
-                              return CartItemScreen(
-                                product: product,
-                                showDeleteButton: true,
-                              );
-                            },
-                          ),
-                          SizedBox(height: 100),
-                          CheckoutButtonScreen(),
-                          SizedBox(height: 20),
-                        ],
-                      ),
+                // key: _refreshIndicatorKey,
+                color: ColorsManager.mainGreen,
+                backgroundColor: Colors.white,
+                onRefresh: () async {
+                  await context.read<CartCubit>().fetchCartItems();
+                },
+                child: ListView(
+                  padding: const EdgeInsets.all(20),
+                  children: [
+                    CartSummaryScreen(
+                      itemCount: cartItems.length,
+                      totalPrice: total,
                     ),
-                  ),
+                    SizedBox(height: 15),
+                    // Cart items
+                    ...cartItems.map((product) {
+                      return CartItemScreen(
+                        product: product,
+                        showDeleteButton: true,
+                      );
+                    }).toList(),
+                    SizedBox(height: 100),
+                    CheckoutButtonScreen(),
+                    SizedBox(height: 20),
+                  ],
                 ),
               );
             },

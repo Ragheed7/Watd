@@ -35,7 +35,7 @@ class AccountScreen extends StatelessWidget {
               children: [
                 AccountHeaderWidget(
                   accountName: userInfo.userName ?? 'Account name',
-                  phoneNumber: (userInfo.phone ?? "0500000000"),
+                  phoneNumber: '+966 ' + (userInfo.phone ?? "0500000000"),
                 ),
                 const SizedBox(height: 16),
                 const Divider(),

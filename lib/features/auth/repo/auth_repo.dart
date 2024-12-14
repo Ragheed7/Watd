@@ -11,41 +11,103 @@ class AuthRepository {
   AuthRepository(this._apiService);
 
   /// Refreshes the access token using the refresh token.
+  // Future<bool> refreshToken() async {
+  //   try {
+  //     final accessToken =
+  //         await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
+  //     final refreshToken =
+  //         await SharedPrefHelper.getSecuredString(SharedPrefKeys.refreshToken);
+
+  //     if (accessToken == null ||
+  //         accessToken.isEmpty ||
+  //         refreshToken == null ||
+  //         refreshToken.isEmpty) {
+  //       return false;
+  //     }
+
+  //     final response = await _apiService.refreshToken(
+  //       RefreshTokenRequestBody(
+  //         accessToken: accessToken,
+  //         refreshToken: refreshToken,
+  //       ),
+  //     );
+
+  //     if (response.isSuccess == true && response.result != null) {
+  //       final newAccessToken = response.result!.accessToken ?? '';
+  //       final newRefreshToken = response.result!.refreshToken ?? '';
+
+  //       await saveTokens(newAccessToken, newRefreshToken);
+
+  //       return true;
+  //     } else {
+  //       // Refresh token invalid or expired
+  //       await logout();
+  //       return false;
+  //     }
+  //   } catch (e) {
+  //     // Handle exceptions (e.g., network errors)
+  //     await logout();
+  //     return false;
+  //   }
+  // }
+
   Future<bool> refreshToken() async {
     try {
       final accessToken =
           await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
       final refreshToken =
           await SharedPrefHelper.getSecuredString(SharedPrefKeys.refreshToken);
+      final refreshTokenExpiryString = await SharedPrefHelper.getSecuredString(
+          SharedPrefKeys.refreshTokenExpiry);
+      final DateTime refreshTokenExpiry = refreshTokenExpiryString != null
+          ? DateTime.parse(refreshTokenExpiryString)
+          : DateTime.now()
+              .subtract(const Duration(days: 1)); // Assume expired if not found
 
-      if (accessToken == null ||
-          accessToken.isEmpty ||
-          refreshToken == null ||
-          refreshToken.isEmpty) {
-        return false;
+      Duration timeUntilExpiration =
+          refreshTokenExpiry.difference(DateTime.now());
+
+      // Printing how much time is left until the token expires
+      if (timeUntilExpiration.isNegative) {
+        print("Token has already expired.");
+      } else {
+        print(
+            "Token expires in: ${timeUntilExpiration.inDays} Days, ${timeUntilExpiration.inHours} Hours and ${timeUntilExpiration.inMinutes % 60} minutes.");
+      }
+
+      // Check if the refresh token has expired
+      if (DateTime.now().isAfter(refreshTokenExpiry)) {
+        await logout();
+        return false; // Refresh token has expired; user needs to log in again
       }
 
       final response = await _apiService.refreshToken(
         RefreshTokenRequestBody(
-          accessToken: accessToken,
-          refreshToken: refreshToken,
+          accessToken: accessToken!,
+          refreshToken: refreshToken!,
         ),
       );
 
       if (response.isSuccess == true && response.result != null) {
-        final newAccessToken = response.result!.accessToken ?? '';
-        final newRefreshToken = response.result!.refreshToken ?? '';
+        final newAccessTokenExpiry =
+            DateTime.now().add(const Duration(minutes: 30));
+        final newRefreshTokenExpiry = DateTime.now().add(const Duration(days: 7));
 
-        await saveTokens(newAccessToken, newRefreshToken);
+        await SharedPrefHelper.setSecuredString(
+            SharedPrefKeys.userToken, response.result!.accessToken!);
+        await SharedPrefHelper.setSecuredString(
+            SharedPrefKeys.refreshToken, response.result!.refreshToken!);
+        await SharedPrefHelper.setSecuredString(
+            SharedPrefKeys.accessTokenExpiry,
+            newAccessTokenExpiry.toIso8601String());
+        await SharedPrefHelper.setSecuredString(SharedPrefKeys.refreshTokenExpiry, newRefreshTokenExpiry.toIso8601String());
 
         return true;
       } else {
-        // Refresh token invalid or expired
         await logout();
         return false;
       }
     } catch (e) {
-      // Handle exceptions (e.g., network errors)
       await logout();
       return false;
     }
@@ -66,9 +128,12 @@ class AuthRepository {
   }
     
   /// Logs out the user by clearing tokens and user data.
-  Future<void> logout() async {
+ Future<void> logout() async {
     await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.userToken);
     await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.refreshToken);
-    // await SharedPrefHelper.deleteSecuredString(SharedPrefKeys.userData);
+    await SharedPrefHelper.deleteSecuredString(
+        SharedPrefKeys.accessTokenExpiry);
+    await SharedPrefHelper.deleteSecuredString(
+        SharedPrefKeys.refreshTokenExpiry);
   }
 }

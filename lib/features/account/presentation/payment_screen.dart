@@ -70,6 +70,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  SizedBox(
+                                    height: 120,
+                                  ),
                                   Image.asset(
                                     "assets/images/warning-2.png",
                                     height: 120,
@@ -79,7 +82,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                     height: 20,
                                   ),
                                   Text(
-                                    'No Services found.',
+                                    'No Payments found.',
                                     style: TextStyle(fontSize: 20),
                                   ),
                                 ],

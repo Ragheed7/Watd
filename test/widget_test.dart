@@ -15,8 +15,9 @@ import 'package:waie/waie_app.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
+    bool isLoggedIn = true;
     await tester.pumpWidget(Waie(
-      appRouter: AppRouter(),
+      appRouter: AppRouter(), isLoggedIn: isLoggedIn,
     ));
 
     // Verify that our counter starts at 0.

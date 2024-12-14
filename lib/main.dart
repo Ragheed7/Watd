@@ -12,6 +12,7 @@ import 'package:waie/core/routing/app_router.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
 import 'package:waie/core/shared_models/user_data/user_data.dart';
 import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
+import 'package:waie/features/auth/repo/auth_repo.dart';
 import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_addresses_cubit.dart';
 import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
 import 'package:waie/features/cart/data/repository/order_repo.dart';
@@ -29,11 +30,22 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   await NotificationManager.init();
   getIt<SignalRService>();
-  await checkIfLoggedInUser();
+  // await checkIfLoggedInUser();
   // Load UserData and update UserCubit
-  if (isLoggedInUser) {
+  // if (isLoggedInUser) {
+  //   await loadUserData();
+  // }
+
+  AuthRepository authRepository = getIt<AuthRepository>();
+
+  // Check and refresh token if necessary
+  bool isUserLoggedIn = await checkAndRefreshToken(authRepository);
+
+  // Load UserData and update UserCubit if the login is valid
+  if (isUserLoggedIn) {
     await loadUserData();
   }
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -66,7 +78,7 @@ void main() async {
         ),
       ],
       child: Waie(
-        appRouter: AppRouter(),
+        appRouter: AppRouter(), isLoggedIn: isUserLoggedIn
       ),
     ),
   );
@@ -90,12 +102,42 @@ Future<void> loadUserData() async {
   }
 }
 
-checkIfLoggedInUser() async {
-  String? userToken =
-      await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
-  if (!userToken.isNullOrEmpty()) {
-    isLoggedInUser = true;
+// checkIfLoggedInUser() async {
+//   String? userToken =
+//       await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken);
+//   if (!userToken.isNullOrEmpty()) {
+//     isLoggedInUser = true;
+//   } else {
+//     isLoggedInUser = false;
+//   }
+// }
+
+Future<bool> checkAndRefreshToken(AuthRepository authRepository) async {
+  final accessTokenExpiryString = await SharedPrefHelper.getSecuredString(SharedPrefKeys.accessTokenExpiry);
+  final DateTime accessTokenExpiry = accessTokenExpiryString != null
+    ? DateTime.parse(accessTokenExpiryString)
+    : DateTime.now().subtract(const Duration(days: 1)); // expired if not found
+
+  Duration timeUntilExpiration = accessTokenExpiry.difference(DateTime.now());
+
+  // Printing how much time is left until the token expires
+  if (timeUntilExpiration.isNegative) {
+    print("Token has already expired.");
   } else {
-    isLoggedInUser = false;
+    print("Token expires in: ${timeUntilExpiration.inHours} hours and ${timeUntilExpiration.inMinutes % 60} minutes.");
+  }
+
+  print("Checking token expiry");
+  if (DateTime.now().isAfter(accessTokenExpiry)) {
+    print("Token is expired, refreshing...");
+    bool refreshResult = await authRepository.refreshToken();
+    if (!refreshResult) {
+      print("Token refresh failed, logging out...");
+      return false;
+    }
+    return true;
+  } else {
+    print("Token is still valid");
+    return true;
   }
 }

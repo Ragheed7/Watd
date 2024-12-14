@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Waie extends StatelessWidget {
-  const Waie({super.key, required this.appRouter});
-
+  final bool isLoggedIn;
   final AppRouter appRouter;
+  const Waie({super.key, required this.appRouter, required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class Waie extends StatelessWidget {
           primaryColor: ColorsManager.mainGreen,
           scaffoldBackgroundColor: Colors.white,
         ),
-        initialRoute: isLoggedInUser ? Routes.navigationMenu : Routes.welcomeScreen,
+        initialRoute: isLoggedIn ? Routes.navigationMenu : Routes.welcomeScreen,
         // initialRoute: Routes.welcomeScreen
       ),
     );

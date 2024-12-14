@@ -36,13 +36,18 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
 
-    response.when(
+   response.when(
       success: (loginResponse) async {
         final accessToken = loginResponse.result?.tokens?.accessToken ?? "";
         final refreshToken = loginResponse.result?.tokens?.refreshToken ?? "";
+        final accessTokenExpiry =
+            DateTime.now().add(Duration(minutes: 30)); 
+        final refreshTokenExpiry =
+            DateTime.now().add(Duration(days: 7)); 
 
         // Save both tokens
-        await saveTokens(accessToken, refreshToken);
+            await saveTokens(accessToken, refreshToken, refreshTokenExpiry, accessTokenExpiry);
+
 
         // Save UserData to local storage
         await saveUserData(loginResponse.result?.user);
@@ -59,9 +64,16 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  Future<void> saveTokens(String accessToken, String refreshToken) async {
-    await SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, accessToken);
-    await SharedPrefHelper.setSecuredString(SharedPrefKeys.refreshToken, refreshToken);
+  Future<void> saveTokens(String accessToken, String refreshToken,
+      DateTime refreshTokenExpiry, DateTime accessTokenExpiry) async {
+    await SharedPrefHelper.setSecuredString(
+        SharedPrefKeys.userToken, accessToken);
+    await SharedPrefHelper.setSecuredString(
+        SharedPrefKeys.refreshToken, refreshToken);
+    await SharedPrefHelper.setSecuredString(SharedPrefKeys.refreshTokenExpiry,
+        refreshTokenExpiry.toIso8601String());
+    await SharedPrefHelper.setSecuredString(
+        SharedPrefKeys.accessTokenExpiry, accessTokenExpiry.toIso8601String());
   }
 
   Future<void> saveUserData(UserData? userData) async {
