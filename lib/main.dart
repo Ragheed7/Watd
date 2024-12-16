@@ -6,7 +6,6 @@ import 'package:waie/core/Notifications/notification_manager.dart';
 import 'package:waie/core/Notifications/signalr_service.dart';
 import 'package:waie/core/di/dependency_injection.dart';
 import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/extensions.dart';
 import 'package:waie/core/helpers/shared_prefs_helper.dart';
 import 'package:waie/core/routing/app_router.dart';
 import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
@@ -28,8 +27,8 @@ void main() async {
   await setupGetIt();
   //fixing text hiding bug of screenUtils in release mode
   await ScreenUtil.ensureScreenSize();
-  await NotificationManager.init();
-  getIt<SignalRService>();
+  // await NotificationManager.init();
+  // getIt<SignalRService>();
   // await checkIfLoggedInUser();
   // Load UserData and update UserCubit
   // if (isLoggedInUser) {

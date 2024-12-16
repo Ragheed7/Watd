@@ -208,10 +208,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     // Refresh the ProductCubit to update the search page
                     context.read<ProductCubit>().getProducts(
                           isInitialLoad: true,
-                          categoryId: context
-                              .read<SearchScreen>()
-                              .categoryData
-                              ?.categoryId,
+                          // categoryId: 
+                          // context
+                          //     .read<SearchScreen>()
+                          //     .categoryData
+                          //     ?.categoryId,
                         );
 
                     // Navigate to Payment Success Screen
@@ -227,7 +228,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                           content: Text(payOrderResponse.message ??
-                              "Payment was unsuccessful. Please try again.")),
+                              "Payment unsuccessful. You can find your created order in My Order Page.")),
                     );
                   }
                 },

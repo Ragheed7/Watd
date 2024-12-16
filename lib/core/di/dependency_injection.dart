@@ -42,9 +42,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<AuthRepository>(
       () => AuthRepository(getIt<ApiService>()));
   
-  getIt.registerLazySingleton<SignalRService>(
-  () => SignalRService(getIt<AuthRepository>())
-);
+//   getIt.registerLazySingleton<SignalRService>(
+//   () => SignalRService(getIt<AuthRepository>())
+// );
 
   // Register LoginRepo and LoginCubit
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt<ApiService>()));
