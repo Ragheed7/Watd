@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waie/core/Notifications/notification_manager.dart';
@@ -34,6 +35,9 @@ void main() async {
   // if (isLoggedInUser) {
   //   await loadUserData();
   // }
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   AuthRepository authRepository = getIt<AuthRepository>();
 
