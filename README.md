@@ -1,4 +1,4 @@
-# watd
+# Watd
 
 A new Flutter project.
 
