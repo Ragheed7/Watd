@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/order_item.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/shipping_address.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/transaction.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/order_item.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/shipping_address.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/transaction.dart';
 
 part 'order.g.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
-import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
-import 'package:waie/features/products_list/presentation/widgets/products_bloc_builder.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/features/products_list/logic/cubit/product_cubit.dart';
+import 'package:watd/features/products_list/presentation/widgets/products_bloc_builder.dart';
 
 class ProductsListScreen extends StatelessWidget {
   final CategoryData categoryData;

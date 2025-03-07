@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
-import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
-import 'package:waie/features/cart/data/repository/cart_repo.dart';
-import 'package:waie/features/cart/logic/cart_state.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/features/cart/data/model/add_to_cart_item_request.dart';
+import 'package:watd/features/cart/data/model/remove_from_cart_item_request.dart';
+import 'package:watd/features/cart/data/repository/cart_repo.dart';
+import 'package:watd/features/cart/logic/cart_state.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
 
 class CartCubit extends Cubit<CartState> {
   final CartRepo _cartRepo;

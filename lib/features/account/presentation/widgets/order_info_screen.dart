@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/networking/api_constants.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/order_details_screen.dart';
-import 'package:waie/features/account/presentation/widgets/order_images_list_screen.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/transaction.dart';
-import 'package:waie/features/cart/presentation/widgets/order_confirmation_screen.dart'; 
+import 'package:watd/core/networking/api_constants.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/order_details_screen.dart';
+import 'package:watd/features/account/presentation/widgets/order_images_list_screen.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/order.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/transaction.dart';
+import 'package:watd/features/cart/presentation/widgets/order_confirmation_screen.dart'; 
 
 class OrderInfoScreen extends StatelessWidget {
   final Order order;
@@ -19,7 +19,7 @@ class OrderInfoScreen extends StatelessWidget {
         .map((item) =>
             item.product.images != null && item.product.images!.isNotEmpty
                 ? (ApiConsts.serverBaseUrl + item.product.images![0].imageUrl!)
-                : "assets/images/waie2.png")
+                : "assets/images/watd2.png")
         .toList();
 
     return Container(

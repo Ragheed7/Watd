@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/shared_models/look_ups/brand_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/category_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/colors_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/logic/lookup_cubit.dart';
-import 'package:waie/core/shared_models/look_ups/logic/lookup_state.dart';
-import 'package:waie/core/shared_models/look_ups/material_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/product_status_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/style_lookup.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/shared_models/look_ups/brand_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/category_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/colors_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/logic/lookup_cubit.dart';
+import 'package:watd/core/shared_models/look_ups/logic/lookup_state.dart';
+import 'package:watd/core/shared_models/look_ups/material_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/product_status_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/style_lookup.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class FilterOptions extends StatefulWidget {
   final Function(Map<String, dynamic>) onApplyFilters;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_request.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_state.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
-import 'package:waie/features/login/logic/cubit/user_cubit.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/data/model/update_user_request.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/logic/update_user_cubit.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/logic/update_user_state.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
+import 'package:watd/features/login/logic/cubit/user_cubit.dart';
 
 class UpdateUserForm extends StatefulWidget {
   const UpdateUserForm({Key? key}) : super(key: key);

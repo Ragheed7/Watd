@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class UserInfoTextFormField extends StatelessWidget {
   final TextEditingController controller;

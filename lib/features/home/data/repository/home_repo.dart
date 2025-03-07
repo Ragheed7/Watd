@@ -1,7 +1,7 @@
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/core/networking/api_result.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/features/home/data/model/category_response.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/core/networking/api_result.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/features/home/data/model/category_response.dart';
 
 class HomeRepo {
   final ApiService _apiService;

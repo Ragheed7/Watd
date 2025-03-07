@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/account_screen.dart';
-import 'package:waie/features/cart/presentation/cart_screen.dart';
-import 'package:waie/features/search/presentation/search_screen.dart';
-import 'package:waie/features/home/presentation/home_screen.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/account_screen.dart';
+import 'package:watd/features/cart/presentation/cart_screen.dart';
+import 'package:watd/features/search/presentation/search_screen.dart';
+import 'package:watd/features/home/presentation/home_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);

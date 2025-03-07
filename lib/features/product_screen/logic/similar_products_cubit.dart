@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
-import 'package:waie/features/products_list/data/repository/product_repo.dart';
-import 'package:waie/features/products_list/logic/cubit/product_state.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/features/products_list/data/repository/product_repo.dart';
+import 'package:watd/features/products_list/logic/cubit/product_state.dart';
 
 class SimilarProductsCubit extends Cubit<ProductState> {
   final ProductRepo _productRepo;

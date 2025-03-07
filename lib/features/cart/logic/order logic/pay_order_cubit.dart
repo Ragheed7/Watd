@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/features/cart/data/model/order_models/pay_order_request.dart';
-import 'package:waie/features/cart/data/repository/order_repo.dart';
-import 'package:waie/features/cart/logic/order%20logic/pay_order_state.dart';
+import 'package:watd/features/cart/data/model/order_models/pay_order_request.dart';
+import 'package:watd/features/cart/data/repository/order_repo.dart';
+import 'package:watd/features/cart/logic/order%20logic/pay_order_state.dart';
 
 class PayOrderCubit extends Cubit<PayOrderState> {
   final OrderRepo _orderRepo;

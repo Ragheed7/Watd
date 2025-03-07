@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/home/presentation/widgets/container_button_model.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/home/presentation/widgets/container_button_model.dart';
 
 
 class OrderSuccessScreen extends StatelessWidget {

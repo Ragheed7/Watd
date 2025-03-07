@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
 
 class ProductInfo extends StatefulWidget {
   final Product product;

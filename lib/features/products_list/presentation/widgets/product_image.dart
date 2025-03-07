@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/networking/api_constants.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/core/networking/api_constants.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
 
 class ProductImage extends StatelessWidget {
   final CategoryData? categoryData;

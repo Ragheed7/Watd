@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:waie/core/networking/api_error_model.dart';
+import 'package:watd/core/networking/api_error_model.dart';
 
 enum DataSource {
   NO_CONTENT,

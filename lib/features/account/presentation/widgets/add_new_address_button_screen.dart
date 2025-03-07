@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/add_new_address_screen.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/add_new_address_screen.dart';
 
 class AddNewAddressButtonScreen extends StatelessWidget {
   const AddNewAddressButtonScreen({Key? key}) : super(key: key);

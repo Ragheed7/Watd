@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/features/OnBoarding/landing_screen.dart';
-import 'package:waie/features/OnBoarding/welcome_screen.dart';
-import 'package:waie/features/account/presentation/myaccount.dart';
-import 'package:waie/features/home/presentation/home_screen.dart';
-import 'package:waie/features/login/logic/cubit/login_cubit.dart';
-import 'package:waie/features/login/presentation/login_screen.dart';
-import 'package:waie/features/otp/otp_screen.dart';
-import 'package:waie/features/signup/signup_screen.dart';
-import 'package:waie/navigation_menu.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/features/OnBoarding/landing_screen.dart';
+import 'package:watd/features/OnBoarding/welcome_screen.dart';
+import 'package:watd/features/account/presentation/myaccount.dart';
+import 'package:watd/features/home/presentation/home_screen.dart';
+import 'package:watd/features/login/logic/cubit/login_cubit.dart';
+import 'package:watd/features/login/presentation/login_screen.dart';
+import 'package:watd/features/otp/otp_screen.dart';
+import 'package:watd/features/signup/signup_screen.dart';
+import 'package:watd/navigation_menu.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {

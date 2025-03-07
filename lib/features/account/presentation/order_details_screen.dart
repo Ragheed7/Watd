@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/networking/api_constants.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/transaction.dart';
-import 'package:waie/features/cart/presentation/widgets/order_confirmation_screen.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/networking/api_constants.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/order.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/transaction.dart';
+import 'package:watd/features/cart/presentation/widgets/order_confirmation_screen.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   final Order order;
@@ -17,7 +17,7 @@ class OrderDetailsScreen extends StatelessWidget {
     final imageList = order.orderItems
         .map((item) => item.product.images!.isNotEmpty
             ? (ApiConsts.serverBaseUrl + item.product.images![0].imageUrl!)
-            : "assets/images/waie2.png")
+            : "assets/images/watd2.png")
         .toList();
     final productTitles = order.orderItems
         .map((item) => item.product.nameEn ?? "Product")
@@ -148,13 +148,13 @@ class OrderDetailsScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return ListTile(
                       leading: Image.network(
-                        imageList[index] ?? "assets/images/waie2.png",
+                        imageList[index] ?? "assets/images/watd2.png",
                         height: 50,
                         width: 50,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            'assets/images/waie2.png',
+                            'assets/images/watd2.png',
                             height: 50,
                             width: 50,
                             fit: BoxFit.cover,

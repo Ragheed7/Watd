@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class AccountOptionListTileScreen extends StatelessWidget {
   final IconData icon;

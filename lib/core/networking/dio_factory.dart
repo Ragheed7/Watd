@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:waie/core/networking/api_constants.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/features/auth/interceptor/auth_interceptor.dart';
-import 'package:waie/features/auth/interceptor/token_interceptor.dart';
-import 'package:waie/features/auth/repo/auth_repo.dart';
+import 'package:watd/core/networking/api_constants.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/features/auth/interceptor/auth_interceptor.dart';
+import 'package:watd/features/auth/interceptor/token_interceptor.dart';
+import 'package:watd/features/auth/repo/auth_repo.dart';
 
 class DioFactory {
   /// Private constructor to prevent instantiation

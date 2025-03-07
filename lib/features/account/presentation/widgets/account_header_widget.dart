@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class AccountHeaderWidget extends StatelessWidget {
   final String accountName;

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class SearchAppBar extends StatefulWidget {
   final Function(String) onSearchChanged;

@@ -29,7 +29,7 @@ class OrderItemScreen extends StatelessWidget {
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Image.asset(
-                  "assets/images/waie2.png",
+                  "assets/images/watd2.png",
                   width: 80,
                   height: 80,
                   fit: BoxFit.cover,

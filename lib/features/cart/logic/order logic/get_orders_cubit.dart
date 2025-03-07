@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/features/cart/data/repository/order_repo.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/features/cart/data/repository/order_repo.dart';
 import 'get_orders_state.dart';
 
 class GetOrdersCubit extends Cubit<GetOrdersState> {

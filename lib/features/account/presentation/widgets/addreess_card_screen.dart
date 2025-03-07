@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/edit_address_screen.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/edit_address_screen.dart';
 
 class AddressCardScreen extends StatelessWidget {
   final Address address;

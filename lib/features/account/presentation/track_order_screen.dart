@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/track_order_details_screen.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/track_order_details_screen.dart';
 
 class TrackOrderScreen extends StatelessWidget {
   const TrackOrderScreen({super.key});

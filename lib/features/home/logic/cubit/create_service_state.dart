@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:waie/features/home/data/model/services/create_service_response.dart';
+import 'package:watd/features/home/data/model/services/create_service_response.dart';
 
 part 'create_service_state.freezed.dart';
 

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/order.dart';
 
 part 'pay_order_response.g.dart';
 

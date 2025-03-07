@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
-import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
-import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/create_address.dart';
+import 'package:watd/core/shared_models/user_addresses/logic/address_cubit.dart';
+import 'package:watd/core/shared_models/user_addresses/logic/address_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/saved_address_screen.dart';
-import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/saved_address_screen.dart';
+import 'package:watd/features/account/presentation/widgets/app_bar_screen.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class AddNewAddressScreen extends StatefulWidget {
   const AddNewAddressScreen({Key? key}) : super(key: key);

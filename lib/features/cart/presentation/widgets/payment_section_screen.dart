@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/local_models/payment_model/payment_card.dart';
+import 'package:watd/core/local_models/payment_model/payment_card.dart';
 
 class PaymentSectionScreen extends StatefulWidget {
   final PaymentCard paymentCard;

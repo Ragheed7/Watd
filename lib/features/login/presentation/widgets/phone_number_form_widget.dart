@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/login/logic/cubit/login_cubit.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/login/logic/cubit/login_cubit.dart';
 
 class PhoneNumberFormWidget extends StatelessWidget {
   final GlobalKey<FormState> formKey;

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:waie/core/shared_models/default_api_response.dart';
-import 'package:waie/features/cart/data/model/get_cart_items.dart';
+import 'package:watd/core/shared_models/default_api_response.dart';
+import 'package:watd/features/cart/data/model/get_cart_items.dart';
 
 part 'cart_state.freezed.dart';
 

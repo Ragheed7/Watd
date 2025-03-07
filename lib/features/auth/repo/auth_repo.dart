@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/shared_prefs_helper.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/core/networking/dio_factory.dart';
-import 'package:waie/features/auth/model/refresh_token_request_body.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/helpers/shared_prefs_helper.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/core/networking/dio_factory.dart';
+import 'package:watd/features/auth/model/refresh_token_request_body.dart';
 
 class AuthRepository {
   final ApiService _apiService;

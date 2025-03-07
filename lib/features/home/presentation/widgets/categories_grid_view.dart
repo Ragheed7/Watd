@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
-import 'package:waie/features/home/presentation/widgets/category_item.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/features/home/presentation/widgets/category_item.dart';
 
 class CategoriesGridView extends StatefulWidget {
   final List<CategoryData?> categories;

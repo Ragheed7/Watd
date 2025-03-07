@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/shared_prefs_helper.dart';
-import 'package:waie/core/networking/dio_factory.dart';
-import 'package:waie/features/auth/repo/auth_repo.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/helpers/shared_prefs_helper.dart';
+import 'package:watd/core/networking/dio_factory.dart';
+import 'package:watd/features/auth/repo/auth_repo.dart';
 
 class AuthInterceptor extends Interceptor {
   final AuthRepository _authRepository;

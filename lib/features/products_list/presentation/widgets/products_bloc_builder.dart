@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
-import 'package:waie/features/products_list/logic/cubit/product_state.dart';
-import 'package:waie/features/products_list/presentation/widgets/products_list_view.dart';
-import 'package:waie/features/search/presentation/widgets/products_grid_view.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/products_list/logic/cubit/product_cubit.dart';
+import 'package:watd/features/products_list/logic/cubit/product_state.dart';
+import 'package:watd/features/products_list/presentation/widgets/products_list_view.dart';
+import 'package:watd/features/search/presentation/widgets/products_grid_view.dart';
 
 import '../../data/model/product_models/product.dart'; 
 

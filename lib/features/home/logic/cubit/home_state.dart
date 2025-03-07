@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
 
 part 'home_state.freezed.dart';
 

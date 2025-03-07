@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/auth/repo/auth_repo.dart';
-import 'package:waie/features/login/logic/cubit/user_cubit.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/auth/repo/auth_repo.dart';
+import 'package:watd/features/login/logic/cubit/user_cubit.dart';
 
 class LogoutButtonWidget extends StatefulWidget {
   final String buttonText;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
-import 'package:waie/features/cart/logic/cart_cubit.dart';
-import 'package:waie/features/cart/logic/cart_state.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/cart/data/model/add_to_cart_item_request.dart';
+import 'package:watd/features/cart/logic/cart_cubit.dart';
+import 'package:watd/features/cart/logic/cart_state.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/features/products_list/data/model/product_response.dart';
 
 class AddToCartButton extends StatelessWidget {
   final Product product;

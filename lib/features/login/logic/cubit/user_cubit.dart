@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/shared_prefs_helper.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/helpers/shared_prefs_helper.dart';
+import 'package:watd/core/shared_models/user_data/user_data.dart';
 
 class UserCubit extends Cubit<UserData?> {
   UserCubit() : super(null) {

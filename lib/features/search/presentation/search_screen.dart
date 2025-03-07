@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
-import 'package:waie/core/shared_models/look_ups/logic/lookup_cubit.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/home/presentation/widgets/home_app_bar.dart';
-import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
-import 'package:waie/features/products_list/presentation/widgets/products_bloc_builder.dart';
-import 'package:waie/features/search/presentation/widgets/filter_oprtions.dart';
-import 'package:waie/features/search/presentation/widgets/search_app_bar.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/core/shared_models/look_ups/logic/lookup_cubit.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/home/presentation/widgets/home_app_bar.dart';
+import 'package:watd/features/products_list/logic/cubit/product_cubit.dart';
+import 'package:watd/features/products_list/presentation/widgets/products_bloc_builder.dart';
+import 'package:watd/features/search/presentation/widgets/filter_oprtions.dart';
+import 'package:watd/features/search/presentation/widgets/search_app_bar.dart';
 
 class SearchScreen extends StatefulWidget {
   final CategoryData? categoryData;

@@ -1,12 +1,12 @@
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/core/networking/api_result.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/core/shared_models/look_ups/brand_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/category_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/colors_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/material_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/product_status_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/style_lookup.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/core/networking/api_result.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/core/shared_models/look_ups/brand_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/category_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/colors_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/material_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/product_status_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/style_lookup.dart';
 
 
 class LookupRepository {

@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
-import 'package:waie/features/account/presentation/widgets/service_details_screen.dart';
-import 'package:waie/features/home/data/repository/get_user_services_repo.dart';
-import 'package:waie/features/home/logic/cubit/get_user_services_cubit.dart';
-import 'package:waie/features/home/logic/cubit/get_user_services_state.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/widgets/app_bar_screen.dart';
+import 'package:watd/features/account/presentation/widgets/service_details_screen.dart';
+import 'package:watd/features/home/data/repository/get_user_services_repo.dart';
+import 'package:watd/features/home/logic/cubit/get_user_services_cubit.dart';
+import 'package:watd/features/home/logic/cubit/get_user_services_state.dart';
 
 class MyServices extends StatelessWidget {
   // Method to convert the serviceRequestStatus to a readable string

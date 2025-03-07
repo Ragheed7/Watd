@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class BottomTextButtonsWidget extends StatelessWidget {
   const BottomTextButtonsWidget({super.key});

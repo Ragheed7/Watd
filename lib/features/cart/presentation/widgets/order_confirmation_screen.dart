@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/payment_screen.dart';
-import 'package:waie/features/cart/data/model/order_models/pay_order_request.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
-import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
-import 'package:waie/features/cart/logic/order%20logic/pay_order_cubit.dart';
-import 'package:waie/features/cart/logic/order%20logic/pay_order_state.dart';
-import 'package:waie/features/cart/presentation/widgets/payment_success_screen.dart';
-import 'package:waie/features/cart/presentation/widgets/payment_section_screen.dart';
-import 'package:waie/features/cart/presentation/widgets/order_summary_screen.dart';
-import 'package:waie/features/cart/presentation/widgets/cart_item_screen.dart';
-import 'package:waie/features/login/logic/cubit/user_cubit.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/payment_screen.dart';
+import 'package:watd/features/cart/data/model/order_models/pay_order_request.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/order.dart';
+import 'package:watd/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
+import 'package:watd/features/cart/logic/order%20logic/pay_order_cubit.dart';
+import 'package:watd/features/cart/logic/order%20logic/pay_order_state.dart';
+import 'package:watd/features/cart/presentation/widgets/payment_success_screen.dart';
+import 'package:watd/features/cart/presentation/widgets/payment_section_screen.dart';
+import 'package:watd/features/cart/presentation/widgets/order_summary_screen.dart';
+import 'package:watd/features/cart/presentation/widgets/cart_item_screen.dart';
+import 'package:watd/features/login/logic/cubit/user_cubit.dart';
 
 class OrderConfirmationScreen extends StatefulWidget {
   final Order order;

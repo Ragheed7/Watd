@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
 
 part 'product_response.g.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/features/login/presentation/widgets/logo_image_widget.dart';
-import 'package:waie/features/login/presentation/widgets/login_bloc_listener.dart';
-import 'package:waie/features/login/presentation/widgets/phone_number_form_widget.dart';
-import 'package:waie/features/login/presentation/widgets/signIn_button_widget.dart';
-import 'package:waie/features/signup/widgets/bottom_text_for_signUpScreen.dart';
-import 'package:waie/features/signup/widgets/signup_title_widget.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/features/login/presentation/widgets/logo_image_widget.dart';
+import 'package:watd/features/login/presentation/widgets/login_bloc_listener.dart';
+import 'package:watd/features/login/presentation/widgets/phone_number_form_widget.dart';
+import 'package:watd/features/login/presentation/widgets/signIn_button_widget.dart';
+import 'package:watd/features/signup/widgets/bottom_text_for_signUpScreen.dart';
+import 'package:watd/features/signup/widgets/signup_title_widget.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

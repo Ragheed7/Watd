@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/core/local_models/payment_model/payment_card.dart';
+import 'package:watd/core/local_models/payment_model/payment_card.dart';
 
 abstract class PaymentCardState {
   const PaymentCardState();

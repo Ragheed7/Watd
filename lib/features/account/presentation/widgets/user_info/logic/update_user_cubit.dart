@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/core/networking/api_result.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_request.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/data/repository/update_user_repo.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/logic/update_user_state.dart';
+import 'package:watd/core/networking/api_result.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/data/model/update_user_request.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/data/repository/update_user_repo.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/logic/update_user_state.dart';
 
 
 class UpdateUserCubit extends Cubit<UpdateUserState<UpdateUserResponse>> {

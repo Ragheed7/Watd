@@ -1,8 +1,8 @@
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/core/networking/api_result.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_request.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/core/networking/api_result.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/data/model/update_user_request.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/data/model/update_user_response.dart';
 
 class UpdateUserRepo {
   final ApiService _apiService;

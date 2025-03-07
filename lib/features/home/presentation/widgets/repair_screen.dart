@@ -4,13 +4,13 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
-import 'package:waie/features/home/data/model/services/create_service_request.dart';
-import 'package:waie/features/home/logic/cubit/create_service_cubit.dart';
-import 'package:waie/features/home/logic/cubit/create_service_state.dart';
-import 'package:waie/features/home/presentation/widgets/order_success_screen.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
+import 'package:watd/features/home/data/model/services/create_service_request.dart';
+import 'package:watd/features/home/logic/cubit/create_service_cubit.dart';
+import 'package:watd/features/home/logic/cubit/create_service_state.dart';
+import 'package:watd/features/home/presentation/widgets/order_success_screen.dart';
 import 'package:image/image.dart' as img;
 
 class RepairScreen extends StatefulWidget {

@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/shared_prefs_helper.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
-import 'package:waie/features/login/data/model/login_request_body.dart';
-import 'package:waie/features/login/data/repository/login_repo.dart';
-import 'package:waie/features/login/logic/cubit/login_state.dart';
-import 'package:waie/features/login/logic/cubit/user_cubit.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/helpers/shared_prefs_helper.dart';
+import 'package:watd/core/shared_models/user_data/user_data.dart';
+import 'package:watd/features/login/data/model/login_request_body.dart';
+import 'package:watd/features/login/data/repository/login_repo.dart';
+import 'package:watd/features/login/logic/cubit/login_state.dart';
+import 'package:watd/features/login/logic/cubit/user_cubit.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginRepo) : super(const LoginState.initial());

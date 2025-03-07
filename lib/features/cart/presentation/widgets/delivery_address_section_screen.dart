@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/get_addresses.dart';
 
 class DeliveryAddressSectionScreen extends StatelessWidget {
   final Address address;

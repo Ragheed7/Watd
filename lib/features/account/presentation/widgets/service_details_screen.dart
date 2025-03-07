@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/networking/api_constants.dart';
-import 'package:waie/features/home/data/model/services/get_user_services.dart';
+import 'package:watd/core/networking/api_constants.dart';
+import 'package:watd/features/home/data/model/services/get_user_services.dart';
 
 class ServiceDetailsScreen extends StatelessWidget {
   final ServiceRequest service;

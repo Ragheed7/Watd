@@ -1,9 +1,9 @@
 // import 'package:signalr_netcore/signalr_client.dart';
-// import 'package:waie/core/Notifications/flutter_toast.dart';
-// import 'package:waie/core/Notifications/notification_manager.dart';
-// import 'package:waie/core/helpers/constants.dart';
-// import 'package:waie/core/helpers/shared_prefs_helper.dart';
-// import 'package:waie/features/auth/repo/auth_repo.dart';
+// import 'package:watd/core/Notifications/flutter_toast.dart';
+// import 'package:watd/core/Notifications/notification_manager.dart';
+// import 'package:watd/core/helpers/constants.dart';
+// import 'package:watd/core/helpers/shared_prefs_helper.dart';
+// import 'package:watd/features/auth/repo/auth_repo.dart';
 
 // class SignalRService {
 //   late HubConnection _hubConnection;

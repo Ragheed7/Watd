@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:waie/features/home/presentation/widgets/donate_screen.dart';
-import 'package:waie/features/home/presentation/widgets/repair_screen.dart';
-import 'package:waie/features/home/presentation/widgets/sell_screen.dart';
+import 'package:watd/features/home/presentation/widgets/donate_screen.dart';
+import 'package:watd/features/home/presentation/widgets/repair_screen.dart';
+import 'package:watd/features/home/presentation/widgets/sell_screen.dart';
 
 class ServicesHorizontalListView extends StatelessWidget {
   final List<String> services;

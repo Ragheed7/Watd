@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/update_address.dart';
-import 'package:waie/core/shared_models/user_addresses/data/repository/address_repo.dart';
-import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/create_address.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/update_address.dart';
+import 'package:watd/core/shared_models/user_addresses/data/repository/address_repo.dart';
+import 'package:watd/core/shared_models/user_addresses/logic/address_state.dart';
 
 class AddressCubit extends Cubit<AddressState<GetAddresses>> { 
   final AddressRepo _addressRepo;

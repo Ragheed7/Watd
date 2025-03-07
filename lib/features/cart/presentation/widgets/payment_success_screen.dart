@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/navigation_menu.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/navigation_menu.dart';
 
 class PaymentSuccessScreen extends StatelessWidget {
   final int orderId;

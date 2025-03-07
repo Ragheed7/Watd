@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/features/product_screen/logic/similar_products_cubit.dart';
-import 'package:waie/features/product_screen/presentation/widgets/add_to_cart_button.dart';
-import 'package:waie/features/product_screen/presentation/widgets/images_slider.dart';
-import 'package:waie/features/product_screen/presentation/widgets/product__info.dart';
-import 'package:waie/features/product_screen/presentation/widgets/product_description.dart';
-import 'package:waie/features/product_screen/presentation/widgets/similar_products.dart';
-import 'package:waie/features/product_screen/presentation/widgets/title_category_and_price.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/features/product_screen/logic/similar_products_cubit.dart';
+import 'package:watd/features/product_screen/presentation/widgets/add_to_cart_button.dart';
+import 'package:watd/features/product_screen/presentation/widgets/images_slider.dart';
+import 'package:watd/features/product_screen/presentation/widgets/product__info.dart';
+import 'package:watd/features/product_screen/presentation/widgets/product_description.dart';
+import 'package:watd/features/product_screen/presentation/widgets/similar_products.dart';
+import 'package:watd/features/product_screen/presentation/widgets/title_category_and_price.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
 
 class ProductScreen extends StatefulWidget {
   final Product product;

@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/core/shared_models/look_ups/brand_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/category_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/colors_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/material_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/product_status_lookup.dart';
-import 'package:waie/core/shared_models/look_ups/repository/lookup_repo.dart';
-import 'package:waie/core/shared_models/look_ups/style_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/brand_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/category_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/colors_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/material_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/product_status_lookup.dart';
+import 'package:watd/core/shared_models/look_ups/repository/lookup_repo.dart';
+import 'package:watd/core/shared_models/look_ups/style_lookup.dart';
 
 import 'lookup_state.dart';
 

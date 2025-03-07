@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/local_models/payment_model/payment_card.dart';
-import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
-import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
-import 'package:waie/features/account/presentation/widgets/payment_card_screen.dart';
-import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
+import 'package:watd/core/local_models/payment_model/payment_card.dart';
+import 'package:watd/core/local_models/payment_model/payment_card_manager.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/add_new_payment_screen.dart';
+import 'package:watd/features/account/presentation/widgets/app_bar_screen.dart';
+import 'package:watd/features/account/presentation/widgets/payment_card_screen.dart';
+import 'package:watd/features/cart/data/model/selected_address_and_payment/selected_payment_card_cubit.dart';
 
 class PaymentScreen extends StatefulWidget {
   final bool isSelection; // Indicates if the screen is for selecting a card

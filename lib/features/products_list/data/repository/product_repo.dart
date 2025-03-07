@@ -1,7 +1,7 @@
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/core/networking/api_result.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/core/networking/api_result.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/features/products_list/data/model/product_response.dart';
 
 class ProductRepo {
   final ApiService _apiService;

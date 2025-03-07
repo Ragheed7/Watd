@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/features/home/logic/cubit/home_cubit.dart';
-import 'package:waie/features/home/presentation/widgets/categories_bloc_builder.dart';
-import 'package:waie/features/home/presentation/widgets/home_app_bar.dart';
-import 'package:waie/features/home/presentation/widgets/home_banner.dart';
-import 'package:waie/features/home/presentation/widgets/left_section_title.dart';
-import 'package:waie/features/home/presentation/widgets/services_horizontal_list_view.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/features/home/logic/cubit/home_cubit.dart';
+import 'package:watd/features/home/presentation/widgets/categories_bloc_builder.dart';
+import 'package:watd/features/home/presentation/widgets/home_app_bar.dart';
+import 'package:watd/features/home/presentation/widgets/home_banner.dart';
+import 'package:watd/features/home/presentation/widgets/left_section_title.dart';
+import 'package:watd/features/home/presentation/widgets/services_horizontal_list_view.dart';
 
 class HomeScreen extends StatelessWidget {
   List<String> servicesImgs = [

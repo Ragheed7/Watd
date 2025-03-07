@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:waie/core/networking/api_constants.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
-import 'package:waie/features/products_list/presentation/products_list_screen.dart';
+import 'package:watd/core/networking/api_constants.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/features/products_list/presentation/products_list_screen.dart';
 
 class CategoryItem extends StatelessWidget {
   final CategoryData categoryData;
@@ -16,7 +16,7 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final imageUrl = categoryData.imageUrl != null
         ? ApiConsts.serverBaseUrl + categoryData.imageUrl!
-        : 'assets/images/waie2.png';
+        : 'assets/images/watd2.png';
 
     return GestureDetector(
       onTap: () {
@@ -48,7 +48,7 @@ class CategoryItem extends StatelessWidget {
                   child: Icon(Icons.image, color: Colors.grey.shade400),
                 ),
                 errorWidget: (context, url, error) => Image.asset(
-                  'assets/images/waie2.png',
+                  'assets/images/watd2.png',
                   width: 180,
                   height: 120,
                   fit: BoxFit.cover,

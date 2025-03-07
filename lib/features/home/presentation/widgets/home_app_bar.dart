@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});

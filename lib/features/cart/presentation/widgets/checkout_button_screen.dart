@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/cart/presentation/check_out_screen.dart';
-import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/cart/presentation/check_out_screen.dart';
+import 'package:watd/features/products_list/logic/cubit/product_cubit.dart';
 
 class CheckoutButtonScreen extends StatelessWidget {
   const CheckoutButtonScreen({super.key});

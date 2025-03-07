@@ -1,10 +1,10 @@
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/core/networking/api_result.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/core/shared_models/default_api_response.dart';
-import 'package:waie/features/cart/data/model/add_to_cart_item_request.dart';
-import 'package:waie/features/cart/data/model/get_cart_items.dart';
-import 'package:waie/features/cart/data/model/remove_from_cart_item_request.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/core/networking/api_result.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/core/shared_models/default_api_response.dart';
+import 'package:watd/features/cart/data/model/add_to_cart_item_request.dart';
+import 'package:watd/features/cart/data/model/get_cart_items.dart';
+import 'package:watd/features/cart/data/model/remove_from_cart_item_request.dart';
 
 class CartRepo {
   final ApiService _apiService;

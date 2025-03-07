@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/local_models/payment_model/payment_card.dart';
-import 'package:waie/core/local_models/payment_model/payment_card_manager.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/widgets/card_number_input_formatter.dart';
-import 'package:waie/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
+import 'package:watd/core/local_models/payment_model/payment_card.dart';
+import 'package:watd/core/local_models/payment_model/payment_card_manager.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/widgets/card_number_input_formatter.dart';
+import 'package:watd/features/account/presentation/widgets/user_info/presentation/widgets/user_info_text_form_field.dart';
 
 class EditPaymentScreen extends StatefulWidget {
   final int cardIndex;

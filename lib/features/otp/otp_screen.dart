@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/navigation_menu.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/navigation_menu.dart';
 
 class OTPScreen extends StatefulWidget {
   final String phoneNumber;

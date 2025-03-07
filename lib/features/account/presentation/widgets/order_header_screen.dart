@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/order.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/order.dart';
 
 class OrderHeaderScreen extends StatelessWidget {
   final Order order;

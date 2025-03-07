@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waie/features/cart/data/model/order_models/sub_order_models/shipping_address.dart';
+import 'package:watd/features/cart/data/model/order_models/sub_order_models/shipping_address.dart';
 
 class DeliveryAddressScreen extends StatelessWidget {
   final ShippingAddress address;

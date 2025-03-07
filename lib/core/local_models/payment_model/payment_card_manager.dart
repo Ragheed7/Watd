@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:waie/core/local_models/payment_model/payment_card.dart';
+import 'package:watd/core/local_models/payment_model/payment_card.dart';
 
 class PaymentCardManager {
   static final PaymentCardManager _instance = PaymentCardManager._internal();

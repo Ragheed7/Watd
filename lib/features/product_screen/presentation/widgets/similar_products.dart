@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/product_screen/logic/similar_products_cubit.dart';
-import 'package:waie/features/product_screen/presentation/ProductScreen.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
-import 'package:waie/features/products_list/logic/cubit/product_cubit.dart';
-import 'package:waie/features/product_screen/presentation/widgets/images_slider.dart';
-import 'package:waie/features/products_list/logic/cubit/product_state.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/product_screen/logic/similar_products_cubit.dart';
+import 'package:watd/features/product_screen/presentation/ProductScreen.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/features/products_list/logic/cubit/product_cubit.dart';
+import 'package:watd/features/product_screen/presentation/widgets/images_slider.dart';
+import 'package:watd/features/products_list/logic/cubit/product_state.dart';
 
 class SimilarProducts extends StatefulWidget {
   final int currentProductId;

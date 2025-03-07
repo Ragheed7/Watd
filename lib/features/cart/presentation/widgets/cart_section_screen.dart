@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:waie/features/products_list/data/model/product_models/product.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
-import 'package:waie/features/cart/presentation/widgets/cart_item_screen.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/features/products_list/data/model/product_response.dart';
+import 'package:watd/features/cart/presentation/widgets/cart_item_screen.dart';
 
 class CartSectionScreen extends StatelessWidget {
   final List<Product> cartItems;

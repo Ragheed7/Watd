@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
-import 'package:waie/features/products_list/presentation/widgets/product_image.dart';
-import 'package:waie/features/products_list/presentation/widgets/product_item_details.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/features/products_list/presentation/widgets/product_image.dart';
+import 'package:watd/features/products_list/presentation/widgets/product_item_details.dart';
 
 import '../../data/model/product_models/product.dart';
 

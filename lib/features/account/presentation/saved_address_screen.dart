@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/shared_models/user_addresses/logic/address_cubit.dart';
-import 'package:waie/core/shared_models/user_addresses/logic/address_state.dart'
+import 'package:watd/core/shared_models/user_addresses/logic/address_cubit.dart';
+import 'package:watd/core/shared_models/user_addresses/logic/address_state.dart'
     as address_state;
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/widgets/add_new_address_button_screen.dart';
-import 'package:waie/features/account/presentation/widgets/addreess_card_screen.dart';
-import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
-import 'package:waie/features/cart/data/model/selected_address_and_payment/selected_addresses_cubit.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/widgets/add_new_address_button_screen.dart';
+import 'package:watd/features/account/presentation/widgets/addreess_card_screen.dart';
+import 'package:watd/features/account/presentation/widgets/app_bar_screen.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:watd/features/cart/data/model/selected_address_and_payment/selected_addresses_cubit.dart';
 
 class SavedAddressScreen extends StatelessWidget {
   const SavedAddressScreen({Key? key}) : super(key: key);

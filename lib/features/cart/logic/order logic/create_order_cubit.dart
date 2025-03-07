@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/features/cart/data/model/order_models/create_order_request.dart';
-import 'package:waie/features/cart/data/repository/order_repo.dart';
-import 'package:waie/features/cart/logic/order%20logic/create_order_state.dart';
+import 'package:watd/features/cart/data/model/order_models/create_order_request.dart';
+import 'package:watd/features/cart/data/repository/order_repo.dart';
+import 'package:watd/features/cart/logic/order%20logic/create_order_state.dart';
 
 class CreateOrderCubit extends Cubit<CreateOrderState> {
   final OrderRepo _orderRepo;

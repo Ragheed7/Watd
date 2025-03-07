@@ -1,11 +1,11 @@
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/core/networking/api_result.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/core/shared_models/default_api_response.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/create_address.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/create_address_response.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/get_addresses.dart';
-import 'package:waie/core/shared_models/user_addresses/data/model/update_address.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/core/networking/api_result.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/core/shared_models/default_api_response.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/create_address.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/create_address_response.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/get_addresses.dart';
+import 'package:watd/core/shared_models/user_addresses/data/model/update_address.dart';
 
 class AddressRepo {
   final ApiService _apiService;

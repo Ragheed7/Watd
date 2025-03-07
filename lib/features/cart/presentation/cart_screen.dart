@@ -2,13 +2,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_launcher_icons/xml_templates.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
-import 'package:waie/features/cart/logic/cart_cubit.dart';
-import 'package:waie/features/cart/logic/cart_state.dart';
-import 'package:waie/features/cart/presentation/widgets/cart_item_screen.dart';
-import 'package:waie/features/cart/presentation/widgets/cart_summary_screen.dart';
-import 'package:waie/features/cart/presentation/widgets/checkout_button_screen.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/widgets/app_bar_screen.dart';
+import 'package:watd/features/cart/logic/cart_cubit.dart';
+import 'package:watd/features/cart/logic/cart_state.dart';
+import 'package:watd/features/cart/presentation/widgets/cart_item_screen.dart';
+import 'package:watd/features/cart/presentation/widgets/cart_summary_screen.dart';
+import 'package:watd/features/cart/presentation/widgets/checkout_button_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);

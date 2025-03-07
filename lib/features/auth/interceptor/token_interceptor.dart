@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/shared_prefs_helper.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/helpers/shared_prefs_helper.dart';
 
 class TokenInterceptor extends Interceptor {
   @override

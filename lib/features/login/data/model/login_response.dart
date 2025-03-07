@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
+import 'package:watd/core/shared_models/user_data/user_data.dart';
 part 'login_response.g.dart';
 
 @JsonSerializable()

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
 
 part 'category_response.g.dart';
 

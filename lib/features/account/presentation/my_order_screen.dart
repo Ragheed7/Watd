@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/di/dependency_injection.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/widgets/app_bar_screen.dart';
-import 'package:waie/features/account/presentation/widgets/order_info_screen.dart';
-import 'package:waie/features/cart/logic/order%20logic/get_orders_cubit.dart';
-import 'package:waie/features/cart/logic/order%20logic/get_orders_state.dart';
+import 'package:watd/core/di/dependency_injection.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/widgets/app_bar_screen.dart';
+import 'package:watd/features/account/presentation/widgets/order_info_screen.dart';
+import 'package:watd/features/cart/logic/order%20logic/get_orders_cubit.dart';
+import 'package:watd/features/cart/logic/order%20logic/get_orders_state.dart';
 
 class MyOrderScreen extends StatelessWidget {
   MyOrderScreen({Key? key}) : super(key: key);

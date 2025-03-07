@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/core/shared_models/user_data/user_data.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/my_order_screen.dart';
-import 'package:waie/features/account/presentation/payment_screen.dart';
-import 'package:waie/features/account/presentation/saved_address_screen.dart';
-import 'package:waie/features/account/presentation/track_order_screen.dart';
-import 'package:waie/features/account/presentation/widgets/account_header_widget.dart';
-import 'package:waie/features/account/presentation/widgets/account_option_list_tile_screen.dart';
-import 'package:waie/features/account/presentation/widgets/logout_button_widget.dart';
-import 'package:waie/features/account/presentation/widgets/my_services.dart';
-import 'package:waie/features/login/logic/cubit/user_cubit.dart';
-import 'package:waie/features/login/presentation/login_screen.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/core/shared_models/user_data/user_data.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/my_order_screen.dart';
+import 'package:watd/features/account/presentation/payment_screen.dart';
+import 'package:watd/features/account/presentation/saved_address_screen.dart';
+import 'package:watd/features/account/presentation/track_order_screen.dart';
+import 'package:watd/features/account/presentation/widgets/account_header_widget.dart';
+import 'package:watd/features/account/presentation/widgets/account_option_list_tile_screen.dart';
+import 'package:watd/features/account/presentation/widgets/logout_button_widget.dart';
+import 'package:watd/features/account/presentation/widgets/my_services.dart';
+import 'package:watd/features/login/logic/cubit/user_cubit.dart';
+import 'package:watd/features/login/presentation/login_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   @override

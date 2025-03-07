@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:waie/features/cart/data/model/order_models/create_order_response.dart';
+import 'package:watd/features/cart/data/model/order_models/create_order_response.dart';
 
 part 'create_order_state.freezed.dart';
 

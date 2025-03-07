@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/account/presentation/add_new_payment_screen.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/account/presentation/add_new_payment_screen.dart';
 
 class AddNewPaymentButtonScreen extends StatelessWidget {
   final String userId; 

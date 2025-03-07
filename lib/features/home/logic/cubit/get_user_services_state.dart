@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:waie/features/home/data/model/services/get_user_services.dart';
+import 'package:watd/features/home/data/model/services/get_user_services.dart';
 
 part 'get_user_services_state.freezed.dart';
 

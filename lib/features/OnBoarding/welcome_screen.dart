@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -28,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
             // ),
             Container(height: 60),
             Text(
-              'Welcome to Waei',
+              'Welcome to Watd',
               style: TextStyle(
                 fontFamily: 'cabin',
                 fontSize: 32,

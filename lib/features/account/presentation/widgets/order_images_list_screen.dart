@@ -22,7 +22,7 @@ class OrderImagesListScreen extends StatelessWidget {
           return ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: CachedNetworkImage(
-              imageUrl: imageList[index] ?? "assets/images/waie2.png",
+              imageUrl: imageList[index] ?? "assets/images/watd2.png",
               width: 80,
               height: 80,
               fit: BoxFit.cover,
@@ -33,7 +33,7 @@ class OrderImagesListScreen extends StatelessWidget {
                 child: Icon(Icons.image, color: Colors.grey),
               ),
               errorWidget: (context, url, error) => Image.asset(
-                "assets/images/waie2.png",
+                "assets/images/watd2.png",
                 width: 80,
                 height: 80,
                 fit: BoxFit.cover,
