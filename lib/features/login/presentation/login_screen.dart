@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/features/login/presentation/widgets/bottom_text_widget.dart';
-import 'package:waie/features/login/presentation/widgets/logo_image_widget.dart';
-import 'package:waie/features/login/presentation/widgets/login_bloc_listener.dart';
-import 'package:waie/features/login/presentation/widgets/phone_number_form_widget.dart';
-import 'package:waie/features/login/presentation/widgets/signIn_button_widget.dart';
-import 'package:waie/features/login/presentation/widgets/signIn_title_widget.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/features/login/presentation/widgets/bottom_text_widget.dart';
+import 'package:watd/features/login/presentation/widgets/logo_image_widget.dart';
+import 'package:watd/features/login/presentation/widgets/login_bloc_listener.dart';
+import 'package:watd/features/login/presentation/widgets/phone_number_form_widget.dart';
+import 'package:watd/features/login/presentation/widgets/signIn_button_widget.dart';
+import 'package:watd/features/login/presentation/widgets/signIn_title_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Positioned(
               left: 0,
               right: 0,
-              bottom: 0,
+              bottom: -70,
               child: const BottomTextButtonsWidget(),
             ),
             // Bloc Listener

@@ -1,8 +1,8 @@
-import 'package:waie/core/networking/api_error_handler.dart';
-import 'package:waie/core/networking/api_result.dart';
-import 'package:waie/core/networking/api_service.dart';
-import 'package:waie/features/login/data/model/login_request_body.dart';
-import 'package:waie/features/login/data/model/login_response.dart';
+import 'package:watd/core/networking/api_error_handler.dart';
+import 'package:watd/core/networking/api_result.dart';
+import 'package:watd/core/networking/api_service.dart';
+import 'package:watd/features/login/data/model/login_request_body.dart';
+import 'package:watd/features/login/data/model/login_response.dart';
 
 class LoginRepo {
   final ApiService _apiService;

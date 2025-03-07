@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waie/core/routing/routes.dart';
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/login/logic/cubit/login_cubit.dart';
-import 'package:waie/features/login/logic/cubit/login_state.dart';
+import 'package:watd/core/routing/routes.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/login/logic/cubit/login_cubit.dart';
+import 'package:watd/features/login/logic/cubit/login_state.dart';
 
 class LoginBlocListener extends StatelessWidget {
   const LoginBlocListener({super.key});
@@ -29,7 +29,7 @@ class LoginBlocListener extends StatelessWidget {
           },
           success: (loginResponse) {
             Navigator.of(context).pop(); // Close the loading dialog
-             // Get the phone number from the LoginCubit
+            // Get the phone number from the LoginCubit
             final loginCubit = context.read<LoginCubit>();
             String phoneNumber = loginCubit.phoneController.text;
 
@@ -53,6 +53,7 @@ class LoginBlocListener extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
         icon: const Icon(
           Icons.error,
           color: Colors.red,

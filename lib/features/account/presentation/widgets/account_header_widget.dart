@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/spacing.dart';
-import 'package:waie/core/theming/colors.dart';
+import 'package:watd/core/helpers/spacing.dart';
+import 'package:watd/core/theming/colors.dart';
 
 class AccountHeaderWidget extends StatelessWidget {
   final String accountName;
@@ -23,7 +23,7 @@ class AccountHeaderWidget extends StatelessWidget {
             child: Icon(
               Icons.person,
               size: 50,
-              color: ColorsManager.grey,
+              color: ColorsManager.mainGreen,
             ),
           ),
           verticalSpace(8),

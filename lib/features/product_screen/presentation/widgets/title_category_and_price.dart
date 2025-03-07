@@ -1,8 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:waie/core/theming/colors.dart';
-import 'package:waie/features/products_list/data/model/product_response.dart';
+import 'package:watd/core/theming/colors.dart';
+import 'package:watd/features/products_list/data/model/product_models/product.dart';
+import 'package:watd/features/products_list/data/model/product_response.dart';
 
 class TitleCategoryAndPrice extends StatefulWidget {
   final Product product;
@@ -43,7 +43,7 @@ class _TitleCategoryAndPriceState extends State<TitleCategoryAndPrice> {
             ),
             // Product Price
             Text(
-              "\$${widget.product.price ?? "0"}",
+              "\SAR ${widget.product.price ?? "0"}",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,

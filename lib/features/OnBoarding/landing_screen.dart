@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waie/core/helpers/constants.dart';
-import 'package:waie/features/OnBoarding/welcome_screen.dart';
+import 'package:watd/core/helpers/constants.dart';
+import 'package:watd/features/OnBoarding/welcome_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});

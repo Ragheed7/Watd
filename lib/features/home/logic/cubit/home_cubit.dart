@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:waie/core/shared_models/category_data_model/category_data.dart';
-import 'package:waie/features/home/data/repository/home_repo.dart';
-import 'package:waie/features/home/logic/cubit/home_state.dart';
+import 'package:watd/core/shared_models/category_data_model/category_data.dart';
+import 'package:watd/features/home/data/repository/home_repo.dart';
+import 'package:watd/features/home/logic/cubit/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._homeRepo) : super(const HomeState.initial());

@@ -7,16 +7,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:waie/core/routing/app_router.dart';
+import 'package:watd/core/routing/app_router.dart';
 
-import 'package:waie/main.dart';
-import 'package:waie/waie_app.dart';
+import 'package:watd/main.dart';
+import 'package:watd/watd_app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Waie(
-      appRouter: AppRouter(),
+    bool isLoggedIn = true;
+    await tester.pumpWidget(watd(
+      appRouter: AppRouter(), isLoggedIn: isLoggedIn,
     ));
 
     // Verify that our counter starts at 0.
